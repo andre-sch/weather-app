@@ -1,0 +1,10 @@
+"3D Weather Icons - (Community)" in Figma (c) by @ehsanhpuix
+
+The all png files inside images/[both, day, night] folders are licensed
+under a Creative Commons Attribution 4.0 International License.
+
+Changes were made in night/scattered-clouds.svg, [day, night]/cloudy.svg
+and [day, night]/mist.svg which are composites of other images from same work
+
+You should have received a copy of the license along with this
+work. If not, see <http://creativecommons.org/licenses/by/4.0/>.

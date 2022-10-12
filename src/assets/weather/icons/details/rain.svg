@@ -1,0 +1,57 @@
+<!--
+
+This icon is composed of two icons:
+
+- - A drop - - - - - - - - - - - - - - - - - - - - - -
+
+Copyright 2021 MingCute Design
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+
+- - And a cloud - - - - - - - - - - - - - - - - - - - -
+
+MIT License
+
+Copyright (c) 2020 Arturo Wibawa
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+-->
+
+<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+<mask id="mask0_73_2705" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="12" height="12">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M0 0H12V12H9.12264C9.69035 11.851 10.2137 11.5579 10.6365 11.1435C11.2694 10.523 11.625 9.68149 11.625 8.80403C11.625 7.60719 10.9171 6.46288 10.2252 5.61964C9.72853 5.01938 9.17308 4.46824 8.56683 3.97409C8.47764 3.90195 8.36562 3.8625 8.25 3.8625C8.13438 3.8625 8.02236 3.90195 7.93317 3.97409H7.93275C7.32667 4.46813 6.77136 5.01913 6.27478 5.61922C5.58291 6.46288 4.875 7.60719 4.875 8.80403C4.875 9.68149 5.23058 10.523 5.86351 11.1435C6.28628 11.5579 6.80965 11.851 7.37736 12H0V0Z" fill="#FFFFFF"/>
+</mask>
+<g mask="url(#mask0_73_2705)">
+<path d="M2.5171 4.246C2.04421 4.365 1.63104 4.65258 1.35523 5.05472C1.07942 5.45686 0.959944 5.94588 1.01926 6.42989C1.07857 6.91391 1.31258 7.35961 1.67734 7.68325C2.04209 8.0069 2.51247 8.18621 3.0001 8.1875H8.5001C8.85312 8.18726 9.20209 8.11226 9.52403 7.96743C9.84598 7.8226 10.1336 7.61123 10.368 7.34724C10.6023 7.08324 10.7781 6.7726 10.8838 6.43576C10.9895 6.09893 11.0226 5.74353 10.981 5.39297C10.9394 5.04241 10.824 4.70463 10.6425 4.40187C10.461 4.09911 10.2174 3.83822 9.92772 3.63639C9.63809 3.43456 9.309 3.29636 8.9621 3.23088C8.61521 3.1654 8.25838 3.17413 7.9151 3.2565L7.2501 3.4375" stroke="#F0EED0" stroke-width="1.0125" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M7.91508 3.25795C7.74418 2.58123 7.32237 1.99482 6.73514 1.61757C6.14792 1.24033 5.43922 1.10049 4.75271 1.2264C4.0662 1.3523 3.45325 1.73454 3.03811 2.29562C2.62297 2.85669 2.43671 3.55463 2.51708 4.24795C2.51708 4.24795 2.59358 4.68895 2.75008 4.93895" stroke="#F0EED0" stroke-width="1.0125" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M8.02118 5.14366C8.08559 5.09119 8.16649 5.0625 8.25 5.0625C8.33351 5.0625 8.41441 5.09119 8.47882 5.14366C8.91667 5.50304 9.31782 5.90387 9.67655 6.34042C10.1762 6.95369 10.6875 7.78592 10.6875 8.65634C10.6875 9.2945 10.4307 9.90651 9.97357 10.3578C9.51645 10.809 8.89647 11.0625 8.25 11.0625C7.60353 11.0625 6.98355 10.809 6.52643 10.3578C6.06931 9.90651 5.8125 9.2945 5.8125 8.65634C5.8125 7.78592 6.32377 6.95369 6.82345 6.34012C7.1821 5.90369 7.58315 5.50296 8.02087 5.14366H8.02118Z" fill="#F0EED0"/>
+</svg>
