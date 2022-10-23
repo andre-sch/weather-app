@@ -1,0 +1,41 @@
+*, input, button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font-family: 'Inter', sans-serif;
+  box-sizing: border-box;
+}
+
+:root {
+  --alert: #8A3333;
+  --secondary: #78364F;
+  --background: #161513;
+  --white-rgb: 245, 248, 242;
+  --primary-rgb: 237, 233, 191;
+}
+
+::selection {
+  background: var(--secondary);
+  color: rgb(var(--white-rgb));
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--background);
+  color: rgb(var(--white-rgb));
+}
+
+button {cursor: pointer;}
+
+ul {list-style: none;}
+
+img {
+  vertical-align: middle;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.min-max.vertical span {font-family: 'Red Hat Mono', monospace;}

@@ -1,5 +1,15 @@
+import { AppHeader } from "./components/AppHeader"
+import { WeatherCard } from "./components/WeatherCard"
+
+import './app.css'
+
 function App() {
-  return <h1>Hello world!</h1>
+  return (
+    <div className="weather-app">
+      <AppHeader />
+      <WeatherCard />
+    </div>
+  )
 }
 
 export default App

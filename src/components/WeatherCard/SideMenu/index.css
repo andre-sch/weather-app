@@ -1,0 +1,158 @@
+.side-menu {
+  position: absolute;
+  top: 0; left: 0;
+  width: 16.5rem;
+  height: 100%;
+  padding: 0.625rem 1rem 0.5rem 1.25rem;
+  background: #373734;
+  box-shadow: 6px 0px 6px rgba(0, 0, 0, 0.3);
+  border-radius: 0.75rem 0 0 0.75rem;
+  z-index: 2;
+}
+.side-menu * {font-family: 'Poppins', sans-serif;}
+
+.side-menu header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.side-menu header h1 {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.side-menu header button {transition: filter 0.2s;}
+.side-menu header button:hover {filter: brightness(0.9);}
+
+
+.side-menu .input-container {
+  position: relative;
+  display: flex;
+  height: 2.5rem;
+  background: rgba(0, 0, 0, 0.15);
+  box-shadow: inset 4px 4px 4px rgba(0, 0, 0, 0.15);
+  border-radius: 0.5rem;
+}
+
+.side-menu .input-container input {
+  width: 100%;
+  padding: 0 3rem 0 1.5rem;
+  font-size: 0.625rem;
+  font-weight: 400;
+  color: rgb(var(--white-rgb));
+  border-radius: inherit;
+}
+.side-menu .input-container input::placeholder {
+  color: rgba(var(--white-rgb), 0.6);
+}
+.side-menu .input-container input:focus {
+  outline: 2px solid rgba(var(--white-rgb), 0.9);
+}
+
+.side-menu .input-container img {
+  position: absolute;
+  top: 50%;
+  right: 0.75rem;
+  transform: translateY(-50%);
+}
+
+
+.side-menu ul {
+  position: absolute;
+  top: 5.375rem; left: 0;
+  margin-top: 0.75rem;
+  width: 100%;
+  height: 19.125rem;
+  padding: 0 1rem 0.5rem 1.25rem;
+  overflow-y: overlay;
+}
+
+.side-menu ul::-webkit-scrollbar {width: 0.75rem;}
+.side-menu ul::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.3);
+  border-right: 0.125rem solid #373734;
+}
+.side-menu ul::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.side-menu ul .city-card {
+  position: relative;
+  margin-top: 1.25rem;
+  padding: 0.75rem 0.75rem 0.5rem 1rem;
+  box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.5);
+  border-radius: 0.75rem;
+  cursor: pointer;
+}
+
+.city-card .drag-card {
+  position: absolute;
+  top: 50%; left: 0;
+  transform: translate(-100%, -50%);
+  cursor: grab;
+}
+
+.city-card .delete-card {
+  position: absolute;
+  top: 0; right: 0;
+}
+
+.city-card :is(.drag-card, .delete-card) {
+  opacity: 0; z-index: -1;
+  transition: filter 0.2s;
+}
+.city-card:hover :is(.drag-card, .delete-card) {opacity: 1; z-index: 3;}
+.city-card :is(.drag-card:hover, .delete-card:hover) {filter: brightness(0.9);}
+
+.city-card .temperature {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.city-card .temperature strong {font-size: 2.5rem; font-weight: 400;}
+
+.city-card .temperature .min-max {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.75rem;
+  color: rgb(var(--primary-rgb));
+  transform: translateY(0.125rem);
+}
+.city-card .temperature .min-max span + span {opacity: 0.3;}
+
+.city-card .weather-preview {
+  position: absolute;
+  top: 0; right: 0;
+  transform: translateY(-1.25rem);
+}
+
+.city-card footer {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.city-card footer h1 {font-size: 0.625rem; font-weight: 500;}
+.city-card footer span {font-size: 0.5rem; font-weight: 300;}
+
+.city-card .background {
+  position: absolute;
+  top: 0; left: 0;
+  opacity: 0.6;
+  z-index: -1;
+  transition: opacity 0.2s;
+}
+.city-card:hover .background {opacity: 1;}
+
+
+.dark-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.15);
+  z-index: 1;
+}

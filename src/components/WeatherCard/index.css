@@ -1,0 +1,9 @@
+.weather-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4.5rem 6.375rem 2.25rem;
+  background: rgba(var(--white-rgb), 0.1);
+  border-radius: 0.75rem;
+}
