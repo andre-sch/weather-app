@@ -1,4 +1,4 @@
 .weather-app {
-  margin-top: calc((100vh - 30rem) / 2);
-  width: 50.5rem;
+  margin: max(calc((100vh - 30rem) / 2), 1rem) 0;
+  width: min(50.5rem, 85vw);
 }

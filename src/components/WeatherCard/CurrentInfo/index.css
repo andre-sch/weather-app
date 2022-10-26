@@ -1,6 +1,6 @@
 .current-info {
   position: relative;
-  margin-bottom: 4.5rem;
+  margin-bottom: min(4.5rem, 7.5vw);
   padding: 1rem;
   padding-right: 0.75rem;
   background: rgba(var(--white-rgb), 0.05);

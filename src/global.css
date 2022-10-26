@@ -20,7 +20,7 @@
   color: rgb(var(--white-rgb));
 }
 
-html {font-size: 20px;}
+html {font-size: min(20px, 2.45vw);}
 
 body {
   display: flex;

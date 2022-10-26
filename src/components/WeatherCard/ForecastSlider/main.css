@@ -23,15 +23,22 @@
   left: 100%;
 }
 
+.forecast-slider main nav button img {width: 2.5rem;}
+
 
 .forecast-slider main section {
   position: absolute;
   top: 0; left: 0;
+
   display: flex;
   align-items: flex-start;
   gap: 0.375rem;
+
+  width: 100%;
   height: 100%;
+
   opacity: 0;
+  overflow-x: hidden;
   z-index: -1;
   cursor: grab;
 }
@@ -52,16 +59,11 @@
 }
 
 
-.forecast-slider main section.forecast {
-  width: 37.75rem;
-  overflow-x: hidden;
-}
-
 .forecast .mini-card {width: 4rem; background: rgba(var(--white-rgb), 0.1);}
 .forecast .mini-card:hover {background: rgba(var(--white-rgb), 0.15);}
 
 .forecast .mini-card time {font-size: 0.6875rem;}
-.forecast .mini-card img {margin: 0.5rem 0 0.25rem;}
+.forecast .mini-card img {width: 2rem; margin: 0.5rem 0 0.25rem;}
 
 .forecast .mini-card :is(strong, span) {
   font-family: 'Poppins', sans-serif;
@@ -71,7 +73,7 @@
 .forecast .mini-card strong {font-size: 0.875rem;}
 
 .forecast .mini-card.twilight {width: 5.5rem;}
-.forecast .mini-card.twilight img {margin: 0.25rem 0 0;}
+.forecast .mini-card.twilight img {width: 2.5rem; margin: 0.25rem 0 0;}
 .forecast .mini-card.twilight strong {font-weight: 400;}
 
 
@@ -88,9 +90,9 @@
 .daily .min-max span + span {color: rgba(var(--white-rgb), 0.5);}
 
 
-.forecast-slider main section.details {
-  left: 50%;
-  transform: translateX(-50%);
+.forecast-slider main section.details {justify-content: center;}
+@media (max-width: 1043px) {
+  .forecast-slider main section.details {justify-content: flex-start;}
 }
 
 .details .mini-card {
@@ -111,6 +113,8 @@
   align-items: center;
   gap: 0.25rem;
 }
+
+.details header img {width: 0.75rem;}
 
 .details header em {
   font-style: normal;

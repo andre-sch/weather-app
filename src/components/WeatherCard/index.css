@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 4.5rem 6.375rem 2.25rem;
+  padding: min(4.5rem, 7.5vw) min(6.375rem, 10.5vw) 2.25rem;
   background: rgba(var(--white-rgb), 0.1);
   border-radius: 0.75rem;
 }
