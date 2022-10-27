@@ -2,13 +2,18 @@ import { CardsPagination } from "./CardsPagination";
 import { CurrentInfo } from "./CurrentInfo";
 import { ForecastSlider } from "./ForecastSlider";
 import { SideMenu } from "./SideMenu";
+import type { SideMenuStateType } from "../../App";
 
 import './index.css'
 
-export function WeatherCard() {
+interface WeatherCardProps {
+  sideMenuState: SideMenuStateType
+}
+
+export function WeatherCard(props: WeatherCardProps) {
   return (
     <div className="weather-card">
-      <SideMenu />
+      <SideMenu menuState={props.sideMenuState} />
       <CardsPagination />
       <CurrentInfo />
       <ForecastSlider />

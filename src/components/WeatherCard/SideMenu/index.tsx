@@ -1,3 +1,5 @@
+import { SideMenuStateType } from '../../../App'
+
 import './index.css'
 
 import closeWithBackground from '../../../assets/other/close/bd-filled.svg'
@@ -11,13 +13,21 @@ import nightRain from '../../../assets/weather/images/night/rain.png'
 import dayFewClouds from '../../../assets/weather/images/day/few-clouds.png'
 import dayThunderstorm from '../../../assets/weather/images/day/thunderstorm.png'
 
-export function SideMenu() {
+interface SideMenuProps {
+  menuState: SideMenuStateType
+}
+
+export function SideMenu(props: SideMenuProps) {
+  const {menuState} = props
+  const [isMenuOpen, setIsMenuOpen] = menuState
+
   return (
     <>
-        <div className="side-menu">
+      <div className={`side-menu ${isMenuOpen ? 'show' : ''}`}>
+        <div className="content">
           <header>
             <h1>Registered Cities</h1>
-            <button>
+            <button onClick={() => setIsMenuOpen(false)}>
               <img
                 src={closeWithoutBackground}
                 alt="close menu"
@@ -131,7 +141,11 @@ export function SideMenu() {
             </li>
           </ul>
         </div>
-        <div className="dark-overlay"></div>
+        <div
+          className={`dark-overlay ${isMenuOpen ? 'show' : ''}`}
+          onClick={() => setIsMenuOpen(false)}>
+        </div>
+      </div>
     </>
   )
 }
