@@ -17,9 +17,9 @@ import rainfall from '../../../assets/weather/icons/details/rain.svg'
 import humidity from '../../../assets/weather/icons/details/humidity.svg'
 import visibility from '../../../assets/weather/icons/details/visibility.svg'
 
-export function ForecastSlider() {
+export function Slider() {
   return (
-    <div className="forecast-slider">
+    <div className="slider">
       <header>
         <div className="forecast-switch">
           <button className="on">Hourly forecast</button>

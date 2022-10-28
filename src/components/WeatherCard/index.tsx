@@ -1,6 +1,6 @@
 import { CardsPagination } from "./CardsPagination";
 import { CurrentInfo } from "./CurrentInfo";
-import { ForecastSlider } from "./ForecastSlider";
+import { Slider } from "./Slider";
 import { SideMenu } from "./SideMenu";
 import type { SideMenuStateType } from "../../App";
 
@@ -16,7 +16,7 @@ export function WeatherCard(props: WeatherCardProps) {
       <SideMenu menuState={props.sideMenuState} />
       <CardsPagination />
       <CurrentInfo />
-      <ForecastSlider />
+      <Slider />
     </div>
   )
 }

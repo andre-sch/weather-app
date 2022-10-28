@@ -1,11 +1,11 @@
-.forecast-slider > header {
+.slider > header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
 }
 
-.forecast-slider > header button {
+.slider > header button {
   height: 1.5rem;
   font-size: 0.6875rem;
   transition: all 0.2s;
