@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 import './header.css'
 import './main.css'
 
@@ -17,15 +19,38 @@ import rainfall from '../../../assets/weather/icons/details/rain.svg'
 import humidity from '../../../assets/weather/icons/details/humidity.svg'
 import visibility from '../../../assets/weather/icons/details/visibility.svg'
 
+type forecasts = 'hourly' | 'daily'
+
 export function Slider() {
+  const [selectedForecast, setSelectedForecast] = useState<forecasts>('hourly')
+  const [isDisplayingDetails, setIsDisplayingDetails] = useState(false)
+
   return (
     <div className="slider">
       <header>
         <div className="forecast-switch">
-          <button className="on">Hourly forecast</button>
-          <button>Daily forecast</button>
+          <button
+            className={selectedForecast == 'hourly' ? 'on' : ''}
+            onClick={() => {
+              setIsDisplayingDetails(false)
+              setSelectedForecast('hourly')
+            }}>
+            Hourly forecast
+          </button>
+          <button
+            className={selectedForecast == 'daily' ? 'on' : ''}
+            onClick={() => {
+              setIsDisplayingDetails(false)
+              setSelectedForecast('daily')
+            }}>
+            Daily forecast
+          </button>
         </div>
-        <button className="show-details">Details</button>
+        <button
+          className="show-details"
+          onClick={() => setIsDisplayingDetails(!isDisplayingDetails)}>
+          {isDisplayingDetails ? 'Hide' : 'Details'}
+        </button>
       </header>
 
       <main>
@@ -40,7 +65,14 @@ export function Slider() {
             <img src={thinArrow} alt="See next weather forecast information" />
           </button>
         </nav>
-        <section className="forecast hourly display">
+        <section className={
+          `forecast hourly ${
+            !isDisplayingDetails &&
+            selectedForecast == 'hourly'
+              ? 'show'
+              : ''
+          }`
+        }>
           <div className="mini-card">
             <time>Now</time>
             <img src={dayFewClouds} alt="Day with few clouds" draggable={false}/>
@@ -87,7 +119,14 @@ export function Slider() {
             <strong>18º</strong>
           </div>
         </section>
-        <section className="forecast daily">
+        <section className={
+          `forecast daily ${
+            !isDisplayingDetails &&
+            selectedForecast == 'daily'
+              ? 'show'
+              : ''
+          }`
+        }>
           <div className="mini-card">
             <time>Today</time>
             <img src={dayScatteredClouds} alt="Day with scattered clouds" draggable={false} />
@@ -161,7 +200,8 @@ export function Slider() {
             </div>
           </div>
         </section>
-        <section className="details">
+        <section
+          className={`details ${isDisplayingDetails ? 'show' : ''}`}>
           <div className="mini-card">
             <header>
               <img src={detailsTwilight} alt="" />
