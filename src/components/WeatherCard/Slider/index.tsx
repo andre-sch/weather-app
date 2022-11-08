@@ -10,7 +10,6 @@ import dayScatteredClouds from '../../../assets/weather/icons/day/scattered-clou
 import nightScatteredClouds from '../../../assets/weather/icons/night/scattered-clouds.svg'
 import cloudy from '../../../assets/weather/icons/both/cloudy.svg'
 import rain from '../../../assets/weather/icons/both/rain.svg'
-import thunderstorm from '../../../assets/weather/icons/both/thunderstorm.svg'
 import twilight from '../../../assets/weather/icons/both/twilight.svg'
 import detailsTwilight from '../../../assets/weather/icons/details/twilight.svg'
 import temperature from '../../../assets/weather/icons/details/temperature.svg'
@@ -110,12 +109,42 @@ export function Slider() {
           </div>
           <div className="mini-card">
             <time>22:00</time>
-            <img src={rain} alt="Rainy night" draggable={false} />
+            <img src={cloudy} alt="Cloudy night" draggable={false} />
             <strong>18º</strong>
           </div>
           <div className="mini-card">
             <time>23:00</time>
             <img src={rain} alt="Rainy night" draggable={false} />
+            <strong>18º</strong>
+          </div>
+          <div className="mini-card">
+            <time>00:00</time>
+            <img src={rain} alt="Rainy night" draggable={false} />
+            <strong>17º</strong>
+          </div>
+          <div className="mini-card">
+            <time>01:00</time>
+            <img src={rain} alt="Rainy night" draggable={false} />
+            <strong>16º</strong>
+          </div>
+          <div className="mini-card">
+            <time>02:00</time>
+            <img src={cloudy} alt="Cloudy night" draggable={false} />
+            <strong>16º</strong>
+          </div>
+          <div className="mini-card">
+            <time>03:00</time>
+            <img src={cloudy} alt="Cloudy night" draggable={false} />
+            <strong>17º</strong>
+          </div>
+          <div className="mini-card">
+            <time>04:00</time>
+            <img src={nightScatteredClouds} alt="Night with scattered clouds" draggable={false} />
+            <strong>18º</strong>
+          </div>
+          <div className="mini-card">
+            <time>05:00</time>
+            <img src={nightScatteredClouds} alt="Night with scattered clouds" draggable={false} />
             <strong>18º</strong>
           </div>
         </section>
@@ -189,14 +218,6 @@ export function Slider() {
             <div className="min-max">
               <span>34º</span>
               <span>28º</span>
-            </div>
-          </div>
-          <div className="mini-card">
-            <time>Tue</time>
-            <img src={thunderstorm} alt="Thunderstorm" draggable={false} />
-            <div className="min-max">
-              <span>28º</span>
-              <span>20º</span>
             </div>
           </div>
         </section>
