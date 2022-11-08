@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 
 import './header.css'
 import './main.css'
@@ -19,10 +19,58 @@ import humidity from '../../../assets/weather/icons/details/humidity.svg'
 import visibility from '../../../assets/weather/icons/details/visibility.svg'
 
 type forecasts = 'hourly' | 'daily'
+type sectionIDs = forecasts | 'details'
 
 export function Slider() {
+  var sectionDisplayed: HTMLDivElement
+  const [sectionDisplayedID, setSectionDisplayedID] = useState<sectionIDs>('hourly')
   const [selectedForecast, setSelectedForecast] = useState<forecasts>('hourly')
-  const [isDisplayingDetails, setIsDisplayingDetails] = useState(false)
+
+  const [hasHiddenContentOnRight, setHasHiddenContentOnRight] = useState(false)
+  const [sectionLeftSpacing, setSectionLeftSpacing] = useState(0)
+
+  window.onresize = () => handleHiddenContentOnRight()
+
+  useEffect(() => {
+    if (!sectionDisplayedID) return
+    sectionDisplayed = document.querySelector(`section.${sectionDisplayedID}`)!
+
+    setTimeout(() => handleHiddenContentOnRight(), 350)  // 50ms longer than css transition time
+    setSectionLeftSpacing(0)
+  }, [sectionDisplayedID])
+
+  const handleHiddenContentOnRight = useCallback(() => {
+    if (sectionDisplayed.scrollWidth > sectionDisplayed.clientWidth) {
+      setHasHiddenContentOnRight(true); return
+    }
+    setHasHiddenContentOnRight(false)
+  }, [sectionDisplayedID])
+
+  const scrollHiddenContent = useCallback((direction: 'left' | 'right') => {
+    const step = sectionDisplayed.clientWidth / 2.5
+    const leftMax = sectionDisplayed.scrollWidth - sectionDisplayed.clientWidth
+    const leftMin = 0
+
+    const transformStyle = sectionDisplayed.style.transform
+    const previousLeft = Number(transformStyle.replace(/[^\d.]/g, ''))
+
+    var nextLeft
+    switch (direction) {
+      case 'right':
+        nextLeft = previousLeft + step
+        if (nextLeft >= leftMax) {
+          nextLeft = leftMax
+          setTimeout(() => setHasHiddenContentOnRight(false), 650)  // 50ms longer than css transition time
+        }
+        break
+      case 'left':
+        nextLeft = previousLeft - step
+        if (nextLeft <= leftMin) nextLeft = leftMin
+        setHasHiddenContentOnRight(true)
+    }
+
+    setSectionLeftSpacing(nextLeft)
+  }, [sectionDisplayedID])
 
   return (
     <div className="slider">
@@ -31,47 +79,54 @@ export function Slider() {
           <button
             className={selectedForecast == 'hourly' ? 'on' : ''}
             onClick={() => {
-              setIsDisplayingDetails(false)
               setSelectedForecast('hourly')
+              setSectionDisplayedID('hourly')
             }}>
             Hourly forecast
           </button>
           <button
             className={selectedForecast == 'daily' ? 'on' : ''}
             onClick={() => {
-              setIsDisplayingDetails(false)
               setSelectedForecast('daily')
+              setSectionDisplayedID('daily')
             }}>
             Daily forecast
           </button>
         </div>
         <button
           className="show-details"
-          onClick={() => setIsDisplayingDetails(!isDisplayingDetails)}>
-          {isDisplayingDetails ? 'Hide' : 'Details'}
+          onClick={() => {
+            sectionDisplayedID == 'details'
+              ? setSectionDisplayedID(selectedForecast)
+              : setSectionDisplayedID('details')
+          }}>
+          {sectionDisplayedID == 'details' ? 'Hide' : 'Details'}
         </button>
       </header>
 
+      <nav className="horizontal-arrows">
+        <button
+          disabled={sectionLeftSpacing == 0}
+          onClick={() => scrollHiddenContent('left')}>
+          <img
+            src={thinArrow}
+            alt="See previous weather forecast information"
+            style={{transform: 'rotate(180deg)'}} />
+        </button>
+        <button
+          disabled={!hasHiddenContentOnRight}
+          onClick={() => scrollHiddenContent('right')}>
+          <img src={thinArrow} alt="See next weather forecast information" />
+        </button>
+      </nav>
+
       <main>
-        <nav className="horizontal-arrows">
-          <button disabled>
-            <img
-              src={thinArrow}
-              alt="See previous weather forecast information"
-              style={{transform: 'rotate(180deg)'}} />
-          </button>
-          <button>
-            <img src={thinArrow} alt="See next weather forecast information" />
-          </button>
-        </nav>
-        <section className={
-          `forecast hourly ${
-            !isDisplayingDetails &&
-            selectedForecast == 'hourly'
-              ? 'show'
-              : ''
-          }`
-        }>
+        <section
+          className={`forecast hourly ${sectionDisplayedID == 'hourly' ? 'show' : ''}`}
+          style={{
+            transform: sectionDisplayedID == 'hourly'
+              ? `translateX(-${sectionLeftSpacing}px)` : ''
+          }}>
           <div className="mini-card">
             <time>Now</time>
             <img src={dayFewClouds} alt="Day with few clouds" draggable={false}/>
@@ -148,14 +203,12 @@ export function Slider() {
             <strong>18º</strong>
           </div>
         </section>
-        <section className={
-          `forecast daily ${
-            !isDisplayingDetails &&
-            selectedForecast == 'daily'
-              ? 'show'
-              : ''
-          }`
-        }>
+        <section
+          className={`forecast daily ${sectionDisplayedID == 'daily' ? 'show' : ''}`}
+          style={{
+            transform: sectionDisplayedID == 'daily'
+              ? `translateX(-${sectionLeftSpacing}px)` : ''
+          }}>
           <div className="mini-card">
             <time>Today</time>
             <img src={dayScatteredClouds} alt="Day with scattered clouds" draggable={false} />
@@ -222,7 +275,11 @@ export function Slider() {
           </div>
         </section>
         <section
-          className={`details ${isDisplayingDetails ? 'show' : ''}`}>
+          className={`details ${sectionDisplayedID == 'details' ? 'show' : ''}`}
+          style={{
+            transform: sectionDisplayedID == 'details'
+              ? `translateX(-${sectionLeftSpacing}px)` : ''
+          }}>
           <div className="mini-card">
             <header>
               <img src={detailsTwilight} alt="" />
