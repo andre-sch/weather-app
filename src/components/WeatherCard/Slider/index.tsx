@@ -21,31 +21,89 @@ import visibility from '../../../assets/weather/icons/details/visibility.svg'
 type forecasts = 'hourly' | 'daily'
 type sectionIDs = forecasts | 'details'
 
+type cursorStyles = 'grab' | 'grabbing' | 'default'
+
 export function Slider() {
   var sectionDisplayed = useRef<HTMLDivElement>(null)
   const [sectionDisplayedID, setSectionDisplayedID] = useState<sectionIDs>('hourly')
   const [selectedForecast, setSelectedForecast] = useState<forecasts>('hourly')
 
+  const [cursorStyle, setCursorStyle] = useState<cursorStyles>('grab')
+  const [cursorTracking, setCursorTracking] = useState({previousPosition: 0, currentPosition: 0})
+
   const [hasHiddenContentOnRight, setHasHiddenContentOnRight] = useState(false)
   const [sectionLeftSpacing, setSectionLeftSpacing] = useState(0)
 
-  window.onresize = handleHiddenContentOnRight
+  window.onresize = () => {
+    executeOnSliderWidthChange()
+    setSectionLeftSpacing(previousLeft => limitSliderMovements(previousLeft))
+  }
 
   useEffect(() => {
     if(!sectionDisplayed.current) return
 
-    setTimeout(handleHiddenContentOnRight, 350)  // 50ms longer than css transition time
+    setTimeout(executeOnSliderWidthChange, 350)  // 50ms longer than css transition time
+
     setSectionLeftSpacing(0)
+    setCursorTracking({previousPosition: 0, currentPosition: 0})
   }, [sectionDisplayedID])
 
-  function handleHiddenContentOnRight() {
+  function executeOnSliderWidthChange() {
     if (!sectionDisplayed.current) return
 
+    const [, leftMax] = getHorizontalBounds()
     if (sectionDisplayed.current.scrollWidth > sectionDisplayed.current.clientWidth) {
-      setHasHiddenContentOnRight(true); return
+      if (sectionLeftSpacing < leftMax) setHasHiddenContentOnRight(true)
+      bindCursorTrackingEndpoints()
+    } else {
+      setHasHiddenContentOnRight(false)
+      unbindCursorTrackingEndpoints()
     }
-    setHasHiddenContentOnRight(false)
   }
+
+  function bindCursorTrackingEndpoints() {
+    setCursorStyle('grab')
+    sectionDisplayed.current!.onmousedown = startCursorTracking
+    sectionDisplayed.current!.onmouseup = finishCursorTracking
+  }
+
+  function unbindCursorTrackingEndpoints() {
+    setCursorStyle('default')
+    sectionDisplayed.current!.onmousedown = null
+    sectionDisplayed.current!.onmouseup = null
+  }
+
+  function startCursorTracking(event: MouseEvent) {
+    setCursorStyle('grabbing')
+    sectionDisplayed.current!.onmousemove = trackCursorCurrentPosition
+
+    setCursorTracking(previousObj => ({...previousObj, previousPosition: event.clientX}))
+  }
+
+  function finishCursorTracking() {
+    setCursorStyle('grab')
+    sectionDisplayed.current!.onmousemove = null
+  }
+
+  function trackCursorCurrentPosition(event: MouseEvent) {
+    setCursorTracking(previousObj => ({...previousObj, currentPosition: event.clientX}))
+  }
+
+  useEffect(() => {
+    if (cursorTracking.currentPosition) {
+      const dragOffset = cursorTracking.previousPosition - cursorTracking.currentPosition
+      setSectionLeftSpacing(previousLeft => {
+        var nextLeft = previousLeft + dragOffset
+
+        const [, leftMax] = getHorizontalBounds()
+        if (nextLeft >= leftMax) setHasHiddenContentOnRight(false)
+        else setHasHiddenContentOnRight(true)
+
+        return limitSliderMovements(nextLeft)
+      })
+      setCursorTracking(previousObj => ({...previousObj, previousPosition: previousObj.currentPosition}))
+    }
+  }, [cursorTracking.currentPosition])
 
   function getHorizontalBounds(): [number, number] {
     const leftMin = 0
@@ -135,7 +193,8 @@ export function Slider() {
         </button>
       </nav>
 
-      <main>
+      <main
+        style={{cursor: cursorStyle}}>
         <section
           ref={sectionDisplayedID == 'hourly' ? sectionDisplayed : null}
           className={`forecast hourly ${sectionDisplayedID == 'hourly' ? 'show' : ''}`}
