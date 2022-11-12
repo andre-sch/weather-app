@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 import './header.css'
 import './main.css'
@@ -22,55 +22,70 @@ type forecasts = 'hourly' | 'daily'
 type sectionIDs = forecasts | 'details'
 
 export function Slider() {
-  var sectionDisplayed: HTMLDivElement
+  var sectionDisplayed = useRef<HTMLDivElement>(null)
   const [sectionDisplayedID, setSectionDisplayedID] = useState<sectionIDs>('hourly')
   const [selectedForecast, setSelectedForecast] = useState<forecasts>('hourly')
 
   const [hasHiddenContentOnRight, setHasHiddenContentOnRight] = useState(false)
   const [sectionLeftSpacing, setSectionLeftSpacing] = useState(0)
 
-  window.onresize = () => handleHiddenContentOnRight()
+  window.onresize = handleHiddenContentOnRight
 
   useEffect(() => {
-    if (!sectionDisplayedID) return
-    sectionDisplayed = document.querySelector(`section.${sectionDisplayedID}`)!
+    if(!sectionDisplayed.current) return
 
-    setTimeout(() => handleHiddenContentOnRight(), 350)  // 50ms longer than css transition time
+    setTimeout(handleHiddenContentOnRight, 350)  // 50ms longer than css transition time
     setSectionLeftSpacing(0)
   }, [sectionDisplayedID])
 
-  const handleHiddenContentOnRight = useCallback(() => {
-    if (sectionDisplayed.scrollWidth > sectionDisplayed.clientWidth) {
+  function handleHiddenContentOnRight() {
+    if (!sectionDisplayed.current) return
+
+    if (sectionDisplayed.current.scrollWidth > sectionDisplayed.current.clientWidth) {
       setHasHiddenContentOnRight(true); return
     }
     setHasHiddenContentOnRight(false)
-  }, [sectionDisplayedID])
+  }
 
-  const scrollHiddenContent = useCallback((direction: 'left' | 'right') => {
-    const step = sectionDisplayed.clientWidth / 2.5
-    const leftMax = sectionDisplayed.scrollWidth - sectionDisplayed.clientWidth
+  function getHorizontalBounds(): [number, number] {
     const leftMin = 0
+    const leftMax = (
+      sectionDisplayed.current!.scrollWidth -
+      sectionDisplayed.current!.clientWidth
+    )
 
-    const transformStyle = sectionDisplayed.style.transform
+    return [leftMin, leftMax]
+  }
+
+  function limitSliderMovements(nextMove: number) {
+    const [leftMin, leftMax] = getHorizontalBounds()
+
+    nextMove = nextMove < leftMin ? leftMin : nextMove
+    nextMove = nextMove > leftMax ? leftMax : nextMove
+
+    return nextMove
+  }
+
+  function scrollHiddenContent(direction: 'left' | 'right') {
+    if (!sectionDisplayed.current) return
+
+    const step = sectionDisplayed.current.clientWidth / 2.5
+    const [, leftMax] = getHorizontalBounds()
+
+    const transformStyle = sectionDisplayed.current.style.transform
     const previousLeft = Number(transformStyle.replace(/[^\d.]/g, ''))
 
     var nextLeft
-    switch (direction) {
-      case 'right':
-        nextLeft = previousLeft + step
-        if (nextLeft >= leftMax) {
-          nextLeft = leftMax
-          setTimeout(() => setHasHiddenContentOnRight(false), 650)  // 50ms longer than css transition time
-        }
-        break
-      case 'left':
-        nextLeft = previousLeft - step
-        if (nextLeft <= leftMin) nextLeft = leftMin
-        setHasHiddenContentOnRight(true)
-    }
+    if (direction == 'right') nextLeft = previousLeft + step
+    else nextLeft = previousLeft - step
+
+    if (nextLeft >= leftMax) setTimeout(() => setHasHiddenContentOnRight(false), 650)  // 50ms longer than css transition time
+    else setHasHiddenContentOnRight(true)
+
+    nextLeft = limitSliderMovements(nextLeft)
 
     setSectionLeftSpacing(nextLeft)
-  }, [sectionDisplayedID])
+  }
 
   return (
     <div className="slider">
@@ -122,6 +137,7 @@ export function Slider() {
 
       <main>
         <section
+          ref={sectionDisplayedID == 'hourly' ? sectionDisplayed : null}
           className={`forecast hourly ${sectionDisplayedID == 'hourly' ? 'show' : ''}`}
           style={{
             transform: sectionDisplayedID == 'hourly'
@@ -204,6 +220,7 @@ export function Slider() {
           </div>
         </section>
         <section
+          ref={sectionDisplayedID == 'daily' ? sectionDisplayed : null}
           className={`forecast daily ${sectionDisplayedID == 'daily' ? 'show' : ''}`}
           style={{
             transform: sectionDisplayedID == 'daily'
@@ -275,6 +292,7 @@ export function Slider() {
           </div>
         </section>
         <section
+          ref={sectionDisplayedID == 'details' ? sectionDisplayed : null}
           className={`details ${sectionDisplayedID == 'details' ? 'show' : ''}`}
           style={{
             transform: sectionDisplayedID == 'details'
