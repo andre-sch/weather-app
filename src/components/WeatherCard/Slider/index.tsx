@@ -196,8 +196,8 @@ export function Slider() {
           ref={sectionDisplayedID == 'hourly' ? sectionDisplayed : null}
           className={`forecast hourly ${sectionDisplayedID == 'hourly' ? 'show' : ''}`}
           style={{
-            transform: sectionDisplayedID == 'hourly'
-              ? `translateX(-${sectionLeftSpacing}px)` : ''
+            transform:
+              `translateX(-${sectionDisplayedID == 'hourly' ? sectionLeftSpacing : '0'}px)`
           }}>
           <div className="mini-card">
             <time>Now</time>
@@ -279,8 +279,8 @@ export function Slider() {
           ref={sectionDisplayedID == 'daily' ? sectionDisplayed : null}
           className={`forecast daily ${sectionDisplayedID == 'daily' ? 'show' : ''}`}
           style={{
-            transform: sectionDisplayedID == 'daily'
-              ? `translateX(-${sectionLeftSpacing}px)` : ''
+            transform:
+              `translateX(-${sectionDisplayedID == 'daily' ? sectionLeftSpacing : '0'}px)`
           }}>
           <div className="mini-card">
             <time>Today</time>
@@ -351,8 +351,8 @@ export function Slider() {
           ref={sectionDisplayedID == 'details' ? sectionDisplayed : null}
           className={`details ${sectionDisplayedID == 'details' ? 'show' : ''}`}
           style={{
-            transform: sectionDisplayedID == 'details'
-              ? `translateX(-${sectionLeftSpacing}px)` : ''
+            transform:
+              `translateX(-${sectionDisplayedID == 'details' ? sectionLeftSpacing : '0'}px)`
           }}>
           <div className="mini-card">
             <header>
