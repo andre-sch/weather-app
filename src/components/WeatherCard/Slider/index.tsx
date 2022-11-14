@@ -130,19 +130,16 @@ export function Slider() {
     const step = sectionDisplayed.current.clientWidth / 2.5
     const [, leftMax] = getHorizontalBounds()
 
-    const transformStyle = sectionDisplayed.current.style.transform
-    const previousLeft = Number(transformStyle.replace(/[^\d.]/g, ''))
+    setSectionLeftSpacing(previousLeft => {
+      var nextLeft
+      if (direction == 'right') nextLeft = previousLeft + step
+      else nextLeft = previousLeft - step
 
-    var nextLeft
-    if (direction == 'right') nextLeft = previousLeft + step
-    else nextLeft = previousLeft - step
+      if (nextLeft >= leftMax) setTimeout(() => setHasHiddenContentOnRight(false), 650)  // 50ms longer than css transition time
+      else setHasHiddenContentOnRight(true)
 
-    if (nextLeft >= leftMax) setTimeout(() => setHasHiddenContentOnRight(false), 650)  // 50ms longer than css transition time
-    else setHasHiddenContentOnRight(true)
-
-    nextLeft = limitSliderMovements(nextLeft)
-
-    setSectionLeftSpacing(nextLeft)
+      return limitSliderMovements(nextLeft)
+    })
   }
 
   return (
