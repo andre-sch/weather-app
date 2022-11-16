@@ -15,23 +15,6 @@
 .slider:has(main section.daily.show) {width: min(var(--daily-section-width), 100%);}
 .slider:has(main section.details.show) {width: min(var(--details-section-width), 100%);}
 
-.slider nav button {
-  position: absolute;
-  bottom: 2.75rem;
-  right: 100%;
-  transform: translateY(50%);
-  transition: filter 0.2s, opacity 0.25s ease 0.35s;
-}
-.slider nav button:hover:not(:disabled) {filter: brightness(0.9);}
-.slider nav button:disabled {opacity: 0.3; cursor: initial;}
-.slider nav button + button {
-  right: initial;
-  left: 100%;
-  transition-delay: 0s;
-}
-
-.slider nav button img {width: 2.5rem;}
-
 .slider main {
   position: relative;
   width: 100%;
