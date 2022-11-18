@@ -7,6 +7,9 @@ on:
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./client
 
     steps:
     - uses: actions/checkout@v3
@@ -14,6 +17,7 @@ jobs:
       with:
         node-version: '14.x'
         cache: 'npm'
+        cache-dependency-path: client/package-lock.json
 
     - name: Build
       run: |
