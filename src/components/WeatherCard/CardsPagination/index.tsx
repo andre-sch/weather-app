@@ -1,6 +1,6 @@
-import thickArrow from '../../../assets/other/thick-arrow.svg'
+import thickArrow from "../../../assets/other/thick-arrow.svg"
 
-import './index.css'
+import "./index.css"
 
 export function CardsPagination() {
   return (

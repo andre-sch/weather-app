@@ -1,6 +1,6 @@
-import dayFewClouds from '../../../assets/weather/images/day/few-clouds.png'
+import dayFewClouds from "../../../assets/weather/images/day/few-clouds.png"
 
-import './index.css'
+import "./index.css"
 
 export function CurrentInfo() {
   return (

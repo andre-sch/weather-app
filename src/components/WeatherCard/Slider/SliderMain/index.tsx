@@ -1,17 +1,17 @@
-import { useEffect, useContext, createContext } from 'react'
-import { useCursorTracking } from './useCursorTracking'
+import { useEffect, useContext, createContext } from "react"
+import { useCursorTracking } from "./useCursorTracking"
 
-import { SectionDisplayedContext } from '../contexts/SectionDisplayed'
-import { PositionSettersContext } from '../contexts/PositionSetters'
-import { LimitMoveContext } from '../contexts/LimitMoveProvider'
+import { SectionDisplayedContext } from "../contexts/SectionDisplayed"
+import { PositionSettersContext } from "../contexts/PositionSetters"
+import { LimitMoveContext } from "../contexts/LimitMoveProvider"
 
-import { HourlySection } from './sections/HourlySection'
-import { DailySection } from './sections/DailySection'
-import { DetailsSection } from './sections/DetailsSection'
+import { HourlySection } from "./sections/HourlySection"
+import { DailySection } from "./sections/DailySection"
+import { DetailsSection } from "./sections/DetailsSection"
 
-import type { sectionIDs } from '..'
+import type { sectionIDs } from ".."
 
-import './index.css'
+import "./index.css"
 
 export interface SliderMainProps {
   sectionDisplayedID: sectionIDs

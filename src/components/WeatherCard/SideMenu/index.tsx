@@ -1,17 +1,17 @@
-import { SideMenuStateType } from '../../../App'
+import { SideMenuStateType } from "../../../App"
 
-import './index.css'
+import closeWithBackground from "../../../assets/other/close/bd-filled.svg"
+import closeWithoutBackground from "../../../assets/other/close/bd-transparent.svg"
+import addCity from "../../../assets/other/add-city.svg"
+import cityCard from "../../../assets/other/city-card.svg"
+import drag from "../../../assets/other/drag.svg"
 
-import closeWithBackground from '../../../assets/other/close/bd-filled.svg'
-import closeWithoutBackground from '../../../assets/other/close/bd-transparent.svg'
-import addCity from '../../../assets/other/add-city.svg'
-import cityCard from '../../../assets/other/city-card.svg'
-import drag from '../../../assets/other/drag.svg'
+import nightClear from "../../../assets/weather/images/night/clear-sky.png"
+import nightRain from "../../../assets/weather/images/night/rain.png"
+import dayFewClouds from "../../../assets/weather/images/day/few-clouds.png"
+import dayThunderstorm from "../../../assets/weather/images/day/thunderstorm.png"
 
-import nightClear from '../../../assets/weather/images/night/clear-sky.png'
-import nightRain from '../../../assets/weather/images/night/rain.png'
-import dayFewClouds from '../../../assets/weather/images/day/few-clouds.png'
-import dayThunderstorm from '../../../assets/weather/images/day/thunderstorm.png'
+import "./index.css"
 
 interface SideMenuProps {
   menuState: SideMenuStateType

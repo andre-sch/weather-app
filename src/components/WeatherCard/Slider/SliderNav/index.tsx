@@ -1,8 +1,8 @@
 import { useContext } from "react"
 
-import { SectionDisplayedContext } from '../contexts/SectionDisplayed'
-import { PositionSettersContext } from '../contexts/PositionSetters'
-import { LimitMoveContext } from '../contexts/LimitMoveProvider'
+import { SectionDisplayedContext } from "../contexts/SectionDisplayed"
+import { PositionSettersContext } from "../contexts/PositionSetters"
+import { LimitMoveContext } from "../contexts/LimitMoveProvider"
 
 import thinArrow from "../../../../assets/other/thin-arrow.svg"
 

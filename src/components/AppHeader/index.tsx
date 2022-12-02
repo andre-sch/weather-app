@@ -1,8 +1,8 @@
-import type { SideMenuStateType } from '../../App'
+import type { SideMenuStateType } from "../../App"
 
-import cardsList from '../../assets/other/cards-list.svg'
+import cardsList from "../../assets/other/cards-list.svg"
 
-import './index.css'
+import "./index.css"
 
 interface AppHeaderProps {
   sideMenuState: SideMenuStateType

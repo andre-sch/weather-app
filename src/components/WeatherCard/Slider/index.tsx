@@ -1,12 +1,12 @@
-import { useState, useRef } from 'react'
+import { useState, useRef } from "react"
 
-import { PositionSettersContext } from './contexts/PositionSetters'
-import { SectionDisplayedContext } from './contexts/SectionDisplayed'
-import { LimitMoveFunctionsProvider } from './contexts/LimitMoveProvider'
+import { PositionSettersContext } from "./contexts/PositionSetters"
+import { SectionDisplayedContext } from "./contexts/SectionDisplayed"
+import { LimitMoveFunctionsProvider } from "./contexts/LimitMoveProvider"
 
-import { SliderHeader } from './SliderHeader'
-import { SliderNav } from './SliderNav'
-import { SliderMain } from './SliderMain'
+import { SliderHeader } from "./SliderHeader"
+import { SliderNav } from "./SliderNav"
+import { SliderMain } from "./SliderMain"
 
 export type forecasts = 'hourly' | 'daily'
 export type sectionIDs = forecasts | 'details'
