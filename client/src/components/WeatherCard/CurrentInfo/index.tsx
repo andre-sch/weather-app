@@ -1,5 +1,3 @@
-import dayFewClouds from "../../../assets/weather/images/day/few-clouds.png"
-
 import "./index.css"
 
 export function CurrentInfo() {
@@ -13,7 +11,7 @@ export function CurrentInfo() {
       </div>
       <h1>Few<br/>Clouds</h1>
       <img
-        src={dayFewClouds}
+        src="/assets/weather/images/day/few-clouds.png"
         alt="The sun under a cloud"
         draggable={false} />
     </div>

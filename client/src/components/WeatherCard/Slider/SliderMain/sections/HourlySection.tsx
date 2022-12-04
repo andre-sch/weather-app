@@ -1,5 +1,4 @@
 import { SliderSection } from "./SliderSection";
-import scatteredCloudsIcon from "../../../../../assets/weather/icons/day/scattered-clouds.svg"
 
 export function HourlySection() {
   const DAY_IN_HOURS = 24
@@ -16,7 +15,7 @@ export function HourlySection() {
         <div className="mini-card">
           <time>{index == 0 ? 'Now' : `${hour.toString().padStart(2, '0')}:00`}</time>
           <img
-            src={scatteredCloudsIcon}
+            src="/assets/weather/icons/day/scattered-clouds.svg"
             alt="Day with scattered clouds"
             draggable={false} />
           <strong>21º</strong>

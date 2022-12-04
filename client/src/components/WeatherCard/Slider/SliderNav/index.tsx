@@ -4,8 +4,6 @@ import { SectionDisplayedContext } from "../contexts/SectionDisplayed"
 import { PositionSettersContext } from "../contexts/PositionSetters"
 import { LimitMoveContext } from "../contexts/LimitMoveProvider"
 
-import thinArrow from "../../../../assets/other/thin-arrow.svg"
-
 import './index.css'
 
 interface SliderNavProps {
@@ -45,7 +43,7 @@ export function SliderNav(props: SliderNavProps) {
         onClick={() => scrollHiddenContent('left')}>
 
         <img
-          src={thinArrow}
+          src="/assets/other/thin-arrow.svg"
           alt="See previous weather forecast information"
           style={{transform: 'rotate(180deg)'}} />
       </button>
@@ -55,7 +53,7 @@ export function SliderNav(props: SliderNavProps) {
         onClick={() => scrollHiddenContent('right')}>
 
         <img
-          src={thinArrow}
+          src="/assets/other/thin-arrow.svg"
           alt="See next weather forecast information" />
       </button>
     </nav>

@@ -1,16 +1,5 @@
 import { SideMenuStateType } from "../../../App"
 
-import closeWithBackground from "../../../assets/other/close/bd-filled.svg"
-import closeWithoutBackground from "../../../assets/other/close/bd-transparent.svg"
-import addCity from "../../../assets/other/add-city.svg"
-import cityCard from "../../../assets/other/city-card.svg"
-import drag from "../../../assets/other/drag.svg"
-
-import nightClear from "../../../assets/weather/images/night/clear-sky.png"
-import nightRain from "../../../assets/weather/images/night/rain.png"
-import dayFewClouds from "../../../assets/weather/images/day/few-clouds.png"
-import dayThunderstorm from "../../../assets/weather/images/day/thunderstorm.png"
-
 import "./index.css"
 
 interface SideMenuProps {
@@ -29,22 +18,25 @@ export function SideMenu(props: SideMenuProps) {
             <h1>Registered Cities</h1>
             <button onClick={() => setIsMenuOpen(false)}>
               <img
-                src={closeWithoutBackground}
+                src="/assets/other/close/bd-transparent.svg"
                 alt="close menu"
                 draggable={false} />
             </button>
           </header>
           <div className="input-container">
             <input type="text" placeholder="Add a new city"/>
-            <img src={addCity} alt="" draggable={false} />
+            <img src="/assets/other/add-city.svg" alt="" draggable={false} />
           </div>
           <ul>
             <li className="city-card">
               <button className="drag-card">
-                <img src={drag} alt="Drag card" />
+                <img src="/assets/other/drag.svg" alt="Drag card" />
               </button>
               <button className="delete-card">
-                <img src={closeWithBackground} alt="Delete card" draggable={false} />
+                <img
+                  src="/assets/other/close/bd-filled.svg"
+                  alt="Delete card"
+                  draggable={false} />
               </button>
               <div className="temperature">
                 <strong>12º</strong>
@@ -54,7 +46,7 @@ export function SideMenu(props: SideMenuProps) {
                 </div>
               </div>
               <img
-                src={nightClear}
+                src="/assets/weather/images/night/clear-sky.png"
                 alt="Clear night"
                 className="weather-preview"
                 draggable={false} />
@@ -62,14 +54,17 @@ export function SideMenu(props: SideMenuProps) {
                 <h1>Tokyo, Japan</h1>
                 <span>Clear sky</span>
               </footer>
-              <img src={cityCard} alt="" className="background" />
+              <img src="/assets/other/city-card.svg" alt="" className="background" />
             </li>
             <li className="city-card">
               <button className="drag-card">
-                <img src={drag} alt="Drag card" />
+                <img src="/assets/other/drag.svg" alt="Drag card" />
               </button>
               <button className="delete-card">
-                <img src={closeWithBackground} alt="Delete card" draggable={false} />
+                <img
+                  src="/assets/other/close/bd-filled.svg"
+                  alt="Delete card"
+                  draggable={false} />
               </button>
               <div className="temperature">
                 <strong>21º</strong>
@@ -79,7 +74,7 @@ export function SideMenu(props: SideMenuProps) {
                 </div>
               </div>
               <img
-                src={dayFewClouds}
+                src="/assets/weather/images/day/few-clouds.png"
                 alt="Clear night"
                 className="weather-preview"
                 draggable={false} />
@@ -87,14 +82,17 @@ export function SideMenu(props: SideMenuProps) {
                 <h1>Maringa, Brazil</h1>
                 <span>Few clouds</span>
               </footer>
-              <img src={cityCard} alt="" className="background" />
+              <img src="/assets/other/city-card.svg" alt="" className="background" />
             </li>
             <li className="city-card">
               <button className="drag-card">
-                <img src={drag} alt="Drag card" />
+                <img src="/assets/other/drag.svg" alt="Drag card" />
               </button>
               <button className="delete-card">
-                <img src={closeWithBackground} alt="Delete card" draggable={false} />
+                <img
+                  src="/assets/other/close/bd-filled.svg"
+                  alt="Delete card"
+                  draggable={false} />
               </button>
               <div className="temperature">
                 <strong>27º</strong>
@@ -104,7 +102,7 @@ export function SideMenu(props: SideMenuProps) {
                 </div>
               </div>
               <img
-                src={dayThunderstorm}
+                src="/assets/weather/images/day/thunderstorm.png"
                 alt="Clear night"
                 className="weather-preview"
                 draggable={false} />
@@ -112,14 +110,17 @@ export function SideMenu(props: SideMenuProps) {
                 <h1>New york, United States</h1>
                 <span>Thunderstorm</span>
               </footer>
-              <img src={cityCard} alt="" className="background" />
+              <img src="/assets/other/city-card.svg" alt="" className="background" />
             </li>
             <li className="city-card">
               <button className="drag-card">
-                <img src={drag} alt="Drag card" />
+                <img src="/assets/other/drag.svg" alt="Drag card" />
               </button>
               <button className="delete-card">
-                <img src={closeWithBackground} alt="Delete card" draggable={false} />
+                <img
+                  src="/assets/other/close/bd-filled.svg"
+                  alt="Delete card"
+                  draggable={false} />
               </button>
               <div className="temperature">
                 <strong>18º</strong>
@@ -129,7 +130,7 @@ export function SideMenu(props: SideMenuProps) {
                 </div>
               </div>
               <img
-                src={nightRain}
+                src="/assets/weather/images/night/rain.png"
                 alt="Clear night"
                 className="weather-preview"
                 draggable={false} />
@@ -137,7 +138,7 @@ export function SideMenu(props: SideMenuProps) {
                 <h1>London, England</h1>
                 <span>Rain</span>
               </footer>
-              <img src={cityCard} alt="" className="background" />
+              <img src="/assets/other/city-card.svg" alt="" className="background" />
             </li>
           </ul>
         </div>

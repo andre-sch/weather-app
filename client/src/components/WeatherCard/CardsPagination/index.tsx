@@ -1,5 +1,3 @@
-import thickArrow from "../../../assets/other/thick-arrow.svg"
-
 import "./index.css"
 
 export function CardsPagination() {
@@ -7,12 +5,12 @@ export function CardsPagination() {
     <div className="cards-pagination">
       <button className="card-arrow">
         <img
-          src={thickArrow}
+          src="/assets/other/thick-arrow.svg"
           alt="See next card"
           style={{transform: 'rotate(180deg)'}} />
       </button>
       <button className="card-arrow">
-        <img src={thickArrow} alt="See previous card" />
+        <img src="/assets/other/thick-arrow.svg" alt="See previous card" />
       </button>
 
       <div className="list-order">

@@ -1,5 +1,4 @@
 import { SliderSection } from "./SliderSection";
-import scatteredCloudsIcon from "../../../../../assets/weather/icons/day/scattered-clouds.svg"
 
 export function DailySection() {
   const daysMockup = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun', 'Mon']
@@ -10,7 +9,7 @@ export function DailySection() {
         <div className="mini-card">
           <time>{index == 0 ? 'Today' : dayAbbreviation}</time>
           <img
-            src={scatteredCloudsIcon}
+            src="/assets/weather/icons/day/scattered-clouds.svg"
             alt="Day with scattered clouds"
             draggable={false} />
           <div className="min-max">

@@ -1,7 +1,5 @@
 import type { SideMenuStateType } from "../../App"
 
-import cardsList from "../../assets/other/cards-list.svg"
-
 import "./index.css"
 
 interface AppHeaderProps {
@@ -15,7 +13,7 @@ export function AppHeader(props: AppHeaderProps) {
   return (
     <div className="app-header">
       <button onClick={() => setIsSideMenuOpen(true)}>
-        <img src={cardsList} alt="Open cards menu" />
+        <img src="/assets/other/cards-list.svg" alt="Open cards menu" />
       </button>
       <h1>Weather <span>App</span></h1>
     </div>
