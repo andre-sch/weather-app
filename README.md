@@ -8,7 +8,7 @@
 
 This project is currently under development :construction:, and still close to receive Pull Requests :lock:.
 However you already can check the [figma interface :black_nib:](https://www.figma.com/file/dmazNsOe0Pd8l1ip92SPBW/Weather-App?node-id=0%3A1)
-and the code build progress in [github-pages :rocket:](https://andre-sch.github.io/weather-app/)  
+and the code build progress [running in Vercel :rocket:](https://andresch-weather-client.vercel.app)  
 ㅤ
 [![Figma preview](https://github.com/andre-sch/weather-app/blob/master/client/public/assets/weather/images/card.png)](https://www.figma.com/file/dmazNsOe0Pd8l1ip92SPBW/Weather-App?node-id=0%3A1)
 
