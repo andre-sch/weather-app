@@ -1,0 +1,9 @@
+{
+  "buildCommand": "tsc",
+  "outputDirectory": "dist",
+  "rewrites": [{
+    "source": "/(.*)",
+    "destination": "/api"
+  }],
+  "github": { "silent": true }
+}
