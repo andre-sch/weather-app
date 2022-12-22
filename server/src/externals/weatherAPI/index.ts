@@ -2,6 +2,7 @@ import axios, { AxiosResponse } from "axios"
 import { baseConfig, type requestMergeConfig, type weatherRequestConfig } from "./requestConfig"
 
 import type { ICurrentWeatherRawData } from "./data/ICurrentWeatherRawData"
+import type { IWeatherForecastRawData } from "./data/IWeatherForecastRawData"
 
 /*   API docs:  <https://openweathermap.org/current>
                 <https://openweathermap.org/api/one-call-3>   */
@@ -21,6 +22,21 @@ class WeatherAPI {
     }
 
     return this.baseRequest<ICurrentWeatherRawData>(mergeConfig)
+  }
+
+  public getWeatherForecast(fromLocation: [string, string]) {
+    const [latitude, longitude] = fromLocation
+    const removedDataFromQuery = ['current', 'minutely', 'alerts']
+
+    const mergeConfig: requestMergeConfig = {
+      url: '/3.0/onecall',
+      params: {
+        lat: latitude, lon: longitude,
+        exclude: removedDataFromQuery.join(',')
+      }
+    }
+
+    return this.baseRequest<IWeatherForecastRawData>(mergeConfig)
   }
 }
 
