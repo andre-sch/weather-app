@@ -1,3 +1,6 @@
+import { RegisteredCityProvider } from "./geoLocation/RegisteredCityProvider"
+import { WeatherInfoProvider } from "./weatherInfo/WeatherInfoProvider"
+
 import { SideMenu } from "./SideMenu"
 import { CardsPagination } from "./CardsPagination"
 import { CurrentInfo } from "./CurrentInfo"
@@ -14,10 +17,14 @@ interface WeatherCardProps {
 export function WeatherCard(props: WeatherCardProps) {
   return (
     <div className="weather-card">
-      <SideMenu menuState={props.sideMenuState} />
-      <CardsPagination />
-      <CurrentInfo />
-      <Slider />
+      <RegisteredCityProvider>
+        <WeatherInfoProvider>
+          <SideMenu menuState={props.sideMenuState} />
+          <CardsPagination />
+          <CurrentInfo />
+          <Slider />
+        </WeatherInfoProvider>
+      </RegisteredCityProvider>
     </div>
   )
 }
