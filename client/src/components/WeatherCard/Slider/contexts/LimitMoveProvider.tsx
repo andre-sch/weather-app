@@ -1,5 +1,5 @@
-import { createContext, useContext, type ReactNode } from "react";
-import { SectionDisplayedContext } from "./SectionDisplayed";
+import { createContext, useContext, type ReactNode } from "react"
+import { SectionDisplayedContext } from "./SectionDisplayed"
 
 interface LimitMoveFunctions {
   getHorizontalBounds: () => [number, number]

@@ -1,9 +1,9 @@
-import { SideMenu } from "./SideMenu";
-import { CardsPagination } from "./CardsPagination";
-import { CurrentInfo } from "./CurrentInfo";
-import { Slider } from "./Slider";
+import { SideMenu } from "./SideMenu"
+import { CardsPagination } from "./CardsPagination"
+import { CurrentInfo } from "./CurrentInfo"
+import { Slider } from "./Slider"
 
-import type { SideMenuStateType } from "../../App";
+import type { SideMenuStateType } from "../../App"
 
 import './index.css'
 

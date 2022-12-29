@@ -1,8 +1,8 @@
-import { weatherAPI } from "../externals/weatherAPI";
-import { processWeatherForecastRawData } from "../services/processWeatherForecastRawData";
+import { weatherAPI } from "../externals/weatherAPI"
+import { processWeatherForecastRawData } from "../services/processWeatherForecastRawData"
 
-import type { Request, Response } from "express";
-import type { weatherQuery } from "./weatherQuery";
+import type { Request, Response } from "express"
+import type { weatherQuery } from "./weatherQuery"
 
 export async function getWeatherForecastInfo(req: Request, res: Response) {
   const { latitude, longitude } = req.query as weatherQuery

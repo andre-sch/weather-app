@@ -1,4 +1,4 @@
-import { SliderSection } from "./SliderSection";
+import { SliderSection } from "./SliderSection"
 
 export function DetailsSection() {
   return (

@@ -1,4 +1,4 @@
-import { SliderSection } from "./SliderSection";
+import { SliderSection } from "./SliderSection"
 
 export function DailySection() {
   const daysMockup = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun', 'Mon']

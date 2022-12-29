@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext } from "react"
 
 interface PositionSetters {
   setHasHiddenContentOnRight: React.Dispatch<React.SetStateAction<boolean>>
