@@ -1,24 +1,17 @@
-import { useState } from "react"
+import { MenuDisplayProvider } from "./MenuDisplayProvider"
 
 import { AppHeader } from "./components/AppHeader"
 import { WeatherCard } from "./components/WeatherCard"
 
 import './app.css'
 
-export type SideMenuStateType = [
-  boolean,
-  React.Dispatch<React.SetStateAction<boolean>>
-]
-
-function App() {
-  const isSideMenuOpenState = useState(false)
-
+export default function App() {
   return (
     <div className="weather-app">
-      <AppHeader sideMenuState={isSideMenuOpenState} />
-      <WeatherCard sideMenuState={isSideMenuOpenState} />
+      <MenuDisplayProvider>
+        <AppHeader />
+        <WeatherCard />
+      </MenuDisplayProvider>
     </div>
   )
 }
-
-export default App

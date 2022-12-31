@@ -1,14 +1,10 @@
-import type { SideMenuStateType } from "../../App"
+import { useContext } from "react"
+import { MenuDisplaySetterContext } from "../../MenuDisplayProvider"
 
 import "./index.css"
 
-interface AppHeaderProps {
-  sideMenuState: SideMenuStateType
-}
-
-export function AppHeader(props: AppHeaderProps) {
-  const {sideMenuState} = props
-  const [, setIsSideMenuOpen] = sideMenuState
+export function AppHeader() {
+  const setIsSideMenuOpen = useContext(MenuDisplaySetterContext)
 
   return (
     <div className="app-header">

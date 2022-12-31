@@ -1,14 +1,13 @@
-import { SideMenuStateType } from "../../../App"
+import { useContext } from "react"
+
+import { MenuDisplayGetterContext, MenuDisplaySetterContext } from "../../../MenuDisplayProvider"
+
 
 import "./index.css"
 
-interface SideMenuProps {
-  menuState: SideMenuStateType
-}
-
-export function SideMenu(props: SideMenuProps) {
-  const {menuState} = props
-  const [isMenuOpen, setIsMenuOpen] = menuState
+export function SideMenu() {
+  const isMenuOpen = useContext(MenuDisplayGetterContext)
+  const setIsMenuOpen = useContext(MenuDisplaySetterContext)
 
   return (
     <>
