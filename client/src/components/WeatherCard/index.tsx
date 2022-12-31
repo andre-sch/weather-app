@@ -1,4 +1,5 @@
 import { RegisteredCityProvider } from "./geoLocation/RegisteredCityProvider"
+import { DisplayedCityIdProvider } from "./geoLocation/DisplayedCityIdProvider"
 import { WeatherInfoProvider } from "./weatherInfo/WeatherInfoProvider"
 
 import { SideMenu } from "./SideMenu"
@@ -19,10 +20,12 @@ export function WeatherCard(props: WeatherCardProps) {
     <div className="weather-card">
       <RegisteredCityProvider>
         <WeatherInfoProvider>
-          <SideMenu menuState={props.sideMenuState} />
-          <CardsPagination />
-          <CurrentInfo />
-          <Slider />
+          <DisplayedCityIdProvider>
+            <SideMenu menuState={props.sideMenuState} />
+            <CardsPagination />
+            <CurrentInfo />
+            <Slider />
+          </DisplayedCityIdProvider>
         </WeatherInfoProvider>
       </RegisteredCityProvider>
     </div>
