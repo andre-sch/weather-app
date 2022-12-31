@@ -32,8 +32,8 @@ export function processCurrentWeatherRawData(
       sunrise: convertToLocalTime(rawData.sys.sunrise),
       sunset: convertToLocalTime(rawData.sys.sunset)
     },
-    temperature: rawData.main.temp,
-    feelsLike: rawData.main.feels_like,
+    temperature: Math.round(rawData.main.temp),
+    feelsLike: Math.round(rawData.main.feels_like),
     wind: {
       speed: rawData.wind.speed,
       direction: getWindDirection(rawData.wind.deg)

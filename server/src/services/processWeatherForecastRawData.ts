@@ -23,8 +23,8 @@ export function processWeatherForecastRawData(
         sunset: convertToLocalTime(dayRawData.sunset)
       },
       temperature: {
-        min: dayRawData.temp.min,
-        max: dayRawData.temp.max
+        min: Math.round(dayRawData.temp.min),
+        max: Math.round(dayRawData.temp.max)
       }
     }
   })
@@ -46,7 +46,7 @@ export function processWeatherForecastRawData(
     return {
       iconPath: `${iconFolder}/${iconFileName}.svg`,
       localTimestamp,
-      temperature: hourRawData.temp
+      temperature: Math.round(hourRawData.temp)
     }
   })
 
