@@ -1,6 +1,14 @@
+import { useContext } from "react"
+
+import { RegisteredCityGetterContext } from "../geoLocation/RegisteredCityProvider"
+import { DisplayedCityIdGetterContext } from "../geoLocation/DisplayedCityIdProvider"
+
 import "./index.css"
 
 export function CardsPagination() {
+  const registeredCities = useContext(RegisteredCityGetterContext)
+  const displayedCityId = useContext(DisplayedCityIdGetterContext)
+
   return (
     <div className="cards-pagination">
       <button className="card-arrow">
@@ -14,10 +22,14 @@ export function CardsPagination() {
       </button>
 
       <div className="list-order">
-        <span className="card-position"></span>
-        <span className="card-position current"></span>
-        <span className="card-position"></span>
-        <span className="card-position"></span>
+        {registeredCities.map(registeredCity => (
+          <span
+            key={registeredCity.location}
+            className={`card-position ${
+              registeredCity.location == displayedCityId ? 'current' : ''
+            }`}>
+          </span>
+        ))}
       </div>
     </div>
   )
