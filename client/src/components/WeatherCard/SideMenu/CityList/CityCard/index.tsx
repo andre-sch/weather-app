@@ -1,3 +1,4 @@
+import { memo } from "react"
 import { capitalize } from "../../../../../utils/capitalize"
 
 import type { registeredCity } from "../../../geoLocation/defaultCities"
@@ -13,7 +14,7 @@ interface CityCardProps {
   weatherForecastInfo?: IWeatherForecastInfo
 }
 
-export function CityCard(props: CityCardProps) {
+export const CityCard = memo((props: CityCardProps) => {
   if (!props.currentWeatherInfo || !props.weatherForecastInfo) return <li></li>
 
   const [today] = props.weatherForecastInfo.daily
@@ -47,4 +48,4 @@ export function CityCard(props: CityCardProps) {
       <img src="/assets/other/city-card.svg" alt="" className="background" />
     </li>
   )
-}
+})

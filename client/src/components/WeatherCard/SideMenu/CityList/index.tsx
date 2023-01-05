@@ -1,4 +1,4 @@
-import { useContext } from "react"
+import { useContext, useMemo } from "react"
 
 import { RegisteredCityGetterContext } from "../../geoLocation/RegisteredCityProvider"
 import { CurrentInfoGroupContext, ForecastInfoGroupContext } from "../../weatherInfo/WeatherInfoProvider"
@@ -18,13 +18,13 @@ export function CityList() {
       {registeredCities.map(registeredCity => {
         const cityID = registeredCity.location
 
-        return (
-          <CityCard
-            key={cityID}
-            renderedCity={registeredCity}
-            currentWeatherInfo={currentInfoGroup[cityID]}
-            weatherForecastInfo={forecastInfoGroup[cityID]} />
-        )
+        const propsMemo = useMemo(() => ({
+          renderedCity: registeredCity,
+          currentWeatherInfo: currentInfoGroup[cityID],
+          weatherForecastInfo: forecastInfoGroup[cityID]
+        }), [registeredCities.length, !currentInfoGroup[cityID]])
+
+        return <CityCard key={cityID} {...propsMemo}/>
       })}
     </ul>
   )
