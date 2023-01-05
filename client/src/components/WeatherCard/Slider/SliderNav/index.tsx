@@ -1,22 +1,19 @@
 import { useContext } from "react"
 
-import { SectionDisplayedContext } from "../contexts/SectionDisplayed"
-import { PositionSettersContext } from "../contexts/PositionSetters"
-import { LimitMoveContext } from "../contexts/LimitMoveProvider"
+import { SectionDisplayedRefContext } from "../providers/SectionDisplayedProvider"
+import { SectionHiddenContentOnRightContext, SectionLeftSpacingContext, SectionPlacementSettersContext } from "../providers/SectionPlacementProvider"
+import { LimitMoveFunctionsContext } from "../providers/LimitMoveFunctionsProvider"
 
 import './index.css'
 
-interface SliderNavProps {
-  hasHiddenContentOnRight: boolean
-  sectionLeftSpacing: number
-}
+export function SliderNav() {
+  const sectionDisplayed = useContext(SectionDisplayedRefContext)
 
-export function SliderNav(props: SliderNavProps) {
-  const {hasHiddenContentOnRight, sectionLeftSpacing} = props
-  const sectionDisplayed = useContext(SectionDisplayedContext)
+  const {getHorizontalBounds, limitSliderMovements} = useContext(LimitMoveFunctionsContext)
+  const {setHasHiddenContentOnRight, setSectionLeftSpacing} = useContext(SectionPlacementSettersContext)
 
-  const {getHorizontalBounds, limitSliderMovements} = useContext(LimitMoveContext)
-  const {setHasHiddenContentOnRight, setSectionLeftSpacing} = useContext(PositionSettersContext)
+  const hasHiddenContentOnRight = useContext(SectionHiddenContentOnRightContext)
+  const sectionLeftSpacing =  useContext(SectionLeftSpacingContext)
 
   function scrollHiddenContent(direction: 'left' | 'right') {
     if (!sectionDisplayed.current) return

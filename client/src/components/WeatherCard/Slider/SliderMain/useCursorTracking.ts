@@ -1,18 +1,17 @@
 import { useState, useEffect, useContext } from "react"
 
-import { SectionDisplayedContext } from "../contexts/SectionDisplayed"
-import { PositionSettersContext } from "../contexts/PositionSetters"
-import { LimitMoveContext } from "../contexts/LimitMoveProvider"
-
-import type { sectionIDs } from ".."
+import { SectionDisplayedRefContext, SectionDisplayedIdGetterContext } from "../providers/SectionDisplayedProvider"
+import { SectionPlacementSettersContext } from "../providers/SectionPlacementProvider"
+import { LimitMoveFunctionsContext } from "../providers/LimitMoveFunctionsProvider"
 
 type cursorStyles = 'grab' | 'grabbing' | 'default'
 
-export function useCursorTracking(sectionDisplayedID: sectionIDs) {
-  const sectionDisplayed = useContext(SectionDisplayedContext)
+export function useCursorTracking() {
+  const sectionDisplayed = useContext(SectionDisplayedRefContext)
+  const sectionDisplayedID = useContext(SectionDisplayedIdGetterContext)
 
-  const {getHorizontalBounds, limitSliderMovements} = useContext(LimitMoveContext)
-  const {setHasHiddenContentOnRight, setSectionLeftSpacing} = useContext(PositionSettersContext)
+  const {getHorizontalBounds, limitSliderMovements} = useContext(LimitMoveFunctionsContext)
+  const {setHasHiddenContentOnRight, setSectionLeftSpacing} = useContext(SectionPlacementSettersContext)
 
   const [cursorStyle, setCursorStyle] = useState<cursorStyles>('grab')
   const [cursorTracking, setCursorTracking] = useState({previousPosition: 0, currentPosition: 0})

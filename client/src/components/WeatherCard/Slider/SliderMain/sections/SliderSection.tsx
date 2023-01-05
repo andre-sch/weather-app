@@ -1,18 +1,18 @@
-import { type ReactNode, useContext } from "react"
+import { useContext, type ReactNode } from "react"
 
-import { SectionDisplayedContext } from "../../contexts/SectionDisplayed"
-import { SliderSectionContext } from ".."
-
-import type { sectionIDs } from "../.."
+import { SectionDisplayedIdGetterContext, SectionDisplayedRefContext } from "../../providers/SectionDisplayedProvider"
+import { SectionLeftSpacingContext } from "../../providers/SectionPlacementProvider"
 
 interface SliderSectionProps {
-  sectionID: sectionIDs
+  sectionID: 'hourly' | 'daily' | 'details'
   children: ReactNode
 }
 
 export function SliderSection({sectionID, children}: SliderSectionProps) {
-  const sectionDisplayed = useContext(SectionDisplayedContext)
-  const {sectionDisplayedID, sectionLeftSpacing} = useContext(SliderSectionContext)
+  const sectionDisplayedID = useContext(SectionDisplayedIdGetterContext)
+  const sectionDisplayed = useContext(SectionDisplayedRefContext)
+
+  const sectionLeftSpacing = useContext(SectionLeftSpacingContext)
 
   const isBeingDisplayed = sectionDisplayedID == sectionID
   const elementStyle = {

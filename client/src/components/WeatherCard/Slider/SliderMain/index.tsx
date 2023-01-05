@@ -1,33 +1,26 @@
-import { useEffect, useContext, createContext } from "react"
+import { useEffect, useContext } from "react"
 import { useCursorTracking } from "./useCursorTracking"
 
-import { SectionDisplayedContext } from "../contexts/SectionDisplayed"
-import { PositionSettersContext } from "../contexts/PositionSetters"
-import { LimitMoveContext } from "../contexts/LimitMoveProvider"
+import { SectionDisplayedIdGetterContext, SectionDisplayedRefContext } from "../providers/SectionDisplayedProvider"
+import { SectionLeftSpacingContext, SectionPlacementSettersContext } from "../providers/SectionPlacementProvider"
+import { LimitMoveFunctionsContext } from "../providers/LimitMoveFunctionsProvider"
 
 import { HourlySection } from "./sections/HourlySection"
 import { DailySection } from "./sections/DailySection"
 import { DetailsSection } from "./sections/DetailsSection"
 
-import type { sectionIDs } from ".."
-
 import "./index.css"
 
-export interface SliderMainProps {
-  sectionDisplayedID: sectionIDs
-  sectionLeftSpacing: number
-}
+export function SliderMain() {
+  const sectionDisplayed = useContext(SectionDisplayedRefContext)
+  const sectionDisplayedID = useContext(SectionDisplayedIdGetterContext)
 
-export const SliderSectionContext = createContext({} as SliderMainProps)
+  const {getHorizontalBounds, limitSliderMovements} = useContext(LimitMoveFunctionsContext)
+  const {setHasHiddenContentOnRight, setSectionLeftSpacing} = useContext(SectionPlacementSettersContext)
 
-export function SliderMain(props: SliderMainProps) {
-  const {sectionDisplayedID, sectionLeftSpacing} = props
-  const sectionDisplayed = useContext(SectionDisplayedContext)
+  const sectionLeftSpacing = useContext(SectionLeftSpacingContext)
 
-  const {getHorizontalBounds, limitSliderMovements} = useContext(LimitMoveContext)
-  const {setHasHiddenContentOnRight, setSectionLeftSpacing} = useContext(PositionSettersContext)
-
-  const {cursorStyle, cursorTrackingEndpoints} = useCursorTracking(sectionDisplayedID)
+  const {cursorStyle, cursorTrackingEndpoints} = useCursorTracking()
 
   window.onresize = () => {
     executeOnSliderWidthChange()
@@ -56,11 +49,9 @@ export function SliderMain(props: SliderMainProps) {
 
   return (
     <main style={{cursor: cursorStyle}}>
-      <SliderSectionContext.Provider value={{sectionDisplayedID, sectionLeftSpacing}}>
-        <HourlySection />
-        <DailySection />
-        <DetailsSection />
-      </SliderSectionContext.Provider>
+      <HourlySection />
+      <DailySection />
+      <DetailsSection />
     </main>
   )
 }

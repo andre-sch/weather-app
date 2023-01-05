@@ -1,16 +1,14 @@
-import { useState } from "react"
-import type { forecasts, sectionIDs } from ".."
+import { useState, useContext } from "react"
+
+import { SectionDisplayedIdGetterContext, SectionDisplayedIdSetterContext } from "../providers/SectionDisplayedProvider"
 
 import './index.css'
 
-interface SliderHeaderProps {
-  sectionDisplayedID: sectionIDs
-  setSectionDisplayedID: React.Dispatch<React.SetStateAction<sectionIDs>>
-}
+export function SliderHeader() {
+  const sectionDisplayedID = useContext(SectionDisplayedIdGetterContext)
+  const setSectionDisplayedID = useContext(SectionDisplayedIdSetterContext)
 
-export function SliderHeader(props: SliderHeaderProps) {
-  const {sectionDisplayedID, setSectionDisplayedID} = props
-  const [selectedForecast, setSelectedForecast] = useState<forecasts>('hourly')
+  const [selectedForecast, setSelectedForecast] = useState<'hourly' | 'daily'>('hourly')
 
   return (
     <header>
