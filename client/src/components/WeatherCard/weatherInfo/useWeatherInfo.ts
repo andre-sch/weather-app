@@ -1,31 +1,55 @@
 import { useState, useEffect } from "react"
 
+import { sizeOf } from "../../../utils/sizeOfObject"
+
 import { weatherService } from "../../../services/weatherService"
 import type { ICurrentWeatherInfo } from "../../../services/weatherService/data/ICurrentWeatherInfo"
 import type { IWeatherForecastInfo } from "../../../services/weatherService/data/IWeatherForecastInfo"
 
 import type { registeredCity } from "../geoLocation/defaultCities"
 
-interface group<Type> { [key: string]: Type }
+export interface group<Type> { [key: string]: Type | undefined }
 
 export function useWeatherInfo(registeredCities: registeredCity[]) {
-  const [currentInfoGroup, setCurrentInfoGroup] = useState<group<ICurrentWeatherInfo>>({})
-  const [forecastInfoGroup, setForecastInfoGroup] = useState<group<IWeatherForecastInfo>>({})
+  const [weatherInfo, setWeatherInfo] = useState({
+    currentInfoGroup: {} as group<ICurrentWeatherInfo>,
+    forecastInfoGroup: {} as group<IWeatherForecastInfo>
+  })
+
+  const [currentInfoStorage, setCurrentInfoStorage] = useState<group<ICurrentWeatherInfo>>({})
+  const [forecastInfoStorage, setForecastInfoStorage] = useState<group<IWeatherForecastInfo>>({})
 
   useEffect(() => {
-    registeredCities.forEach(registeredCity => {
+    registeredCities.forEach(async (registeredCity, index) => {
       const cityID = registeredCity.location
-      const location = cityID.split(', ').map(coordinate => Number(coordinate))
+      const location = cityID.split(', ').map(coordinate => Number(coordinate)) as [number, number]
 
-      weatherService.getCurrentWeatherInfo(location as [number, number]).then(response =>
-        setCurrentInfoGroup(previousGroup => ({...previousGroup, [cityID]: response.data})
-      ))
+      const currentInfo = (await weatherService.getCurrentWeatherInfo(location)).data
+      const forecastInfo = (await weatherService.getWeatherForecastInfo(location)).data
 
-      weatherService.getWeatherForecastInfo(location as [number, number]).then(response =>
-        setForecastInfoGroup(previousGroup => ({...previousGroup, [cityID]: response.data})
-      ))
+      setCurrentInfoStorage(previousInfo => ({...previousInfo, [cityID]: currentInfo}))
+      setForecastInfoStorage(previousInfo => ({...previousInfo, [cityID]: forecastInfo}))
+
+      if (index == 0) setWeatherInfo({
+        currentInfoGroup: {[cityID]: currentInfo},
+        forecastInfoGroup: {[cityID]: forecastInfo}
+      })
     })
   }, [registeredCities])
 
-  return { currentInfoGroup, forecastInfoGroup }
+  useEffect(() => {
+    if (!currentInfoStorage || !forecastInfoStorage) return
+
+    if (
+      sizeOf(currentInfoStorage) == registeredCities.length &&
+      sizeOf(forecastInfoStorage) == registeredCities.length
+    ) {
+      setWeatherInfo({
+        currentInfoGroup: currentInfoStorage,
+        forecastInfoGroup: forecastInfoStorage
+      })
+    }
+  }, [currentInfoStorage, forecastInfoStorage])
+
+  return weatherInfo
 }
