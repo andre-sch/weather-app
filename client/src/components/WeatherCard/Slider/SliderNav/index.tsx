@@ -1,43 +1,21 @@
 import { useContext } from "react"
 
-import { SectionDisplayedRefContext } from "../providers/SectionDisplayedProvider"
-import { SectionHiddenContentOnRightContext, SectionLeftSpacingContext, SectionPlacementSettersContext } from "../providers/SectionPlacementProvider"
-import { LimitMoveFunctionsContext } from "../providers/LimitMoveFunctionsProvider"
+import { SectionHiddenContentOnRightContext, SectionLeftSpacingContext } from "../providers/SectionPlacementProvider"
+import { useScroll } from "./useScroll"
 
 import './index.css'
 
 export function SliderNav() {
-  const sectionDisplayed = useContext(SectionDisplayedRefContext)
+  const scrollSectionContent = useScroll()
 
-  const {getHorizontalBounds, limitSliderMovements} = useContext(LimitMoveFunctionsContext)
-  const {setHasHiddenContentOnRight, setSectionLeftSpacing} = useContext(SectionPlacementSettersContext)
-
+  const sectionLeftSpacing = useContext(SectionLeftSpacingContext)
   const hasHiddenContentOnRight = useContext(SectionHiddenContentOnRightContext)
-  const sectionLeftSpacing =  useContext(SectionLeftSpacingContext)
-
-  function scrollHiddenContent(direction: 'left' | 'right') {
-    if (!sectionDisplayed.current) return
-
-    const step = sectionDisplayed.current.clientWidth / 2.5
-    const [, leftMax] = getHorizontalBounds()
-
-    setSectionLeftSpacing(previousLeft => {
-      var nextLeft
-      if (direction == 'right') nextLeft = previousLeft + step
-      else nextLeft = previousLeft - step
-
-      if (nextLeft >= leftMax) setTimeout(() => setHasHiddenContentOnRight(false), 650)  // 50ms longer than css transition time
-      else setHasHiddenContentOnRight(true)
-
-      return limitSliderMovements(nextLeft)
-    })
-  }
 
   return (
     <nav className="horizontal-arrows">
       <button
         disabled={sectionLeftSpacing == 0}
-        onClick={() => scrollHiddenContent('left')}>
+        onClick={() => scrollSectionContent('left')}>
 
         <img
           src="/assets/other/thin-arrow.svg"
@@ -47,7 +25,7 @@ export function SliderNav() {
 
       <button
         disabled={!hasHiddenContentOnRight}
-        onClick={() => scrollHiddenContent('right')}>
+        onClick={() => scrollSectionContent('right')}>
 
         <img
           src="/assets/other/thin-arrow.svg"
