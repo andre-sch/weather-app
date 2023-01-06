@@ -7,7 +7,7 @@ import { LimitMoveFunctionsContext } from "../providers/LimitMoveFunctionsProvid
 type cursorStyles = 'grab' | 'grabbing' | 'default'
 
 export function useCursorTracking() {
-  const sectionDisplayed = useContext(SectionDisplayedRefContext)
+  const sectionDisplayedRef = useContext(SectionDisplayedRefContext)
   const sectionDisplayedID = useContext(SectionDisplayedIdGetterContext)
 
   const {getHorizontalBounds, limitSliderMovements} = useContext(LimitMoveFunctionsContext)
@@ -17,32 +17,32 @@ export function useCursorTracking() {
   const [cursorTracking, setCursorTracking] = useState({previousPosition: 0, currentPosition: 0})
 
   useEffect(() => {
-    if(!sectionDisplayed.current) return
+    if(!sectionDisplayedRef.current) return
     setCursorTracking({previousPosition: 0, currentPosition: 0})
   }, [sectionDisplayedID])
 
   function bindCursorTrackingEndpoints() {
     setCursorStyle('grab')
-    sectionDisplayed.current!.onmousedown = startCursorTracking
-    sectionDisplayed.current!.onmouseup = finishCursorTracking
+    sectionDisplayedRef.current!.onmousedown = startCursorTracking
+    sectionDisplayedRef.current!.onmouseup = finishCursorTracking
   }
 
   function unbindCursorTrackingEndpoints() {
     setCursorStyle('default')
-    sectionDisplayed.current!.onmousedown = null
-    sectionDisplayed.current!.onmouseup = null
+    sectionDisplayedRef.current!.onmousedown = null
+    sectionDisplayedRef.current!.onmouseup = null
   }
 
   function startCursorTracking(event: MouseEvent) {
     setCursorStyle('grabbing')
-    sectionDisplayed.current!.onmousemove = trackCursorCurrentPosition
+    sectionDisplayedRef.current!.onmousemove = trackCursorCurrentPosition
 
     setCursorTracking(previousObj => ({...previousObj, previousPosition: event.clientX}))
   }
 
   function finishCursorTracking() {
     setCursorStyle('grab')
-    sectionDisplayed.current!.onmousemove = null
+    sectionDisplayedRef.current!.onmousemove = null
   }
 
   function trackCursorCurrentPosition(event: MouseEvent) {

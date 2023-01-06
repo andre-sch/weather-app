@@ -11,13 +11,13 @@ export const LimitMoveFunctionsContext = createContext({} as LimitMoveFunctions)
 type ProviderProps = { children: ReactNode }
 
 export function LimitMoveFunctionsProvider(props: ProviderProps) {
-  const sectionDisplayed = useContext(SectionDisplayedRefContext)
+  const sectionDisplayedRef = useContext(SectionDisplayedRefContext)
 
   function getHorizontalBounds(): [number, number] {
     const leftMin = 0
     const leftMax = (
-      sectionDisplayed.current!.scrollWidth -
-      sectionDisplayed.current!.clientWidth
+      sectionDisplayedRef.current!.scrollWidth -
+      sectionDisplayedRef.current!.clientWidth
     )
 
     return [leftMin, leftMax]
@@ -33,7 +33,7 @@ export function LimitMoveFunctionsProvider(props: ProviderProps) {
 
   const staticFunctions = useMemo(() => ({
     getHorizontalBounds, limitSliderMovements
-  }), [sectionDisplayed])
+  }), [sectionDisplayedRef])
 
   return (
     <LimitMoveFunctionsContext.Provider value={staticFunctions}>

@@ -10,11 +10,11 @@ export const SectionDisplayedIdGetterContext = createContext<sectionIDs>('hourly
 export const SectionDisplayedIdSetterContext = createContext({} as Dispatch<sectionIDs>)
 
 export function SectionDisplayedProvider(props: ProviderProps) {
-  var sectionDisplayed = useRef<HTMLDivElement>(null)
+  var sectionDisplayedRef = useRef<HTMLDivElement>(null)
   const [sectionDisplayedID, setSectionDisplayedID] = useState<sectionIDs>('hourly')
 
   return (
-    <SectionDisplayedRefContext.Provider value={sectionDisplayed}>
+    <SectionDisplayedRefContext.Provider value={sectionDisplayedRef}>
       <SectionDisplayedIdGetterContext.Provider value={sectionDisplayedID}>
         <SectionDisplayedIdSetterContext.Provider value={setSectionDisplayedID}>
           {props.children}

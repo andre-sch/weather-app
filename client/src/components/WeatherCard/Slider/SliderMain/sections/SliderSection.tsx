@@ -10,7 +10,7 @@ interface SliderSectionProps {
 
 export function SliderSection({sectionID, children}: SliderSectionProps) {
   const sectionDisplayedID = useContext(SectionDisplayedIdGetterContext)
-  const sectionDisplayed = useContext(SectionDisplayedRefContext)
+  const sectionDisplayedRef = useContext(SectionDisplayedRefContext)
 
   const sectionLeftSpacing = useContext(SectionLeftSpacingContext)
 
@@ -21,7 +21,7 @@ export function SliderSection({sectionID, children}: SliderSectionProps) {
 
   return (
     <section
-      ref={isBeingDisplayed ? sectionDisplayed : null}
+      ref={isBeingDisplayed ? sectionDisplayedRef : null}
       style={elementStyle}
       className={
         `${sectionID != 'details' ? 'forecast ' : ''}` +

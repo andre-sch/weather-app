@@ -7,7 +7,7 @@ import { LimitMoveFunctionsContext } from "../providers/LimitMoveFunctionsProvid
 interface bindingEndpoints { bind: () => void, unbind: () => void }
 
 export function useWidthManagement(cursorTrackingEndpoints: bindingEndpoints) {
-  const sectionDisplayed = useContext(SectionDisplayedRefContext)
+  const sectionDisplayedRef = useContext(SectionDisplayedRefContext)
   const sectionDisplayedID = useContext(SectionDisplayedIdGetterContext)
 
   const {getHorizontalBounds, limitSliderMovements} = useContext(LimitMoveFunctionsContext)
@@ -20,17 +20,17 @@ export function useWidthManagement(cursorTrackingEndpoints: bindingEndpoints) {
   }
 
   useEffect(() => {
-    if(!sectionDisplayed.current) return
+    if(!sectionDisplayedRef.current) return
 
     setTimeout(executeOnSliderWidthChange, 350)  // 50ms longer than css transition time
     setSectionLeftSpacing(0)
   }, [sectionDisplayedID])
 
   function executeOnSliderWidthChange() {
-    if (!sectionDisplayed.current) return
+    if (!sectionDisplayedRef.current) return
 
     const [, leftMax] = getHorizontalBounds()
-    if (sectionDisplayed.current.scrollWidth > sectionDisplayed.current.clientWidth) {
+    if (sectionDisplayedRef.current.scrollWidth > sectionDisplayedRef.current.clientWidth) {
       if (sectionLeftSpacing < leftMax) setHasHiddenContentOnRight(true)
       cursorTrackingEndpoints.bind()
     } else {

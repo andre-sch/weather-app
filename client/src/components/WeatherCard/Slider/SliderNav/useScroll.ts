@@ -5,15 +5,15 @@ import { SectionDisplayedRefContext } from "../providers/SectionDisplayedProvide
 import { SectionPlacementSettersContext } from "../providers/SectionPlacementProvider"
 
 export function useScroll() {
-  const sectionDisplayed = useContext(SectionDisplayedRefContext)
+  const sectionDisplayedRef = useContext(SectionDisplayedRefContext)
 
   const {getHorizontalBounds, limitSliderMovements} = useContext(LimitMoveFunctionsContext)
   const {setHasHiddenContentOnRight, setSectionLeftSpacing} = useContext(SectionPlacementSettersContext)
 
   function scrollSectionContent(direction: 'left' | 'right') {
-    if (!sectionDisplayed.current) return
+    if (!sectionDisplayedRef.current) return
 
-    const step = sectionDisplayed.current.clientWidth / 2.5
+    const step = sectionDisplayedRef.current.clientWidth / 2.5
     const [, leftMax] = getHorizontalBounds()
 
     setSectionLeftSpacing(previousLeft => {
