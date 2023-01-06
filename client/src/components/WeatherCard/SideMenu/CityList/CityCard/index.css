@@ -60,14 +60,25 @@
   width: 5.5rem;
 }
 
-.city-card footer {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-}
+.city-card footer {position: relative;}
 
-.city-card footer h1 {font-size: 0.625rem; font-weight: 500;}
-.city-card footer span {font-size: 0.5rem; font-weight: 300;}
+.city-card footer h1 {
+  width: 7.5rem;
+  font-size: 0.625rem;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.city-card footer span {
+  position: absolute;
+  bottom: 0.125rem; right: 0;
+  width: 4.5rem;
+  font-size: 0.5rem;
+  font-weight: 300;
+  line-height: 115%;
+  text-align: right;
+}
 
 .city-card .background {
   position: absolute;
