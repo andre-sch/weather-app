@@ -6,6 +6,8 @@ import type { registeredCity } from "../../../geoLocation/defaultCities"
 import type { ICurrentWeatherInfo } from "../../../../../services/weatherService/data/ICurrentWeatherInfo"
 import type { IWeatherForecastInfo } from "../../../../../services/weatherService/data/IWeatherForecastInfo"
 
+import { TemperatureInfo } from "./TemperatureInfo"
+
 import "./index.css"
 
 interface CityCardProps {
@@ -29,13 +31,10 @@ export const CityCard = memo((props: CityCardProps) => {
           alt="Delete card"
           draggable={false} />
       </button>
-      <div className="temperature">
-        <strong>{props.currentWeatherInfo.temperature}</strong>
-        <div className="min-max vertical">
-          <span>{`${today.temperature.min.toString().padStart(2, '0')}º`}</span>
-          <span>{`${today.temperature.max.toString().padStart(2, '0')}º`}</span>
-        </div>
-      </div>
+      <TemperatureInfo
+        current={props.currentWeatherInfo.temperature}
+        min={today.temperature.min}
+        max={today.temperature.max} />
       <img
         src={`/assets/weather/images/${props.currentWeatherInfo.condition.imgPath}`}
         alt={props.currentWeatherInfo.condition.description}

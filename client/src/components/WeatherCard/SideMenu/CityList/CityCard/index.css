@@ -43,7 +43,15 @@
   color: rgb(var(--primary-rgb));
   transform: translateY(0.125rem);
 }
+.city-card .temperature .min-max span {position: relative;}
 .city-card .temperature .min-max span + span {opacity: 0.3;}
+
+.city-card .temperature .negative::before {content: '-';}
+.city-card .temperature strong.negative::before {font-family: 'Inter', sans-serif;}
+.city-card .temperature span.negative::before {
+  position: absolute; top: 50%;
+  transform: translate(-100%, -50%);
+}
 
 .city-card .weather-preview {
   position: absolute;
