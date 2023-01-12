@@ -6,6 +6,7 @@ import { DailySection } from "./sections/DailySection"
 import { DetailsSection } from "./sections/DetailsSection"
 
 import "./index.css"
+import "./miniCards.css"
 
 export function SliderMain() {
   return (
