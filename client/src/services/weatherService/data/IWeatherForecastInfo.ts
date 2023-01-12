@@ -6,13 +6,13 @@ export interface IWeatherForecastInfo {
 }
 
 interface HourlyInfo {
-  iconPath: string
+  condition: { description: string, iconPath: string }
   localTimestamp: number
   temperature: number
 }
 
-interface DailyInfo {
-  iconPath: string
+export interface DailyInfo {
+  condition: { description: string, iconPath: string }
   localTime: { noon: number, sunrise: number, sunset: number }
   temperature: { min: number, max: number }
 }

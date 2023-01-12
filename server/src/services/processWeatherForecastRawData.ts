@@ -11,12 +11,15 @@ export function processWeatherForecastRawData(
   const rainAmount = { lastHour: 0, next24h: 0 }
 
   const dailyInfo = rawData.daily.map((dayRawData: dailyRawData) => {
-    const [{ id: weatherID }] = dayRawData.weather
+    const [{ id: weatherID, description: weatherDescription }] = dayRawData.weather
     const iconFileName = iconSearch.getFileName(weatherID)
     const iconFolder = iconSearch.isFileVariableOverTime(iconFileName) ? 'day' : 'both'
 
     return {
-      iconPath: `${iconFolder}/${iconFileName}.svg`,
+      condition: {
+        description: weatherDescription,
+        iconPath: `${iconFolder}/${iconFileName}.svg`
+      },
       localTime: {
         noon: convertToLocalTime(dayRawData.dt),
         sunrise: convertToLocalTime(dayRawData.sunrise),
@@ -36,7 +39,7 @@ export function processWeatherForecastRawData(
       rainAmount.next24h += hourRawData.rain['1h']
     }
 
-    const [{ id: weatherID }] = hourRawData.weather
+    const [{ id: weatherID, description: weatherDescription }] = hourRawData.weather
     const iconFileName = iconSearch.getFileName(weatherID)
 
     const iconFolder = iconSearch.isFileVariableOverTime(iconFileName) ? (
@@ -44,7 +47,10 @@ export function processWeatherForecastRawData(
     ) : 'both'
 
     return {
-      iconPath: `${iconFolder}/${iconFileName}.svg`,
+      condition: {
+        description: weatherDescription,
+        iconPath: `${iconFolder}/${iconFileName}.svg`
+      },
       localTimestamp,
       temperature: Math.round(hourRawData.temp)
     }

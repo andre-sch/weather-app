@@ -9,7 +9,7 @@ export interface IWeatherForecastRawData {
 export interface hourlyRawData {
   dt: number,
   temp: number,
-  weather: [{ id: number }],
+  weather: [{ id: number, description: string }],
   rain?: { '1h': number }
 }
 
@@ -18,5 +18,5 @@ export interface dailyRawData {
   sunrise: number,
   sunset: number,
   temp: { min: number, max: number },
-  weather: [{ id: number }]
+  weather: [{ id: number, description: string }]
 }
