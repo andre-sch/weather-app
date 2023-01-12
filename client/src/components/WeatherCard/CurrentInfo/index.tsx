@@ -5,7 +5,7 @@ import { DisplayedCityIdGetterContext } from "../geoLocation/DisplayedCityIdProv
 
 import { CurrentInfoGroupContext, ForecastInfoGroupContext } from "../weatherInfo/WeatherInfoProvider"
 
-import { capitalize } from "../../../utils/capitalize"
+import { textFormat } from "../../../utils/textFormat"
 import { splitInMiddle } from "./splitInMiddle"
 
 import "./index.css"
@@ -26,7 +26,7 @@ export function CurrentInfo() {
 
   const [today] = weatherForecastInfo.daily
   const [descriptionFirstLine, descriptionSecondLine] =
-    splitInMiddle(capitalize(currentWeatherInfo.condition.description))
+    splitInMiddle(textFormat.capitalize(currentWeatherInfo.condition.description))
 
   return (
     <div className="current-info">

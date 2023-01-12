@@ -1,5 +1,5 @@
 import { memo } from "react"
-import { capitalize } from "../../../../../utils/capitalize"
+import { textFormat } from "../../../../../utils/textFormat"
 
 import type { registeredCity } from "../../../geoLocation/defaultCities"
 
@@ -42,7 +42,7 @@ export const CityCard = memo((props: CityCardProps) => {
         draggable={false} />
       <footer>
         <h1>{props.renderedCity.name + ', ' + props.renderedCity.country}</h1>
-        <span>{capitalize(props.currentWeatherInfo.condition.description)}</span>
+        <span>{textFormat.capitalize(props.currentWeatherInfo.condition.description)}</span>
       </footer>
       <img src="/assets/other/city-card.svg" alt="" className="background" />
     </li>
