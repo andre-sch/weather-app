@@ -1,13 +1,11 @@
 .side-menu {
   position: absolute;
   top: 0; left: 0;
-  width: 1rem;
+  width: 100%;
   height: 100%;
   overflow-x: hidden;
   border-radius: 0.75rem 0 0 0.75rem;
-  transition: width 0.5s ease;
 }
-.side-menu.show {width: 17.25rem;}
 
 .side-menu .content {
   position: absolute;
