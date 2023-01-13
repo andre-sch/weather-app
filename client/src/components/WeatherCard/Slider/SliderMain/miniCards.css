@@ -1,13 +1,10 @@
 .forecast .mini-card {width: 4rem; background: rgba(var(--white-rgb), 0.1);}
 .forecast .mini-card:hover {background: rgba(var(--white-rgb), 0.15);}
 
-.forecast .mini-card time {font-size: 0.6875rem;}
+.forecast .mini-card time {font-family: 'Inter', sans-serif; font-size: 0.7rem;}
 .forecast .mini-card img {width: 2rem; margin: 0.5rem 0 0.25rem;}
 
-.forecast .mini-card :is(strong, span) {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 500;
-}
+.forecast .mini-card :is(strong, span) {font-weight: 500;}
 
 .forecast .mini-card strong {font-size: 0.875rem;}
 
@@ -37,7 +34,6 @@
 
 .details .mini-card em,
 .details .mini-card > span {
-  font-family: 'Poppins', sans-serif;
   color: rgb(var(--primary-rgb));
 }
 

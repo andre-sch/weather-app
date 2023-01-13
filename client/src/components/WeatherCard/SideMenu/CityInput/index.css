@@ -2,10 +2,11 @@
   position: relative;
   display: flex;
   height: 2.5rem;
-  background: rgba(0, 0, 0, 0.15);
+  background: rgba(0, 0, 0, 0.2);
   box-shadow: inset 0.25rem 0.25rem 0.25rem rgba(0, 0, 0, 0.15);
   border-radius: 0.5rem;
 }
+.side-menu .content .input-container:has(input:focus) {background: rgba(0, 0, 0, 0.3);}
 
 .side-menu .content .input-container input {
   width: 100%;

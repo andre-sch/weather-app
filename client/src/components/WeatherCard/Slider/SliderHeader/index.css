@@ -8,7 +8,8 @@
 
 .slider > header button {
   height: 1.5rem;
-  font-size: 0.6875rem;
+  font-size: 0.7rem;
+  line-height: 0;
   transition: all 0.2s;
 }
 

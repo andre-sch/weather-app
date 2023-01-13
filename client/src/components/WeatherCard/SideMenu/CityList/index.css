@@ -10,9 +10,9 @@
 
 .side-menu .content ul::-webkit-scrollbar {width: 0.75rem;}
 .side-menu .content ul::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.3);
-  border-right: 0.125rem solid #373734;
+  background: rgba(0, 0, 0, 0.4);
+  border-right: 0.125rem solid #2D2E2A;
 }
 .side-menu .content ul::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.5);
 }

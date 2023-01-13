@@ -52,7 +52,7 @@ main section.details {padding: 0 calc(calc(100% - var(--details-section-width)) 
   flex-shrink: 0;
 
   height: 5.25rem;
-  padding-top: 0.125rem;
+  padding-top: 0.15rem;
 
   border-radius: 0.5rem;
   box-shadow: 0 0.25rem 0 rgba(0, 0, 0, 0.15);

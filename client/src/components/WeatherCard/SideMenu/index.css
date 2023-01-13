@@ -18,7 +18,7 @@
   height: 100%;
   padding: 0.625rem 1rem 0.5rem 1.25rem;
 
-  background: #373734;
+  background: #2D2E2A;
   box-shadow: 0.375rem 0 0.375rem rgba(0, 0, 0, 0.3);
   border-radius: 0.75rem 0 0 0.75rem;
 
@@ -26,8 +26,6 @@
   z-index: 2;
 }
 .side-menu.show .content {transform: translateX(0);}
-
-.side-menu .content * {font-family: 'Poppins', sans-serif;}
 
 .side-menu .dark-overlay {
   position: fixed;
