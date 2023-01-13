@@ -17,7 +17,7 @@ interface CityCardProps {
 }
 
 export const CityCard = memo((props: CityCardProps) => {
-  if (!props.currentWeatherInfo || !props.weatherForecastInfo) return <li></li>
+  if (!props.currentWeatherInfo || !props.weatherForecastInfo) return CityCardMockup
 
   const [today] = props.weatherForecastInfo.daily
   return (
@@ -48,3 +48,9 @@ export const CityCard = memo((props: CityCardProps) => {
     </li>
   )
 })
+
+const CityCardMockup = (
+  <li className="city-card">
+    <img src="/assets/other/city-card.svg" alt="" className="background" />
+  </li>
+)
