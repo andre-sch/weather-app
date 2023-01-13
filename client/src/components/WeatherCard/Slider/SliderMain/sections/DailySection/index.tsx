@@ -15,7 +15,7 @@ export function DailySection() {
   for (let index = 0; index < NUMBER_OF_DAY_CARDS; index++) dayIndexes.push(index)
 
   const dayCards = useMemo(() => dayIndexes.map(dayIndex => {
-    if (!forecastInfo) return <div key={dayIndex} className="mini-card"></div>
+    if (!forecastInfo) return <div key={dayIndex} className="mini-card loading"></div>
 
     const dayInfo = forecastInfo.daily[dayIndex]
     return (

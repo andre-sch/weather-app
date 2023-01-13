@@ -16,7 +16,7 @@ export function HourlySection() {
   for (let index = 0; index < timeConversion.DAY_IN_HOURS; index++) hourIndexes.push(index)
 
   const hourCards = useMemo(() => hourIndexes.map(hourIndex => {
-    if (!forecastInfo) return <div key={hourIndex} className="mini-card"></div>
+    if (!forecastInfo) return <div key={hourIndex} className="mini-card loading"></div>
 
     const hourInfo = forecastInfo.hourly[hourIndex]
     return (

@@ -18,7 +18,9 @@ export function DetailsSection() {
 
   const detailCards = useMemo(() => {
     if (!currentInfo || !forecastInfo)
-      return detailIndexes.map(detailIndex => <div key={detailIndex} className="mini-card"></div>)
+      return detailIndexes.map(detailIndex =>
+        <div key={detailIndex} className="mini-card loading"></div>
+      )
 
     return getDetailCards({ currentInfo, forecastInfo })
   }, [!forecastInfo, DisplayedCityID])

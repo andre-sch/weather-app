@@ -17,7 +17,8 @@ export function CurrentInfo() {
   const currentWeatherInfo = useContext(CurrentInfoGroupContext)[displayedCityId]
   const weatherForecastInfo = useContext(ForecastInfoGroupContext)[displayedCityId]
 
-  if (!currentWeatherInfo || !weatherForecastInfo) return <div className="current-info"></div>
+  if (!currentWeatherInfo || !weatherForecastInfo)
+    return <div className="current-info loading"></div>
 
   const renderedCity = registeredCities.find(registeredCity => {
     const registeredCityId = registeredCity.location
