@@ -7,8 +7,6 @@ import type { ICurrentWeatherRawData } from "../externals/weatherAPI/data/ICurre
 export function processCurrentWeatherRawData(
   rawData: ICurrentWeatherRawData
 ): ICurrentWeatherInfo {
-  const convertToLocalTime = (globalTime: number) => globalTime + rawData.timezone
-
   const [{ id: weatherID, description: weatherDescription }] = rawData.weather
   const timeParams = {
     timestamp: rawData.dt,
@@ -27,10 +25,6 @@ export function processCurrentWeatherRawData(
         imageSearch.getFolder(timeParams) + '/' +
         imageSearch.getFileName(weatherID) + '.png'
       )
-    },
-    localTime: {
-      sunrise: convertToLocalTime(rawData.sys.sunrise),
-      sunset: convertToLocalTime(rawData.sys.sunset)
     },
     temperature: Math.round(rawData.main.temp),
     feelsLike: Math.round(rawData.main.feels_like),

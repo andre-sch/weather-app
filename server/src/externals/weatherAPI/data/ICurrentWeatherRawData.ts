@@ -9,10 +9,6 @@ export interface ICurrentWeatherRawData {
   visibility: number,
   wind: { speed: number, deg: number},
   dt: number,
-  sys: {
-    country: string,
-    sunrise: number,
-    sunset: number
-  },
+  sys: { sunrise: number, sunset: number},
   timezone: number
 }
