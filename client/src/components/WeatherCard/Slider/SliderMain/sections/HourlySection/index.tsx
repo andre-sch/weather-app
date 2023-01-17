@@ -19,9 +19,12 @@ export function HourlySection() {
     if (!forecastInfo) return <div key={hourIndex} className="mini-card loading"></div>
 
     const hourInfo = forecastInfo.hourly[hourIndex]
+    const globalTimestamp = timeConversion.getUTC(
+      hourInfo.localTimestamp, forecastInfo.timezone
+    )
     return (
       <HourCard
-        key={`${hourInfo.localTimestamp}-hour`}
+        key={`${globalTimestamp}-hour`}
         forecastInfo={forecastInfo} hourIndex={hourIndex} />
     )
   }), [!forecastInfo, DisplayedCityID])

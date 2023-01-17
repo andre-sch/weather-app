@@ -16,6 +16,14 @@ class TimeConversion {
     return Math.floor((timestamp % this.DAY_IN_SECONDS) / this.HOUR_IN_SECONDS)
   }
 
+  public getUTC(localTimestamp: number, timezoneOffset: number) {
+    return localTimestamp - timezoneOffset
+  }
+
+  public getDayStart(timestamp: number) {
+    return timestamp - (timestamp % this.DAY_IN_SECONDS)
+  }
+
   public getWeekday(timestamp: number) {
     return ['Thu', 'Fri', 'Sat', 'Sun', 'Mon', 'Tue', 'Wed'][
       Math.floor((timestamp % this.WEEK_IN_SECONDS) / this.DAY_IN_SECONDS)
