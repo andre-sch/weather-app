@@ -1,4 +1,5 @@
 class TimeConversion {
+  public SECOND_IN_MILLISECONDS = 1000
   public MINUTE_IN_SECONDS = 60
   public HOUR_IN_MINUTES = 60
   public DAY_IN_HOURS = 24

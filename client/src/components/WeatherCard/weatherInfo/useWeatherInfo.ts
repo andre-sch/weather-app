@@ -3,11 +3,13 @@ import { useState, useEffect, useContext } from "react"
 import { sizeOf } from "../../../utils/sizeOfObject"
 
 import { RegisteredCityGetterContext } from "../geoLocation/RegisteredCityProvider"
+import { useChangeInTime } from "./useChangeInTime"
 
 import { weatherService } from "../../../services/weatherService"
 import type { IWeatherInfoGroup } from "./WeatherInfoProvider"
 
 export function useWeatherInfo() {
+  const currentTime = useChangeInTime()
   const registeredCities = useContext(RegisteredCityGetterContext)
 
   const [weatherInfo, setWeatherInfo] = useState<IWeatherInfoGroup>({})
@@ -31,7 +33,7 @@ export function useWeatherInfo() {
           ...previousInfo, [cityID]: { current: currentInfo, forecast: forecastInfo }
         }))
     })
-  }, [])
+  }, [currentTime])
 
   useEffect(() => {
     if (sizeOf(weatherInfoStorage) == registeredCities.length) {
