@@ -21,7 +21,10 @@ export function processWeatherForecastRawData(
         iconPath: `${iconFolder}/${iconFileName}.svg`
       },
       localTime: {
-        noon: convertToLocalTime(dayRawData.dt),
+        noon: (
+          timeConversion.getDayStart(dayRawData.sunrise) +
+          convertToLocalTime(timeConversion.DAY_IN_SECONDS / 2)
+        ),
         sunrise: convertToLocalTime(dayRawData.sunrise),
         sunset: convertToLocalTime(dayRawData.sunset)
       },

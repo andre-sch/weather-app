@@ -13,8 +13,10 @@ class IconSearch extends PictureSearch {
 
   public getVariableFolderOverTime(localTimestamp: number, dailyInfo: DailyInfo[]) {
     const [{ localTime: { noon: todayNoon } }] = dailyInfo
-    const todayStart = todayNoon - timeConversion.HALF_DAY_IN_SECONDS
-    const hourIndex = timeConversion.unixToHours(localTimestamp - todayStart) - 1
+    const todayStart = todayNoon - (timeConversion.DAY_IN_SECONDS / 2)
+    const hourIndex = Math.floor(
+      (localTimestamp - todayStart) / timeConversion.HOUR_IN_SECONDS
+    )
 
     const dayIndex = Math.floor(hourIndex / timeConversion.DAY_IN_HOURS)
     return super.getTimeVariant({

@@ -14,7 +14,6 @@ export interface hourlyRawData {
 }
 
 export interface dailyRawData {
-  dt: number,
   sunrise: number,
   sunset: number,
   temp: { min: number, max: number },
