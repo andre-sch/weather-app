@@ -1,29 +1,26 @@
-import { useContext, useMemo } from "react"
+import { useContext } from "react"
 
 import { DisplayedCityIdGetterContext } from "../../../../geoLocation/DisplayedCityIdProvider"
-import { CurrentInfoGroupContext, ForecastInfoGroupContext } from "../../../../weatherInfo/WeatherInfoProvider"
+import { WeatherInfoGroupContext } from "../../../../weatherInfo/WeatherInfoProvider"
 
 import { SliderSection } from "../SliderSection"
 import { getDetailCards } from "./getDetailCards"
 
 export function DetailsSection() {
   const DisplayedCityID = useContext(DisplayedCityIdGetterContext)
-
-  const currentInfo = useContext(CurrentInfoGroupContext)[DisplayedCityID]
-  const forecastInfo = useContext(ForecastInfoGroupContext)[DisplayedCityID]
+  const weatherInfo = useContext(WeatherInfoGroupContext)[DisplayedCityID]
 
   const NUMBER_OF_DETAIL_CARDS = 6
   var detailIndexes: number[] = []
   for (let index = 0; index < NUMBER_OF_DETAIL_CARDS; index++) detailIndexes.push(index)
 
-  const detailCards = useMemo(() => {
-    if (!currentInfo || !forecastInfo)
-      return detailIndexes.map(detailIndex =>
-        <div key={detailIndex} className="mini-card loading"></div>
-      )
-
-    return getDetailCards({ currentInfo, forecastInfo })
-  }, [!forecastInfo, DisplayedCityID])
-
-  return <SliderSection sectionID="details">{detailCards}</SliderSection>
+  return (
+    <SliderSection sectionID="details">
+      {weatherInfo ? getDetailCards(weatherInfo) : (
+        detailIndexes.map(detailIndex =>
+          <div key={detailIndex} className="mini-card loading"></div>
+        )
+      )}
+    </SliderSection>
+  )
 }

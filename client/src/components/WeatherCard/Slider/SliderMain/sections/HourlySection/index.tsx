@@ -1,7 +1,7 @@
-import { useContext, useMemo } from "react"
+import { useContext } from "react"
 
 import { DisplayedCityIdGetterContext } from "../../../../geoLocation/DisplayedCityIdProvider"
-import { ForecastInfoGroupContext } from "../../../../weatherInfo/WeatherInfoProvider"
+import { WeatherInfoGroupContext } from "../../../../weatherInfo/WeatherInfoProvider"
 
 import { timeConversion } from "../../../../../../utils/timeConversion"
 
@@ -10,24 +10,27 @@ import { HourCard } from "./HourCard"
 
 export function HourlySection() {
   const DisplayedCityID = useContext(DisplayedCityIdGetterContext)
-  const forecastInfo = useContext(ForecastInfoGroupContext)[DisplayedCityID]
+  const weatherInfo = useContext(WeatherInfoGroupContext)[DisplayedCityID]
 
   var hourIndexes: number[] = []
   for (let index = 0; index < timeConversion.DAY_IN_HOURS; index++) hourIndexes.push(index)
 
-  const hourCards = useMemo(() => hourIndexes.map(hourIndex => {
-    if (!forecastInfo) return <div key={hourIndex} className="mini-card loading"></div>
+  return (
+    <SliderSection sectionID="hourly">
+      {hourIndexes.map(hourIndex => {
+        if (!weatherInfo) return <div key={hourIndex} className="mini-card loading"></div>
 
-    const hourInfo = forecastInfo.hourly[hourIndex]
-    const globalTimestamp = timeConversion.getUTC(
-      hourInfo.localTimestamp, forecastInfo.timezone
-    )
-    return (
-      <HourCard
-        key={`${globalTimestamp}-hour`}
-        forecastInfo={forecastInfo} hourIndex={hourIndex} />
-    )
-  }), [!forecastInfo, DisplayedCityID])
+        const hourInfo = weatherInfo.forecast.hourly[hourIndex]
+        const globalTimestamp = timeConversion.getUTC(
+          hourInfo.localTimestamp, weatherInfo.forecast.timezone
+        )
 
-  return <SliderSection sectionID="hourly">{hourCards}</SliderSection>
+        return (
+          <HourCard
+            key={`${globalTimestamp}-hour`}
+            forecastInfo={weatherInfo.forecast} hourIndex={hourIndex} />
+        )
+      })}
+    </SliderSection>
+  )
 }

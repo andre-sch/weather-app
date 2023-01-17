@@ -1,4 +1,4 @@
-import { useContext, memo, type ReactNode } from "react"
+import { useContext, type ReactNode } from "react"
 
 import { SectionDisplayedIdGetterContext, SectionDisplayedRefContext } from "../../providers/SectionDisplayedProvider"
 import { SectionLeftSpacingContext } from "../../providers/SectionPlacementProvider"
@@ -8,7 +8,7 @@ interface SliderSectionProps {
   children: ReactNode
 }
 
-export const SliderSection = memo(({sectionID, children}: SliderSectionProps) => {
+export function SliderSection({sectionID, children}: SliderSectionProps) {
   const sectionDisplayedID = useContext(SectionDisplayedIdGetterContext)
   const sectionDisplayedRef = useContext(SectionDisplayedRefContext)
 
@@ -31,4 +31,4 @@ export const SliderSection = memo(({sectionID, children}: SliderSectionProps) =>
       {children}
     </section>
   )
-})
+}

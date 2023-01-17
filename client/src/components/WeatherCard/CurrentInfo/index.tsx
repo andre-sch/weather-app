@@ -3,7 +3,7 @@ import { useContext } from "react"
 import { RegisteredCityGetterContext } from "../geoLocation/RegisteredCityProvider"
 import { DisplayedCityIdGetterContext } from "../geoLocation/DisplayedCityIdProvider"
 
-import { CurrentInfoGroupContext, ForecastInfoGroupContext } from "../weatherInfo/WeatherInfoProvider"
+import { WeatherInfoGroupContext } from "../weatherInfo/WeatherInfoProvider"
 
 import { textFormat } from "../../../utils/textFormat"
 import { splitInMiddle } from "./splitInMiddle"
@@ -14,24 +14,21 @@ export function CurrentInfo() {
   const registeredCities = useContext(RegisteredCityGetterContext)
   const displayedCityId = useContext(DisplayedCityIdGetterContext)
 
-  const currentWeatherInfo = useContext(CurrentInfoGroupContext)[displayedCityId]
-  const weatherForecastInfo = useContext(ForecastInfoGroupContext)[displayedCityId]
-
-  if (!currentWeatherInfo || !weatherForecastInfo)
-    return <div className="current-info loading"></div>
+  const weatherInfo = useContext(WeatherInfoGroupContext)[displayedCityId]
+  if (!weatherInfo) return <div className="current-info loading"></div>
 
   const renderedCity = registeredCities.find(registeredCity => {
     const registeredCityId = registeredCity.location
     return registeredCityId == displayedCityId
   })!
 
-  const [today] = weatherForecastInfo.daily
+  const [today] = weatherInfo.forecast.daily
   const [descriptionFirstLine, descriptionSecondLine] =
-    splitInMiddle(textFormat.capitalize(currentWeatherInfo.condition.description))
+    splitInMiddle(textFormat.capitalize(weatherInfo.current.condition.description))
 
   return (
     <div className="current-info">
-      <strong>{`${currentWeatherInfo.temperature}º`}</strong>
+      <strong>{`${weatherInfo.current.temperature}º`}</strong>
       <div className="card-location">
         {`${renderedCity.name},`}
         <span>{renderedCity.country}</span>
@@ -42,8 +39,8 @@ export function CurrentInfo() {
       </div>
       <h1>{descriptionFirstLine}<br/>{descriptionSecondLine}</h1>
       <img
-        src={`/assets/weather/images/${currentWeatherInfo.condition.imgPath}`}
-        alt={currentWeatherInfo.condition.description}
+        src={`/assets/weather/images/${weatherInfo.current.condition.imgPath}`}
+        alt={weatherInfo.current.condition.description}
         draggable={false} />
     </div>
   )

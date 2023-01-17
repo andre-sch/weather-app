@@ -1,25 +1,21 @@
-import { memo } from "react"
 import { textFormat } from "../../../../../utils/textFormat"
 
-import type { registeredCity } from "../../../geoLocation/defaultCities"
-
-import type { ICurrentWeatherInfo } from "../../../../../services/weatherService/data/ICurrentWeatherInfo"
-import type { IWeatherForecastInfo } from "../../../../../services/weatherService/data/IWeatherForecastInfo"
-
 import { TemperatureInfo } from "./TemperatureInfo"
+
+import type { registeredCity } from "../../../geoLocation/defaultCities"
+import type { IWeatherInfoGroup } from "../../../weatherInfo/WeatherInfoProvider"
 
 import "./index.css"
 
 interface CityCardProps {
   renderedCity: registeredCity,
-  currentWeatherInfo?: ICurrentWeatherInfo,
-  weatherForecastInfo?: IWeatherForecastInfo
+  weatherInfo: IWeatherInfoGroup[string],
 }
 
-export const CityCard = memo((props: CityCardProps) => {
-  if (!props.currentWeatherInfo || !props.weatherForecastInfo) return CityCardMockup
+export function CityCard(props: CityCardProps) {
+  if (!props.weatherInfo) return CityCardMockup
 
-  const [today] = props.weatherForecastInfo.daily
+  const [today] = props.weatherInfo.forecast.daily
   return (
     <li className="city-card">
       <button className="drag-card">
@@ -32,22 +28,22 @@ export const CityCard = memo((props: CityCardProps) => {
           draggable={false} />
       </button>
       <TemperatureInfo
-        current={props.currentWeatherInfo.temperature}
+        current={props.weatherInfo.current.temperature}
         min={today.temperature.min}
         max={today.temperature.max} />
       <img
-        src={`/assets/weather/images/${props.currentWeatherInfo.condition.imgPath}`}
-        alt={props.currentWeatherInfo.condition.description}
+        src={`/assets/weather/images/${props.weatherInfo.current.condition.imgPath}`}
+        alt={props.weatherInfo.current.condition.description}
         className="weather-preview"
         draggable={false} />
       <footer>
         <h1>{props.renderedCity.name + ', ' + props.renderedCity.country}</h1>
-        <span>{textFormat.capitalize(props.currentWeatherInfo.condition.description)}</span>
+        <span>{textFormat.capitalize(props.weatherInfo.current.condition.description)}</span>
       </footer>
       <img src="/assets/other/city-card.svg" alt="" className="background" />
     </li>
   )
-})
+}
 
 const CityCardMockup = (
   <li className="city-card">
