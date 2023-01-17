@@ -66,6 +66,7 @@ export function processWeatherForecastRawData(
     },
     rainAmount,
     hourly: hourlyInfo,
-    daily: dailyInfo
+    daily: dailyInfo,
+    timezone: rawData.timezone_offset
   }
 }

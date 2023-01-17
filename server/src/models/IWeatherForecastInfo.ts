@@ -3,6 +3,7 @@ export interface IWeatherForecastInfo {
   rainAmount: { lastHour: number, next24h: number }
   hourly: HourlyInfo[]
   daily: DailyInfo[]
+  timezone: number
 }
 
 interface HourlyInfo {
