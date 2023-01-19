@@ -1,7 +1,7 @@
-import { MenuDisplayProvider } from "./MenuDisplayProvider"
+import { MenuDisplayProvider } from "./contexts/menuDisplay/MenuDisplayProvider"
 
-import { AppHeader } from "./components/AppHeader"
-import { WeatherCard } from "./components/WeatherCard"
+import { AppHeader } from "./components/organisms/AppHeader"
+import { WeatherCard } from "./pages/WeatherCard"
 
 import './app.css'
 

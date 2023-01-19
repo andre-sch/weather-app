@@ -1,0 +1,25 @@
+.forecast .mini-card {width: 4rem; background: rgba(var(--white-rgb), 0.1);}
+.forecast .mini-card:hover {background: rgba(var(--white-rgb), 0.15);}
+
+.forecast .mini-card time {font-family: 'Inter', sans-serif; font-size: 0.7rem;}
+.forecast .mini-card img {width: 2rem; margin: 0.5rem 0 0.25rem;}
+
+.forecast .mini-card :is(strong, span) {font-weight: 500;}
+
+.forecast .mini-card strong {font-size: 0.875rem;}
+
+.forecast .mini-card.twilight {width: 5.5rem;}
+.forecast .mini-card.twilight img {width: 2.5rem; margin: 0.25rem 0 0;}
+.forecast .mini-card.twilight strong {font-weight: 400;}
+
+
+.daily .mini-card img {margin-bottom: 0.35rem;}
+
+.daily .min-max {
+  display: flex;
+  align-items: center;
+  gap: 0.1875rem;
+  font-size: 0.75rem;
+}
+
+.daily .min-max span + span {color: rgba(var(--white-rgb), 0.5);}
