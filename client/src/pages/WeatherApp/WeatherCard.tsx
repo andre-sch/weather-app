@@ -4,7 +4,7 @@ import { WeatherInfoProvider } from "../../contexts/weatherInfo/WeatherInfoProvi
 
 import { SideMenu } from "../../components/organisms/SideMenu"
 import { CitiesPagination } from "../../components/organisms/CitiesPagination"
-import { CurrentInfo } from "../../components/organisms/CurrentInfo"
+import { CurrentCityInfo } from "../../components/organisms/CurrentCityInfo"
 import { Slider } from "../../components/organisms/Slider"
 
 import './WeatherCard.css'
@@ -17,7 +17,7 @@ export function WeatherCard() {
           <DisplayedCityIdProvider>
             <SideMenu />
             <CitiesPagination />
-            <CurrentInfo />
+            <CurrentCityInfo />
             <Slider />
           </DisplayedCityIdProvider>
         </WeatherInfoProvider>

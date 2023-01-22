@@ -3,7 +3,7 @@ import { SideMenuHeader } from "../../molecules/SideMenuHeader"
 import { CityInput } from "../../atoms/CityInput"
 import { CityList } from "../../molecules/CityList"
 
-import "./index.css"
+import "./SideMenuCityList.css"
 
 export function SideMenu() {
   return (

@@ -1,0 +1,91 @@
+.city-list .city-card {
+  position: relative;
+  margin-top: 1.25rem;
+  height: 6.25rem;
+  padding: 0.8rem 0.75rem 0.75rem 1rem;
+  cursor: pointer;
+}
+
+.city-list .city-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+
+  background: url('/assets/other/city-card.svg');
+  background-size: cover;
+  opacity: 0.55; z-index: -1;
+  transition: opacity 0.2s;
+}
+.city-list .city-card:hover::after {opacity: 1;}
+
+
+.city-list .city-card .drag-card {
+  position: absolute;
+  top: 50%; left: 0;
+  transform: translate(-100%, -50%);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 1.25rem; height: 1.25rem;
+  cursor: grab;
+}
+.city-list .city-card .drag-card img {width: 1rem; height: 1rem;}
+
+.city-list .city-card .delete-card {
+  position: absolute;
+  top: 0; right: 0;
+}
+.city-list .city-card .delete-card img {width: 1.4rem; height: 1.4rem;}
+
+.city-list .city-card :is(.drag-card, .delete-card) {
+  opacity: 0; z-index: -1;
+  transition: filter 0.2s;
+}
+
+.city-list .city-card:hover :is(.drag-card, .delete-card) {opacity: 1; z-index: 3;}
+.city-list .city-card :is(.drag-card:hover, .delete-card:hover) {filter: brightness(0.9);}
+
+
+.city-list .city-card .temperature-info {display: inline-block;}
+
+.city-list .city-card .temperature-info strong {font-size: 2.5rem;}
+
+.city-list .city-card .temperature-info .min-max {
+  top: calc(50% + 0.125rem);
+  left: calc(100% + 0.75rem);
+  transform: translateY(-50%);
+
+  font-size: 0.75rem;
+  color: rgb(var(--primary-rgb));
+}
+.city-list .city-card .temperature-info .min-max span + span {opacity: 0.3;}
+
+
+.city-list .city-card .city-location {
+  width: 7.5rem;
+  font-size: 0.625rem;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+.city-list .city-card .weather-preview figcaption {
+  position: absolute;
+  bottom: 0.875rem; right: 0.75rem;
+  width: 4.5rem;
+  font-size: 0.5rem;
+  font-weight: 300;
+  line-height: 115%;
+  text-align: right;
+}
+
+.city-list .city-card .weather-preview img {
+  position: absolute;
+  top: -1.25rem; right: 0;
+  width: 5.5rem;
+}

@@ -20,3 +20,7 @@
   transform: translateX(-50%);
   border-radius: 0.75rem 0.75rem 0 0;
 }
+
+/*   CurrentCityInfo   */
+
+.weather-card .current-city-info {margin-bottom: min(4.5rem, 7.5vw);}

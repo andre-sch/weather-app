@@ -1,0 +1,22 @@
+.temperature-info {
+  position: relative;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.temperature-info strong {font-weight: 400;}
+
+.temperature-info .min-max {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+}
+
+.temperature-info .min-max span {position: relative; font-family: 'Red Hat Mono', monospace;}
+
+.temperature-info .negative::before {content: '-';}
+.temperature-info strong.negative::before {font-family: 'Inter', sans-serif;}
+.temperature-info span.negative::before {
+  position: absolute; top: 50%;
+  transform: translate(-100%, -50%);
+}

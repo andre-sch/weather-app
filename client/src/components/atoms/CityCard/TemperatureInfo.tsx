@@ -1,6 +1,6 @@
 import { textFormat } from "../../../utils/textFormat"
 
-import "./index.css"
+import "./TemperatureInfo.css"
 
 interface TemperatureInfoProps { current: number, min: number, max: number }
 
@@ -8,7 +8,7 @@ export function TemperatureInfo(props: TemperatureInfoProps) {
   const getSign = (num: number) => num < 0 ? 'negative' : 'positive'
 
   return (
-    <div className="temperature">
+    <div className="temperature-info">
       <strong className={getSign(props.current)}>
         {`${Math.abs(props.current)}º`}
       </strong>
