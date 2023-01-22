@@ -3,7 +3,7 @@ import { DisplayedCityIdProvider } from "../../contexts/geoLocation/DisplayedCit
 import { WeatherInfoProvider } from "../../contexts/weatherInfo/WeatherInfoProvider"
 
 import { SideMenu } from "../../components/organisms/SideMenu"
-import { CardsPagination } from "../../components/organisms/CardsPagination"
+import { CitiesPagination } from "../../components/organisms/CitiesPagination"
 import { CurrentInfo } from "../../components/organisms/CurrentInfo"
 import { Slider } from "../../components/organisms/Slider"
 
@@ -16,7 +16,7 @@ export function WeatherCard() {
         <WeatherInfoProvider>
           <DisplayedCityIdProvider>
             <SideMenu />
-            <CardsPagination />
+            <CitiesPagination />
             <CurrentInfo />
             <Slider />
           </DisplayedCityIdProvider>
