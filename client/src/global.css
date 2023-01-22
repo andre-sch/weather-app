@@ -32,10 +32,10 @@ body {
 
 button {cursor: pointer;}
 
-ul {list-style: none;}
+ul, li {list-style: none;}
 
 img {
-  vertical-align: middle;
+  display: block;
   -webkit-user-select: none;
   user-select: none;
 }
