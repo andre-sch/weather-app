@@ -1,5 +1,5 @@
-import { SideMenuContainer } from "../../atoms/SideMenuContainer"
-import { SideMenuHeader } from "../../molecules/SideMenuHeader"
+import { SideMenuContainer } from "./SideMenuContainer"
+import { SideMenuHeader } from "./SideMenuHeader"
 import { CityInput } from "../../atoms/CityInput"
 import { CityList } from "../../molecules/CityList"
 

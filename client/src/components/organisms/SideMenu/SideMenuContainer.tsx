@@ -1,7 +1,7 @@
 import { useContext, type ReactNode } from "react"
 import { MenuDisplayGetterContext, MenuDisplaySetterContext } from "../../../contexts/menuDisplay/MenuDisplayProvider"
 
-import "./index.css"
+import "./SideMenuContainer.css"
 
 interface SideMenuContainerProps { children: ReactNode }
 
@@ -10,8 +10,8 @@ export function SideMenuContainer(props: SideMenuContainerProps) {
   const setIsMenuOpen = useContext(MenuDisplaySetterContext)
 
   return (
-    <div className={`side-menu ${isMenuOpen ? 'show' : ''}`}>
-      <div className="content">
+    <div className={`side-menu-container ${isMenuOpen ? 'show' : ''}`}>
+      <div className="side-menu-content">
         {props.children}
       </div>
       <div

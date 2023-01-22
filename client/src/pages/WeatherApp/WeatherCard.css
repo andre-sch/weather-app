@@ -8,6 +8,21 @@
   border-radius: 0.75rem;
 }
 
+/*   SideMenu   */
+
+.weather-card .side-menu-container {
+  position: absolute;
+  top: 0; left: 0;
+  overflow-x: hidden;
+}
+
+.weather-card .side-menu-content {
+  transform: translateX(calc(-100% - 1rem));
+  transition: transform 0.5s ease;
+  box-shadow: 0.375rem 0 0.375rem rgba(0, 0, 0, 0.3);
+}
+.weather-card .side-menu-container.show .side-menu-content {transform: translateX(0);}
+
 /*   CitiesPagination   */
 
 .weather-card .choose-adjacent-city {position: absolute; top: 50%;}
