@@ -1,17 +1,17 @@
 import { useContext } from "react"
-import { MenuDisplaySetterContext } from "../../../contexts/menuDisplay/MenuDisplayProvider"
+import { MenuDisplaySetterContext } from "../../contexts/menuDisplay/MenuDisplayProvider"
 
-import "./index.css"
+import "./WeatherAppHeader.css"
 
-export function AppHeader() {
+export function WeatherAppHeader() {
   const setIsSideMenuOpen = useContext(MenuDisplaySetterContext)
 
   return (
-    <div className="app-header">
+    <header>
       <button onClick={() => setIsSideMenuOpen(true)}>
         <img src="/assets/other/cards-list.svg" alt="Open cards menu" />
       </button>
       <h1>Weather <span>App</span></h1>
-    </div>
+    </header>
   )
 }

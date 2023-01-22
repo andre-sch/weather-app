@@ -7,7 +7,7 @@ import { CardsPagination } from "../../components/organisms/CardsPagination"
 import { CurrentInfo } from "../../components/organisms/CurrentInfo"
 import { Slider } from "../../components/organisms/Slider"
 
-import './index.css'
+import './WeatherCard.css'
 
 export function WeatherCard() {
   return (
