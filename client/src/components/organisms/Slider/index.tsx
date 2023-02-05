@@ -2,9 +2,9 @@ import { SectionDisplayedProvider } from "../../../contexts/section/SectionDispl
 import { SectionOffsetLeftProvider } from "../../../contexts/section/SectionOffsetLeftProvider"
 import { SectionLeftMaxProvider } from "../../../contexts/section/SectionLeftMaxProvider"
 
-import { SliderHeader } from "../../molecules/SliderHeader"
-import { SliderNav } from "../../molecules/SliderNav"
-import { SliderMain } from "../../molecules/SliderMain"
+import { SliderHeader } from "./SliderHeader"
+import { SliderNav } from "./SliderNav"
+import { SliderMain } from "./SliderMain"
 
 import "./index.css"
 

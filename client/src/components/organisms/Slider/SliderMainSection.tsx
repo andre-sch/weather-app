@@ -3,7 +3,7 @@ import { useContext, type ReactNode } from "react"
 import { SectionDisplayedIdGetterContext, SectionDisplayedRefContext } from "../../../contexts/section/SectionDisplayedProvider"
 import { SectionOffsetLeftGetterContext } from "../../../contexts/section/SectionOffsetLeftProvider"
 
-import "./index.css"
+import "./SliderMainSection.css"
 
 interface SliderSectionProps {
   sectionID: 'hourly' | 'daily' | 'details'

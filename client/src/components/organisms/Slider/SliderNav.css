@@ -1,7 +1,6 @@
 .slider nav button {
   position: absolute;
-  bottom: 2.75rem;
-  right: 100%;
+  bottom: 2.75rem; right: 100%;
   transform: translateY(50%);
   transition: filter 0.2s, opacity 0.25s ease;
 }

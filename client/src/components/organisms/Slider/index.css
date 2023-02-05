@@ -1,0 +1,16 @@
+.slider {
+  position: relative;
+  width: 100%;
+  transition: width 0.2s ease;
+  -webkit-user-select: none;
+  user-select: none;
+
+  --daily-section-width: 34.625rem;
+  --details-section-width: 33.375rem;
+}
+
+.slider:has(main section.daily.show) {width: min(var(--daily-section-width), 100%);}
+.slider:has(main section.details.show) {width: min(var(--details-section-width), 100%);}
+
+main section.daily {padding: 0 calc((100% - var(--daily-section-width)) / 2);}
+main section.details {padding: 0 calc((100% - var(--details-section-width)) / 2);}

@@ -5,7 +5,7 @@ import { SectionDisplayedRefContext } from "../../../contexts/section/SectionDis
 import { SectionLeftMaxGetterContext } from "../../../contexts/section/SectionLeftMaxProvider"
 import { SectionOffsetLeftGetterContext, SectionOffsetLeftSettersContext } from "../../../contexts/section/SectionOffsetLeftProvider"
 
-import './index.css'
+import './SliderNav.css'
 
 export function SliderNav() {
   const scrollSectionContent = useScroll()

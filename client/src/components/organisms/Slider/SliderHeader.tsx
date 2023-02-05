@@ -2,7 +2,7 @@ import { useState, useContext } from "react"
 
 import { SectionDisplayedIdGetterContext, SectionDisplayedIdSetterContext } from "../../../contexts/section/SectionDisplayedProvider"
 
-import './index.css'
+import './SliderHeader.css'
 
 export function SliderHeader() {
   const sectionDisplayedID = useContext(SectionDisplayedIdGetterContext)

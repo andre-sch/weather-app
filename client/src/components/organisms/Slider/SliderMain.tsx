@@ -1,12 +1,11 @@
-import { SliderMainContainer } from "../../atoms/SliderMainContainer"
+import { SliderMainContainer } from "./SliderMainContainer"
+import { SliderSection } from "./SliderMainSection"
 
-import { SliderSection } from "../SliderSection"
+import { HourlyCards } from "../../molecules/HourlyCards"
+import { DailyCards } from "../../molecules/DailyCards"
+import { DetailCards } from "../../molecules/DetailCards"
 
-import { HourlyCards } from "../HourlyCards"
-import { DailyCards } from "../DailyCards"
-import { DetailCards } from "../DetailCards"
-
-import "./index.css"
+import "./SliderMain.css"
 
 export function SliderMain() {
   return (
