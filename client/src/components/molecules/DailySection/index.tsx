@@ -19,13 +19,13 @@ export function DailySection() {
   return (
     <SliderSection sectionID="daily">
       {dayIndexes.map(dayIndex => {
-        if (!weatherInfo) return <div key={dayIndex} className="mini-card loading"></div>
+        if (!weatherInfo) return <div key={dayIndex} className="forecast-card loading"></div>
 
         const dayInfo = weatherInfo.forecast.daily[dayIndex]
         return (
           <DayCard
             key={`${timeConversion.getDayStart(dayInfo.localTime.sunrise)}-day`}
-            forecastInfo={weatherInfo.forecast} dayIndex={dayIndex} />
+            dayInfo={dayInfo} isCurrentDay={dayIndex == 0} />
         )
       })}
     </SliderSection>

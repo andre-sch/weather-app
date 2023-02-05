@@ -1,23 +1,17 @@
-import { twilightSearch } from "../../../utils/twilightSearch"
 import { textFormat } from "../../../utils/textFormat"
-
 import { ForecastCard } from "../ForecastCard"
 
-import type { HourCardProps } from "./HourCard"
+import type { TwilightInfo } from "../../../utils/twilightSearch"
 
-export function HourTwilight(props: HourCardProps) {
-  const hourInfo = props.forecastInfo.hourly[props.hourIndex]; const dailyInfo = props.forecastInfo.daily
-  const twilightInfo = twilightSearch.existAtTime({ dailyInfo, hourTimestamp: hourInfo.localTimestamp })
-
-  if (!twilightInfo) return null
-  else return (
+export function HourTwilight(props: { twilightInfo: TwilightInfo }) {
+  return (
     <ForecastCard
-      extraClassName="twilight"
-      time={textFormat.clockTime(twilightInfo.timestamp, 'hh:mm')}
+      extraClassName="hour-twilight"
+      time={textFormat.clockTime(props.twilightInfo.timestamp, 'hh:mm')}
       iconPath="both/twilight.svg"
       iconDescription="twilight"
     >
-      <strong>{textFormat.capitalize(twilightInfo.type)}</strong>
+      <strong>{textFormat.capitalize(props.twilightInfo.type)}</strong>
     </ForecastCard>
   )
 }

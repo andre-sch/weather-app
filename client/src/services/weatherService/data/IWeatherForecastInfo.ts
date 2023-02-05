@@ -6,7 +6,7 @@ export interface IWeatherForecastInfo {
   timezone: number
 }
 
-interface HourlyInfo {
+export interface HourlyInfo {
   condition: { description: string, iconPath: string }
   localTimestamp: number
   temperature: number

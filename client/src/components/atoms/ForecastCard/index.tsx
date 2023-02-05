@@ -12,7 +12,7 @@ interface ForecastCardProps {
 
 export function ForecastCard(props: ForecastCardProps) {
   return (
-    <div className={`mini-card ${props.extraClassName || ''}`}>
+    <div className={`forecast-card ${props.extraClassName || ''}`}>
       <time>{props.time}</time>
       <img
         src={`/assets/weather/icons/${props.iconPath}`}

@@ -1,12 +1,14 @@
-import { useContext } from "react"
+import { useContext, Fragment } from "react"
 
 import { DisplayedCityIdGetterContext } from "../../../contexts/geoLocation/DisplayedCityIdProvider"
 import { WeatherInfoGroupContext } from "../../../contexts/weatherInfo/WeatherInfoProvider"
 
 import { timeConversion } from "../../../utils/timeConversion"
+import { twilightSearch } from "../../../utils/twilightSearch"
 
 import { SliderSection } from "../SliderSection"
 import { HourCard } from "../../atoms/ForecastCard/HourCard"
+import { HourTwilight } from "../../atoms/ForecastCard/HourTwilight"
 
 export function HourlySection() {
   const DisplayedCityID = useContext(DisplayedCityIdGetterContext)
@@ -18,17 +20,22 @@ export function HourlySection() {
   return (
     <SliderSection sectionID="hourly">
       {hourIndexes.map(hourIndex => {
-        if (!weatherInfo) return <div key={hourIndex} className="mini-card loading"></div>
+        if (!weatherInfo) return <div key={hourIndex} className="forecast-card loading"></div>
 
         const hourInfo = weatherInfo.forecast.hourly[hourIndex]
+        const twilightInfo = twilightSearch.existAtTime({
+          dailyInfo: weatherInfo.forecast.daily, hourTimestamp: hourInfo.localTimestamp
+        })
+
         const globalTimestamp = timeConversion.getUTC(
           hourInfo.localTimestamp, weatherInfo.forecast.timezone
         )
 
         return (
-          <HourCard
-            key={`${globalTimestamp}-hour`}
-            forecastInfo={weatherInfo.forecast} hourIndex={hourIndex} />
+          <Fragment key={`${globalTimestamp}-hour`}>
+            <HourCard hourInfo={hourInfo} isCurrentTime={hourIndex == 0} />
+            { twilightInfo && <HourTwilight twilightInfo={twilightInfo} /> }
+          </Fragment>
         )
       })}
     </SliderSection>

@@ -1,25 +1,41 @@
-.forecast .mini-card {width: 4rem; background: rgba(var(--white-rgb), 0.1);}
-.forecast .mini-card:hover {background: rgba(var(--white-rgb), 0.15);}
-
-.forecast .mini-card time {font-family: 'Inter', sans-serif; font-size: 0.7rem;}
-.forecast .mini-card img {width: 2rem; margin: 0.5rem 0 0.25rem;}
-
-.forecast .mini-card :is(strong, span) {font-weight: 500;}
-
-.forecast .mini-card strong {font-size: 0.875rem;}
-
-.forecast .mini-card.twilight {width: 5.5rem;}
-.forecast .mini-card.twilight img {width: 2.5rem; margin: 0.25rem 0 0;}
-.forecast .mini-card.twilight strong {font-weight: 400;}
-
-
-.daily .mini-card img {margin-bottom: 0.35rem;}
-
-.daily .min-max {
+.forecast-card {
   display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+
+  width: 4rem;
+  height: 5.25rem;
+  padding: 0.15rem 0 0.25rem;
+
+  border-radius: 0.5rem;
+  background: rgba(var(--white-rgb), 0.1);
+  box-shadow: 0 0.25rem 0 rgba(0, 0, 0, 0.15);
+  transition: background 0.2s;
+}
+.forecast-card:hover {background: rgba(var(--white-rgb), 0.15);}
+
+.forecast-card time {font-family: 'Inter', sans-serif; font-size: 0.7rem;}
+.forecast-card img {width: 2rem; margin-top: 0.25rem;}
+
+.forecast-card :is(strong, span) {font-weight: 500;}
+
+.forecast-card strong {font-size: 0.875rem;}
+
+
+.forecast-card.hour-twilight {width: 5.5rem;}
+.forecast-card.hour-twilight img {width: 2.5rem;}
+.forecast-card.hour-twilight strong {font-weight: 400;}
+
+
+.forecast-card.day {padding-bottom: 0.3125rem;}
+.forecast-card.day img {margin-top: 0.125rem;}
+
+.forecast-card.day .min-max {
+  display: flex;
   gap: 0.1875rem;
   font-size: 0.75rem;
 }
 
-.daily .min-max span + span {color: rgba(var(--white-rgb), 0.5);}
+.forecast-card.day .min-max span + span {color: rgba(var(--white-rgb), 0.5);}

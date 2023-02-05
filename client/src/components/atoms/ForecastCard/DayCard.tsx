@@ -1,17 +1,17 @@
 import { timeConversion } from "../../../utils/timeConversion"
 import { ForecastCard } from "../ForecastCard"
 
-import type { IWeatherForecastInfo } from "../../../services/weatherService/data/IWeatherForecastInfo"
+import type { DailyInfo } from "../../../services/weatherService/data/IWeatherForecastInfo"
 
-interface DayCardProps { forecastInfo: IWeatherForecastInfo, dayIndex: number }
+interface DayCardProps { dayInfo: DailyInfo, isCurrentDay: boolean }
 
-export function DayCard(props: DayCardProps) {
-  const dayInfo = props.forecastInfo.daily[props.dayIndex]
+export function DayCard({ dayInfo, isCurrentDay }: DayCardProps) {
   const dayAbbreviation = timeConversion.getWeekday(dayInfo.localTime.sunrise)
 
   return (
     <ForecastCard
-      time={props.dayIndex == 0 ? 'Today' : dayAbbreviation}
+      extraClassName="day"
+      time={isCurrentDay ? 'Today' : dayAbbreviation}
       iconPath={dayInfo.condition.iconPath}
       iconDescription={dayInfo.condition.description}
     >
