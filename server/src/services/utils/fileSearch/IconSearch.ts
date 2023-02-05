@@ -12,8 +12,8 @@ class IconSearch extends PictureSearch {
   }
 
   public getVariableFolderOverTime(localTimestamp: number, dailyInfo: DailyInfo[]) {
-    const [{ localTime: { noon: todayNoon } }] = dailyInfo
-    const todayStart = todayNoon - (timeConversion.DAY_IN_SECONDS / 2)
+    const [{ localTime: { sunrise: todaySunrise } }] = dailyInfo
+    const todayStart = timeConversion.getDayStart(todaySunrise)
     const hourIndex = Math.floor(
       (localTimestamp - todayStart) / timeConversion.HOUR_IN_SECONDS
     )

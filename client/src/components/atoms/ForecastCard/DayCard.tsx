@@ -7,7 +7,7 @@ interface DayCardProps { forecastInfo: IWeatherForecastInfo, dayIndex: number }
 
 export function DayCard(props: DayCardProps) {
   const dayInfo = props.forecastInfo.daily[props.dayIndex]
-  const dayAbbreviation = timeConversion.getWeekday(dayInfo.localTime.noon)
+  const dayAbbreviation = timeConversion.getWeekday(dayInfo.localTime.sunrise)
 
   return (
     <ForecastCard

@@ -14,6 +14,6 @@ interface HourlyInfo {
 
 export interface DailyInfo {
   condition: { description: string, iconPath: string }
-  localTime: { noon: number, sunrise: number, sunset: number }
+  localTime: { sunrise: number, sunset: number }
   temperature: { min: number, max: number }
 }

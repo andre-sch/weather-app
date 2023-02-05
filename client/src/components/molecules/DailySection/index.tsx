@@ -24,7 +24,7 @@ export function DailySection() {
         const dayInfo = weatherInfo.forecast.daily[dayIndex]
         return (
           <DayCard
-            key={`${timeConversion.getDayStart(dayInfo.localTime.noon)}-day`}
+            key={`${timeConversion.getDayStart(dayInfo.localTime.sunrise)}-day`}
             forecastInfo={weatherInfo.forecast} dayIndex={dayIndex} />
         )
       })}

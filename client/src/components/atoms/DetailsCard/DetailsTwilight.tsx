@@ -1,4 +1,5 @@
 import { twilight } from "../../../utils/twilight"
+import { timeConversion } from "../../../utils/timeConversion"
 import { textFormat } from "../../../utils/textFormat"
 
 import { DetailsCard } from "../DetailsCard"
@@ -9,8 +10,11 @@ export function DetailsTwilight(props: { forecastInfo: IWeatherForecastInfo }) {
   const [nowInfo] = props.forecastInfo.hourly
   const [todayInfo] = props.forecastInfo.daily
 
-  const nextTwilights = twilight.mapTheNext(todayInfo)
-  if (todayInfo.localTime.noon <= nowInfo.localTimestamp) nextTwilights.reverse()
+  const todayNoon =
+    timeConversion.getDayStart(todayInfo.localTime.sunrise) +
+    timeConversion.DAY_IN_SECONDS / 2
+
+  if (todayNoon <= nowInfo.localTimestamp) nextTwilights.reverse()
 
   const [mainTwilight, secondaryTwilight] = nextTwilights
 
