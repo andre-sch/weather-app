@@ -5,11 +5,13 @@ import { useWeatherInfo } from "../../hooks/useWeatherInfo"
 import type { ICurrentWeatherInfo } from "../../services/weatherService/data/ICurrentWeatherInfo"
 import type { IWeatherForecastInfo } from "../../services/weatherService/data/IWeatherForecastInfo"
 
+export interface IWeatherInfo {
+  current: ICurrentWeatherInfo
+  forecast: IWeatherForecastInfo
+}
+
 export interface IWeatherInfoGroup {
-  [key: string]: undefined | {
-    current: ICurrentWeatherInfo
-    forecast: IWeatherForecastInfo
-  }
+  [key: string]: IWeatherInfo | undefined
 }
 
 export const WeatherInfoGroupContext = createContext<IWeatherInfoGroup>({})

@@ -4,9 +4,7 @@ import { rangeMapper } from "../../../utils/rangeMapper"
 import { DetailsCard } from "../../atoms/DetailsCard"
 import { DetailsTwilight } from "../../atoms/DetailsCard/DetailsTwilight"
 
-import type { IWeatherInfoGroup } from "../../../contexts/weatherInfo/WeatherInfoProvider"
-
-type IWeatherInfo = NonNullable<IWeatherInfoGroup[string]>
+import type { IWeatherInfo } from "../../../contexts/weatherInfo/WeatherInfoProvider"
 
 const KILO_UNIT_PREFIX = 1000
 const MPS_TO_KPH_CONVERSION_FACTOR = 3.6
