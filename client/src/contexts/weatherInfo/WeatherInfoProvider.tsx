@@ -1,6 +1,6 @@
 import { createContext, type ReactNode } from "react"
 
-import { useWeatherInfo } from "./useWeatherInfo"
+import { useWeatherInfo } from "../../hooks/useWeatherInfo"
 
 import type { ICurrentWeatherInfo } from "../../services/weatherService/data/ICurrentWeatherInfo"
 import type { IWeatherForecastInfo } from "../../services/weatherService/data/IWeatherForecastInfo"

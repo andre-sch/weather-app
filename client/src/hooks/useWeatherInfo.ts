@@ -1,15 +1,19 @@
 import { useState, useEffect, useContext } from "react"
 
-import { sizeOf } from "../../utils/sizeOfObject"
+import { timeConversion } from "../utils/timeConversion"
+import { sizeOf } from "../utils/sizeOfObject"
 
-import { RegisteredCityGetterContext } from "../geoLocation/RegisteredCityProvider"
+import { RegisteredCityGetterContext } from "../contexts/geoLocation/RegisteredCityProvider"
 import { useChangeInTime } from "./useChangeInTime"
 
-import { weatherService } from "../../services/weatherService"
-import type { IWeatherInfoGroup } from "./WeatherInfoProvider"
+import { weatherService } from "../services/weatherService"
+import type { IWeatherInfoGroup } from "../contexts/weatherInfo/WeatherInfoProvider"
 
 export function useWeatherInfo() {
-  const currentTime = useChangeInTime()
+  const currentTime = useChangeInTime({
+    timeResetDelay: 4 * timeConversion.MINUTE_IN_SECONDS,
+    timeCheckInterval: 6 * timeConversion.MINUTE_IN_SECONDS
+  })
   const registeredCities = useContext(RegisteredCityGetterContext)
 
   const [weatherInfo, setWeatherInfo] = useState<IWeatherInfoGroup>({})
