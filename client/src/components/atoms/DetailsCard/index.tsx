@@ -14,7 +14,7 @@ export function DetailsCard(props: DetailsCardProps) {
   const [, iconFileName] = props.iconPath.match(/(\w*)\.svg/)!
 
   return (
-    <div className={`mini-card ${props.extraClassName || ''}`}>
+    <div className={`details-card ${props.extraClassName || ''}`}>
       <header>
         <img src={`/assets/weather/icons/${props.iconPath}`} alt="" draggable={false} />
         <em>{props.iconDescription || textFormat.capitalize(iconFileName)}</em>

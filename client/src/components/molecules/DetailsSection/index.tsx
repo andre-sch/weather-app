@@ -18,7 +18,7 @@ export function DetailsSection() {
     <SliderSection sectionID="details">
       {weatherInfo ? getDetailCards(weatherInfo) : (
         detailIndexes.map(detailIndex =>
-          <div key={detailIndex} className="mini-card loading"></div>
+          <div key={detailIndex} className="details-card loading"></div>
         )
       )}
     </SliderSection>
