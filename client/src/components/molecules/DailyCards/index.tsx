@@ -1,14 +1,13 @@
-import { useContext } from "react"
+import { useContext, Fragment } from "react"
 
 import { timeConversion } from "../../../utils/timeConversion"
 
 import { DisplayedCityIdGetterContext } from "../../../contexts/geoLocation/DisplayedCityIdProvider"
 import { WeatherInfoGroupContext } from "../../../contexts/weatherInfo/WeatherInfoProvider"
 
-import { SliderSection } from "../SliderSection"
 import { DayCard } from "../../atoms/ForecastCard/DayCard"
 
-export function DailySection() {
+export function DailyCards() {
   const DisplayedCityID = useContext(DisplayedCityIdGetterContext)
   const weatherInfo = useContext(WeatherInfoGroupContext)[DisplayedCityID]
 
@@ -17,7 +16,7 @@ export function DailySection() {
   for (let index = 0; index < NUMBER_OF_DAY_CARDS; index++) dayIndexes.push(index)
 
   return (
-    <SliderSection sectionID="daily">
+    <Fragment>
       {dayIndexes.map(dayIndex => {
         if (!weatherInfo) return <div key={dayIndex} className="forecast-card loading"></div>
 
@@ -28,6 +27,6 @@ export function DailySection() {
             dayInfo={dayInfo} isCurrentDay={dayIndex == 0} />
         )
       })}
-    </SliderSection>
+    </Fragment>
   )
 }

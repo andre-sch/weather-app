@@ -1,12 +1,11 @@
-import { useContext } from "react"
+import { useContext, Fragment } from "react"
 
 import { DisplayedCityIdGetterContext } from "../../../contexts/geoLocation/DisplayedCityIdProvider"
 import { WeatherInfoGroupContext } from "../../../contexts/weatherInfo/WeatherInfoProvider"
 
-import { SliderSection } from "../SliderSection"
 import { DetailCardsGroup } from "./DetailCardsGroup"
 
-export function DetailsSection() {
+export function DetailCards() {
   const DisplayedCityID = useContext(DisplayedCityIdGetterContext)
   const weatherInfo = useContext(WeatherInfoGroupContext)[DisplayedCityID]
 
@@ -15,12 +14,12 @@ export function DetailsSection() {
   for (let index = 0; index < NUMBER_OF_DETAIL_CARDS; index++) detailIndexes.push(index)
 
   return (
-    <SliderSection sectionID="details">
+    <Fragment>
       {weatherInfo ? <DetailCardsGroup weatherInfo={weatherInfo} /> : (
         detailIndexes.map(detailIndex =>
           <div key={detailIndex} className="details-card loading"></div>
         )
       )}
-    </SliderSection>
+    </Fragment>
   )
 }

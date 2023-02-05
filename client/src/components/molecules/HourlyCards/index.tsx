@@ -6,11 +6,10 @@ import { WeatherInfoGroupContext } from "../../../contexts/weatherInfo/WeatherIn
 import { timeConversion } from "../../../utils/timeConversion"
 import { twilightSearch } from "../../../utils/twilightSearch"
 
-import { SliderSection } from "../SliderSection"
 import { HourCard } from "../../atoms/ForecastCard/HourCard"
 import { HourTwilight } from "../../atoms/ForecastCard/HourTwilight"
 
-export function HourlySection() {
+export function HourlyCards() {
   const DisplayedCityID = useContext(DisplayedCityIdGetterContext)
   const weatherInfo = useContext(WeatherInfoGroupContext)[DisplayedCityID]
 
@@ -18,7 +17,7 @@ export function HourlySection() {
   for (let index = 0; index < timeConversion.DAY_IN_HOURS; index++) hourIndexes.push(index)
 
   return (
-    <SliderSection sectionID="hourly">
+    <Fragment>
       {hourIndexes.map(hourIndex => {
         if (!weatherInfo) return <div key={hourIndex} className="forecast-card loading"></div>
 
@@ -38,6 +37,6 @@ export function HourlySection() {
           </Fragment>
         )
       })}
-    </SliderSection>
+    </Fragment>
   )
 }
