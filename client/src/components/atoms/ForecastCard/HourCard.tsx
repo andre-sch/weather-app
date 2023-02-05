@@ -1,4 +1,4 @@
-import { twilight } from "../../../utils/twilight"
+import { twilightSearch } from "../../../utils/twilightSearch"
 import { textFormat } from "../../../utils/textFormat"
 
 import { ForecastCard } from "../ForecastCard"
@@ -9,8 +9,8 @@ import type { IWeatherForecastInfo } from "../../../services/weatherService/data
 export interface HourCardProps { forecastInfo: IWeatherForecastInfo, hourIndex: number }
 
 export function HourCard({ forecastInfo, hourIndex }: HourCardProps) {
-  const hourInfo = forecastInfo.hourly[hourIndex]
-  const twilightInfo = twilight.existAtTime({ forecastInfo, hourIndex })
+  const hourInfo = forecastInfo.hourly[hourIndex]; const dailyInfo = forecastInfo.daily
+  const twilightInfo = twilightSearch.existAtTime({ dailyInfo, hourTimestamp: hourInfo.localTimestamp })
 
   return (
     <>

@@ -1,4 +1,4 @@
-import { twilight } from "../../../utils/twilight"
+import { twilightSearch } from "../../../utils/twilightSearch"
 import { timeConversion } from "../../../utils/timeConversion"
 import { textFormat } from "../../../utils/textFormat"
 
@@ -10,6 +10,7 @@ export function DetailsTwilight(props: { forecastInfo: IWeatherForecastInfo }) {
   const [nowInfo] = props.forecastInfo.hourly
   const [todayInfo] = props.forecastInfo.daily
 
+  const nextTwilights = twilightSearch.mapTheNext(todayInfo)
   const todayNoon =
     timeConversion.getDayStart(todayInfo.localTime.sunrise) +
     timeConversion.DAY_IN_SECONDS / 2
