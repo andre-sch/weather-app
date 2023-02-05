@@ -4,7 +4,7 @@ import { DisplayedCityIdGetterContext } from "../../../contexts/geoLocation/Disp
 import { WeatherInfoGroupContext } from "../../../contexts/weatherInfo/WeatherInfoProvider"
 
 import { SliderSection } from "../SliderSection"
-import { getDetailCards } from "./getDetailCards"
+import { DetailCardsGroup } from "./DetailCardsGroup"
 
 export function DetailsSection() {
   const DisplayedCityID = useContext(DisplayedCityIdGetterContext)
@@ -16,7 +16,7 @@ export function DetailsSection() {
 
   return (
     <SliderSection sectionID="details">
-      {weatherInfo ? getDetailCards(weatherInfo) : (
+      {weatherInfo ? <DetailCardsGroup weatherInfo={weatherInfo} /> : (
         detailIndexes.map(detailIndex =>
           <div key={detailIndex} className="details-card loading"></div>
         )

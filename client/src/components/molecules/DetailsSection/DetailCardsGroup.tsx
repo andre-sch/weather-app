@@ -9,8 +9,8 @@ import type { IWeatherInfo } from "../../../contexts/weatherInfo/WeatherInfoProv
 const KILO_UNIT_PREFIX = 1000
 const MPS_TO_KPH_CONVERSION_FACTOR = 3.6
 
-export function getDetailCards(weatherInfo: IWeatherInfo) {
-  const { current: currentInfo, forecast: forecastInfo } = weatherInfo
+export function DetailCardsGroup(props: { weatherInfo: IWeatherInfo }) {
+  const { current: currentInfo, forecast: forecastInfo } = props.weatherInfo
   return (
     <>
       <DetailsTwilight forecastInfo={forecastInfo} />
