@@ -1,6 +1,6 @@
 import { SectionDisplayedProvider } from "../../../contexts/section/SectionDisplayedProvider"
-import { SectionPlacementProvider } from "../../../contexts/section/SectionPlacementProvider"
-import { LimitMoveFunctionsProvider } from "../../../contexts/section/LimitMoveFunctionsProvider"
+import { SectionOffsetLeftProvider } from "../../../contexts/section/SectionOffsetLeftProvider"
+import { SectionLeftMaxProvider } from "../../../contexts/section/SectionLeftMaxProvider"
 
 import { SliderHeader } from "../../molecules/SliderHeader"
 import { SliderNav } from "../../molecules/SliderNav"
@@ -14,13 +14,13 @@ export function Slider() {
       <SectionDisplayedProvider>
         <SliderHeader />
 
-        <SectionPlacementProvider>
-          <LimitMoveFunctionsProvider>
+        <SectionLeftMaxProvider>
+          <SectionOffsetLeftProvider>
             <SliderNav />
             <SliderMain />
 
-          </LimitMoveFunctionsProvider>
-        </SectionPlacementProvider>
+          </SectionOffsetLeftProvider>
+        </SectionLeftMaxProvider>
       </SectionDisplayedProvider>
     </div>
   )

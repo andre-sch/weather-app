@@ -1,8 +1,7 @@
 import { useState, useEffect, useContext } from "react"
 
 import { SectionDisplayedRefContext, SectionDisplayedIdGetterContext } from "../../../contexts/section/SectionDisplayedProvider"
-import { SectionPlacementSettersContext } from "../../../contexts/section/SectionPlacementProvider"
-import { LimitMoveFunctionsContext } from "../../../contexts/section/LimitMoveFunctionsProvider"
+import { SectionOffsetLeftSettersContext } from "../../../contexts/section/SectionOffsetLeftProvider"
 
 type cursorStyles = 'grab' | 'grabbing' | 'default'
 
@@ -10,8 +9,7 @@ export function useCursorTracking() {
   const sectionDisplayedRef = useContext(SectionDisplayedRefContext)
   const sectionDisplayedID = useContext(SectionDisplayedIdGetterContext)
 
-  const {getHorizontalBounds, limitSliderMovements} = useContext(LimitMoveFunctionsContext)
-  const {setHasHiddenContentOnRight, setSectionLeftSpacing} = useContext(SectionPlacementSettersContext)
+  const {limitOffsetLeft, setSectionOffsetLeft} = useContext(SectionOffsetLeftSettersContext)
 
   const [cursorStyle, setCursorStyle] = useState<cursorStyles>('grab')
   const [cursorTracking, setCursorTracking] = useState({previousPosition: 0, currentPosition: 0})
@@ -52,15 +50,8 @@ export function useCursorTracking() {
   useEffect(() => {
     if (cursorTracking.currentPosition) {
       const dragOffset = cursorTracking.previousPosition - cursorTracking.currentPosition
-      setSectionLeftSpacing(previousLeft => {
-        var nextLeft = previousLeft + dragOffset
+      setSectionOffsetLeft(previousLeft => limitOffsetLeft(previousLeft - dragOffset))
 
-        const [, leftMax] = getHorizontalBounds()
-        if (nextLeft >= leftMax) setHasHiddenContentOnRight(false)
-        else setHasHiddenContentOnRight(true)
-
-        return limitSliderMovements(nextLeft)
-      })
       setCursorTracking(previousObj => ({...previousObj, previousPosition: previousObj.currentPosition}))
     }
   }, [cursorTracking.currentPosition])

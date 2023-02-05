@@ -1,20 +1,22 @@
 import { useContext } from "react"
 
-import { SectionHiddenContentOnRightContext, SectionLeftSpacingContext } from "../../../contexts/section/SectionPlacementProvider"
-import { useScroll } from "./useScroll"
+import { SectionDisplayedRefContext } from "../../../contexts/section/SectionDisplayedProvider"
+
+import { SectionLeftMaxGetterContext } from "../../../contexts/section/SectionLeftMaxProvider"
+import { SectionOffsetLeftGetterContext, SectionOffsetLeftSettersContext } from "../../../contexts/section/SectionOffsetLeftProvider"
 
 import './index.css'
 
 export function SliderNav() {
   const scrollSectionContent = useScroll()
 
-  const sectionLeftSpacing = useContext(SectionLeftSpacingContext)
-  const hasHiddenContentOnRight = useContext(SectionHiddenContentOnRightContext)
+  const sectionLeftMax = useContext(SectionLeftMaxGetterContext)
+  const sectionOffsetLeft = useContext(SectionOffsetLeftGetterContext)
 
   return (
     <nav className="horizontal-arrows">
       <button
-        disabled={sectionLeftSpacing == 0}
+        disabled={sectionOffsetLeft == 0}
         onClick={() => scrollSectionContent('left')}>
 
         <img
@@ -24,7 +26,7 @@ export function SliderNav() {
       </button>
 
       <button
-        disabled={!hasHiddenContentOnRight}
+        disabled={sectionLeftMax == 0 ? true : sectionOffsetLeft == sectionLeftMax}
         onClick={() => scrollSectionContent('right')}>
 
         <img
@@ -33,4 +35,18 @@ export function SliderNav() {
       </button>
     </nav>
   )
+}
+
+function useScroll() {
+  const sectionDisplayedRef = useContext(SectionDisplayedRefContext)
+  const { setSectionOffsetLeft, limitOffsetLeft } = useContext(SectionOffsetLeftSettersContext)
+
+  return function scrollSectionContent(direction: 'left' | 'right') {
+    if (!sectionDisplayedRef.current) return
+
+    var scrollOffset = sectionDisplayedRef.current.clientWidth / 2.5
+    if (direction == 'left') scrollOffset = - scrollOffset
+
+    setSectionOffsetLeft(previousLeft => limitOffsetLeft(previousLeft + scrollOffset))
+  }
 }
