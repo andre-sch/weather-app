@@ -7,7 +7,7 @@ import "./index.css"
 
 export function CitiesPagination() {
   const registeredCities = useContext(RegisteredCityGetterContext)
-  const displayedCityId = useContext(DisplayedCityIdGetterContext)
+  const displayedCityID = useContext(DisplayedCityIdGetterContext)
 
   return (
     <div className="cities-pagination">
@@ -26,7 +26,7 @@ export function CitiesPagination() {
           <span
             key={registeredCity.location}
             className={`city-position ${
-              registeredCity.location == displayedCityId ? 'current' : ''
+              registeredCity.location == displayedCityID ? 'current' : ''
             }`}>
           </span>
         ))}

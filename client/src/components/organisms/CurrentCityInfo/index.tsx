@@ -12,14 +12,14 @@ import "./index.css"
 
 export function CurrentCityInfo() {
   const registeredCities = useContext(RegisteredCityGetterContext)
-  const displayedCityId = useContext(DisplayedCityIdGetterContext)
+  const displayedCityID = useContext(DisplayedCityIdGetterContext)
 
-  const weatherInfo = useContext(WeatherInfoGroupContext)[displayedCityId]
+  const weatherInfo = useContext(WeatherInfoGroupContext)[displayedCityID]
   if (!weatherInfo) return <div className="current-city-info loading"></div>
 
   const renderedCity = registeredCities.find(registeredCity => {
-    const registeredCityId = registeredCity.location
-    return registeredCityId == displayedCityId
+    const registeredCityID = registeredCity.location
+    return registeredCityID == displayedCityID
   })!
 
   const [descriptionFirstLine, descriptionSecondLine] = textFormat.splitInMiddle(
