@@ -49,6 +49,14 @@
 .city-list .city-card :is(.drag-card:hover, .delete-card:hover) {filter: brightness(0.9);}
 
 
+.city-card .overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  border-radius: 0.75rem;
+}
+
+
 .city-list .city-card .temperature-info {display: inline-block;}
 
 .city-list .city-card .temperature-info strong {font-size: 2.5rem;}
