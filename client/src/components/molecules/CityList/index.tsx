@@ -7,7 +7,6 @@ import { WeatherInfoGroupContext } from "../../../contexts/weatherInfo/WeatherIn
 import { CityCard } from "../../atoms/CityCard"
 import { EmptyCityRegistry } from "../../atoms/EmptyCityRegistry"
 import { CityCardDeleteButton } from "./CityCardDeleteButton"
-import { DragCardButton } from "./DragCardButton"
 
 import "./index.css"
 import "./CityCard.css"
@@ -33,7 +32,6 @@ export function CityList() {
             renderedCity={registeredCity}
             weatherInfo={weatherInfo} key={cityID}
           >
-            <DragCardButton />
             <div className="overlay" onClick={() => setDisplayedCityID(cityID)}></div>
             <CityCardDeleteButton
               cityCardID={cityID}

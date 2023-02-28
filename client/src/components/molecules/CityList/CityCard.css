@@ -20,27 +20,6 @@
 .city-list .city-card:hover::after {opacity: 1;}
 
 
-.city-list .city-card .drag-card {
-  position: absolute;
-  top: 50%; left: 0;
-  transform: translate(-100%, -50%);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 1.25rem; height: 1.25rem;
-  cursor: grab;
-
-  opacity: 0; z-index: -1;
-  transition: filter 0.2s;
-}
-.city-list .city-card .drag-card img {width: 1rem; height: 1rem;}
-
-.city-list .city-card:hover .drag-card {opacity: 1; z-index: 3;}
-.city-list .city-card .drag-card:hover {filter: brightness(0.9);}
-
-
 .city-card .overlay {
   position: absolute;
   top: 0; left: 0;
