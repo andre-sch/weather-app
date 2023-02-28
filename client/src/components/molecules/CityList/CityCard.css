@@ -31,22 +31,14 @@
 
   width: 1.25rem; height: 1.25rem;
   cursor: grab;
-}
-.city-list .city-card .drag-card img {width: 1rem; height: 1rem;}
 
-.city-list .city-card .delete-card {
-  position: absolute;
-  top: 0; right: 0;
-}
-.city-list .city-card .delete-card img {width: 1.4rem; height: 1.4rem;}
-
-.city-list .city-card :is(.drag-card, .delete-card) {
   opacity: 0; z-index: -1;
   transition: filter 0.2s;
 }
+.city-list .city-card .drag-card img {width: 1rem; height: 1rem;}
 
-.city-list .city-card:hover :is(.drag-card, .delete-card) {opacity: 1; z-index: 3;}
-.city-list .city-card :is(.drag-card:hover, .delete-card:hover) {filter: brightness(0.9);}
+.city-list .city-card:hover .drag-card {opacity: 1; z-index: 3;}
+.city-list .city-card .drag-card:hover {filter: brightness(0.9);}
 
 
 .city-card .overlay {

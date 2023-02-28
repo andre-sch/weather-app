@@ -5,8 +5,9 @@ import { DisplayedCityIdSetterContext } from "../../../contexts/geoLocation/Disp
 import { WeatherInfoGroupContext } from "../../../contexts/weatherInfo/WeatherInfoProvider"
 
 import { CityCard } from "../../atoms/CityCard"
+import { EmptyCityRegistry } from "../../atoms/EmptyCityRegistry"
+import { CityCardDeleteButton } from "./CityCardDeleteButton"
 import { DragCardButton } from "./DragCardButton"
-import { DeleteCardButton } from "./DeleteCardButton"
 
 import "./index.css"
 import "./CityCard.css"
@@ -17,10 +18,12 @@ export function CityList() {
 
   const setDisplayedCityID = useContext(DisplayedCityIdSetterContext)
 
-  return (
+  if (registeredCities.length == 0) return <EmptyCityRegistry />
+  else return (
     <ul className="city-list">
-      {registeredCities.map(registeredCity => {
+      {registeredCities.map((registeredCity, index) => {
         const cityID = registeredCity.location
+        const isLastChild = index == registeredCities.length - 1
 
         const weatherInfo = weatherInfoGroup[cityID]
         if (!weatherInfo) return <div className="city-card" key={cityID}></div>
@@ -31,8 +34,11 @@ export function CityList() {
             weatherInfo={weatherInfo} key={cityID}
           >
             <DragCardButton />
-            <DeleteCardButton />
             <div className="overlay" onClick={() => setDisplayedCityID(cityID)}></div>
+            <CityCardDeleteButton
+              cityCardID={cityID}
+              deletionDelay={isLastChild ? 0 : 350}  // 50ms longer than css transition time
+            />
           </CityCard>
         )
       })}

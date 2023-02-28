@@ -1,4 +1,4 @@
-import { useState, createContext, useContext } from "react"
+import { useState, useEffect, createContext, useContext } from "react"
 import type { ReactNode, Dispatch } from "react"
 
 import { RegisteredCityGetterContext } from "./RegisteredCityProvider"
@@ -9,8 +9,14 @@ export const DisplayedCityIdGetterContext = createContext('')
 export const DisplayedCityIdSetterContext = createContext({} as Dispatch<string>)
 
 export function DisplayedCityIdProvider(props: ProviderProps) {
-  const [ firstCity ] = useContext(RegisteredCityGetterContext)
-  const [displayedCityID, setDisplayedCityID] = useState(firstCity.location)
+  const [displayedCityID, setDisplayedCityID] = useState('')
+  const registeredCities = useContext(RegisteredCityGetterContext)
+
+  useEffect(() => {
+    const [firstCity] = registeredCities
+    if (firstCity) setDisplayedCityID(firstCity.location)
+    else setDisplayedCityID('')
+  }, [registeredCities])
 
   return (
     <DisplayedCityIdGetterContext.Provider value={displayedCityID}>

@@ -14,13 +14,13 @@ export function CurrentCityInfo() {
   const registeredCities = useContext(RegisteredCityGetterContext)
   const displayedCityID = useContext(DisplayedCityIdGetterContext)
 
-  const weatherInfo = useContext(WeatherInfoGroupContext)[displayedCityID]
-  if (!weatherInfo) return <div className="current-city-info loading"></div>
-
   const renderedCity = registeredCities.find(registeredCity => {
     const registeredCityID = registeredCity.location
     return registeredCityID == displayedCityID
-  })!
+  })
+
+  const weatherInfo = useContext(WeatherInfoGroupContext)[displayedCityID]
+  if (!renderedCity || !weatherInfo) return <div className="current-city-info loading"></div>
 
   const [descriptionFirstLine, descriptionSecondLine] = textFormat.splitInMiddle(
     textFormat.capitalize(weatherInfo.current.condition.description)
