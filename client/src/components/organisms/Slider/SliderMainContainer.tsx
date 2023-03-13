@@ -21,7 +21,7 @@ export function SliderMainContainer({ children }: { children: ReactNode }) {
 
   const {cursorStyle, cursorTrackingEndpoints} = useCursorTracking({
     bindingElementRef: SliderMainRef,
-    handleCursorMove: (horizontalOffset: number) => {
+    handleCursorMove: ([horizontalOffset,]) => {
       setSectionOffsetLeft(previousLeft => limitOffsetLeft(previousLeft - horizontalOffset))
     }
   })

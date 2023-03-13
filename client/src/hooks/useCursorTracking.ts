@@ -2,14 +2,23 @@ import { useState, useEffect, type RefObject } from "react"
 
 type cursorStyles = 'grab' | 'grabbing' | 'default'
 
+type coordinates = [number, number]
+
 interface useCursorTrackingProps {
   bindingElementRef: RefObject<HTMLElement>
-  handleCursorMove: (offset: number) => void
+  handleCursorMove: (offset: coordinates) => void
+}
+
+interface ICursorTracking {
+  previousPosition: coordinates
+  currentPosition: coordinates
 }
 
 export function useCursorTracking(props: useCursorTrackingProps) {
   const [cursorStyle, setCursorStyle] = useState<cursorStyles>('grab')
-  const [cursorTracking, setCursorTracking] = useState({previousPosition: 0, currentPosition: 0})
+  const [cursorTracking, setCursorTracking] = useState<ICursorTracking>(
+    { previousPosition: [0, 0], currentPosition: [0, 0] }
+  )
 
   function bindCursorTrackingEndpoints() {
     setCursorStyle('grab')
@@ -29,7 +38,7 @@ export function useCursorTracking(props: useCursorTrackingProps) {
     setCursorStyle('grabbing')
     props.bindingElementRef.current!.onmousemove = trackCursorCurrentPosition
 
-    setCursorTracking(previousObj => ({...previousObj, previousPosition: event.clientX}))
+    setCursorTracking(previousObj => ({...previousObj, previousPosition: [event.clientX, event.clientY]}))
   }
 
   function finishCursorTracking() {
@@ -38,15 +47,18 @@ export function useCursorTracking(props: useCursorTrackingProps) {
   }
 
   function trackCursorCurrentPosition(event: MouseEvent) {
-    setCursorTracking(previousObj => ({...previousObj, currentPosition: event.clientX}))
+    setCursorTracking(previousObj => ({...previousObj, currentPosition: [event.clientX, event.clientY]}))
   }
 
   useEffect(() => {
     if (cursorTracking.currentPosition) {
-      props.handleCursorMove(cursorTracking.currentPosition - cursorTracking.previousPosition)
+      props.handleCursorMove([
+        cursorTracking.currentPosition[0] - cursorTracking.previousPosition[0],
+        cursorTracking.currentPosition[1] - cursorTracking.previousPosition[1]
+      ])
       setCursorTracking(previousObj => ({...previousObj, previousPosition: previousObj.currentPosition}))
     }
-  }, [cursorTracking.currentPosition])
+  }, [...cursorTracking.currentPosition])
 
   return {
     cursorStyle,
