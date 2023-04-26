@@ -1,12 +1,7 @@
-interface requestBaseConfig { baseURL: string }
+type weatherDataTypes = 'current' | 'forecast'
+export type availableRoutes = `/weather/${weatherDataTypes}`
 
-export const baseConfig: requestBaseConfig = {
-  baseURL: import.meta.env.VITE_WEATHER_SERVER_URL
-}
-
-export type availableRoutes = '/current' | '/forecast'
-
-export interface requestMergeConfig {
+export interface weatherMergeConfig {
   url: availableRoutes,
   params: {
     latitude: number,
