@@ -1,5 +1,5 @@
-import axios, { AxiosResponse } from "axios"
-import { baseConfig, type requestMergeConfig, type weatherRequestConfig } from "./requestConfig"
+import axios from "axios"
+import { baseConfig, type weatherMergeConfig } from "./requestConfig"
 
 import type { ICurrentWeatherRawData } from "./data/ICurrentWeatherRawData"
 import type { IWeatherForecastRawData } from "./data/IWeatherForecastRawData"
@@ -7,8 +7,10 @@ import type { IWeatherForecastRawData } from "./data/IWeatherForecastRawData"
 /*   API docs:  <https://openweathermap.org/current>
                 <https://openweathermap.org/api/one-call-3>   */
 
+type response<Type> = { data: Type; status: number }
+
 interface weatherRequest {
-  <Type>(mergeConfig: requestMergeConfig): Promise<AxiosResponse<Type, weatherRequestConfig>>
+  <Type>(mergeConfig: weatherMergeConfig): Promise<response<Type>>
 }
 
 class WeatherAPI {
@@ -16,7 +18,7 @@ class WeatherAPI {
 
   public getCurrentWeather(fromLocation: [string, string]) {
     const [latitude, longitude] = fromLocation
-    const mergeConfig: requestMergeConfig = {
+    const mergeConfig = {
       url: '/2.5/weather',
       params: { lat: latitude, lon: longitude }
     }
@@ -28,7 +30,7 @@ class WeatherAPI {
     const [latitude, longitude] = fromLocation
     const removedDataFromQuery = ['current', 'minutely', 'alerts']
 
-    const mergeConfig: requestMergeConfig = {
+    const mergeConfig = {
       url: '/3.0/onecall',
       params: {
         lat: latitude, lon: longitude,

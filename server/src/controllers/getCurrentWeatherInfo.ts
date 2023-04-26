@@ -10,8 +10,7 @@ export async function getCurrentWeatherInfo(req: Request, res: Response) {
 
   const APIResponse = await weatherAPI.getCurrentWeather([latitude, longitude])
 
-  if (APIResponse.status == 200) {
+  if (APIResponse.status == 200)
     return res.json(processCurrentWeatherRawData(APIResponse.data))
-  }
   else return res.sendStatus(APIResponse.status)
 }
