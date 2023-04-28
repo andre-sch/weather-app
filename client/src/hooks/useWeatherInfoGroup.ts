@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from "react"
 
+import { cityIdConversor } from "../utils/cityIdConversor"
 import { sizeOf } from "../utils/sizeOfObject"
 
 import { RegisteredCityGetterContext } from "../contexts/geoLocation/RegisteredCityProvider"
@@ -19,7 +20,7 @@ export function useWeatherInfoGroup() {
     setWeatherInfoStorage({})
     registeredCities.forEach(async (registeredCity, index) => {
       const cityID = registeredCity.location
-      const location = cityID.split(', ').map(coordinate => Number(coordinate)) as [number, number]
+      const location = cityIdConversor.fromIdToLocation(cityID)
       const weatherInfo = await weatherService.getWeatherInfo(location)
 
       setWeatherInfoStorage(previousStorage => ({
