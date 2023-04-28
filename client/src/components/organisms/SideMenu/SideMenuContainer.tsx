@@ -1,6 +1,8 @@
 import { useEffect, useContext, type ReactNode } from "react"
 import { MenuDisplayGetterContext, MenuDisplaySetterContext } from "../../../contexts/menuDisplay/MenuDisplayProvider"
 
+import { Modal } from "../../atoms/Modal"
+
 import "./SideMenuContainer.css"
 
 interface SideMenuContainerProps { children: ReactNode }
@@ -12,14 +14,12 @@ export function SideMenuContainer(props: SideMenuContainerProps) {
   useEffect(toggleSideMenuTabNavigation, [isMenuOpen])
 
   return (
-    <div className={`side-menu-container ${isMenuOpen ? 'show' : ''}`}>
-      <div className="side-menu-content" onLoad={toggleSideMenuTabNavigation}>
-        {props.children}
-      </div>
-      <div
-        className={`dark-overlay ${isMenuOpen ? 'show' : ''}`}
-        onClick={() => setIsMenuOpen(false)}>
-      </div>
+    <div className="side-menu-container">
+      <Modal shouldDisplay={isMenuOpen} hideOverlay={hideMenu}>
+        <div className="side-menu-content" onLoad={toggleSideMenuTabNavigation}>
+          {props.children}
+        </div>
+      </Modal>
     </div>
   )
 
@@ -31,4 +31,6 @@ export function SideMenuContainer(props: SideMenuContainerProps) {
       else element.setAttribute('tabindex', '-1')
     }
   }
+
+  function hideMenu() { setIsMenuOpen(false) }
 }
