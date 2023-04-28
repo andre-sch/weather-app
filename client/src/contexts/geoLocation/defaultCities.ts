@@ -1,10 +1,10 @@
-export interface registeredCity {
+export interface ICityRegistry {
   location: string,
   name: string,
   country: string
 }
 
-export const defaultCities: registeredCity[] = [
+export const defaultCities: ICityRegistry[] = [
   { location: '35.69, 139.69', name: 'Tokyo', country: 'Japan' },
   { location: '-23.55, -46.63', name: 'Sao Paulo', country: 'Brazil' },
   { location: '40.71, -74.00', name: 'New York', country: 'United States' },

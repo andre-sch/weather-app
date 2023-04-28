@@ -3,12 +3,12 @@ import { textFormat } from "../../../utils/textFormat"
 
 import { TemperatureInfo } from "./TemperatureInfo"
 
-import type { registeredCity } from "../../../contexts/geoLocation/defaultCities"
+import type { ICityRegistry } from "../../../contexts/geoLocation/defaultCities"
 import type { IWeatherInfo } from "../../../services/weatherService"
 
 interface CityCardProps {
   extraClassName?: string
-  renderedCity: registeredCity
+  renderedCity: ICityRegistry
   weatherInfo: IWeatherInfo
   weatherDescription?: ReactNode
   children?: ReactNode
