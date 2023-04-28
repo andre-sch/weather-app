@@ -25,6 +25,7 @@
 .forecast-switch button + button {border-radius: 0 0.75rem 0.75rem 0;}
 .forecast-switch button:not(.on) {opacity: 0.4;}
 .forecast-switch button:hover {background: #843b57;}
+.forecast-switch button:focus {z-index: 1;}
 
 .show-details {
   width: 5rem;

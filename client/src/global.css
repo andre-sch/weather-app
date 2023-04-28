@@ -31,7 +31,8 @@ body {
   color: rgb(var(--white-rgb));
 }
 
-button {cursor: pointer;}
+button {cursor: pointer; border-radius: 0.25rem;}
+:is(button, input):focus-visible {outline: 0.125rem solid rgba(var(--white-rgb), 0.9);}
 
 ul, li {list-style: none;}
 

@@ -18,9 +18,6 @@
 .city-input-container input::placeholder {
   color: rgba(var(--white-rgb), 0.6);
 }
-.city-input-container input:focus {
-  outline: 0.125rem solid rgba(var(--white-rgb), 0.9);
-}
 
 .city-input-container img {
   position: absolute;
