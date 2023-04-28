@@ -1,7 +1,7 @@
 import { useContext, Fragment } from "react"
 
 import { DisplayedCityIdGetterContext } from "../../../contexts/geoLocation/DisplayedCityIdProvider"
-import { WeatherInfoGroupContext } from "../../../contexts/weatherInfo/WeatherInfoProvider"
+import { WeatherInfoGroupContext } from "../../../contexts/weatherInfo/WeatherInfoGroupProvider"
 
 import { timeConversion } from "../../../utils/timeConversion"
 import { twilightSearch } from "../../../utils/twilightSearch"

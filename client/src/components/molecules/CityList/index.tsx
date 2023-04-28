@@ -2,7 +2,7 @@ import { useContext } from "react"
 
 import { RegisteredCityGetterContext } from "../../../contexts/geoLocation/RegisteredCityProvider"
 import { DisplayedCityIdSetterContext } from "../../../contexts/geoLocation/DisplayedCityIdProvider"
-import { WeatherInfoGroupContext } from "../../../contexts/weatherInfo/WeatherInfoProvider"
+import { WeatherInfoGroupContext } from "../../../contexts/weatherInfo/WeatherInfoGroupProvider"
 
 import { CityCard } from "../../atoms/CityCard"
 import { EmptyCityRegistry } from "../../atoms/EmptyCityRegistry"

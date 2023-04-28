@@ -4,7 +4,7 @@ import { textFormat } from "../../../utils/textFormat"
 import { TemperatureInfo } from "./TemperatureInfo"
 
 import type { registeredCity } from "../../../contexts/geoLocation/defaultCities"
-import type { IWeatherInfo } from "../../../contexts/weatherInfo/WeatherInfoProvider"
+import type { IWeatherInfo } from "../../../services/weatherService"
 
 interface CityCardProps {
   extraClassName?: string

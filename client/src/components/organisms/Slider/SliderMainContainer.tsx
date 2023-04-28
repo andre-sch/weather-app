@@ -2,7 +2,7 @@ import { ReactNode, useEffect, useRef, useContext } from "react"
 
 import { useCursorTracking } from "../../../hooks/useCursorTracking"
 
-import { WeatherInfoGroupContext } from "../../../contexts/weatherInfo/WeatherInfoProvider"
+import { WeatherInfoGroupContext } from "../../../contexts/weatherInfo/WeatherInfoGroupProvider"
 import { DisplayedCityIdGetterContext } from "../../../contexts/geoLocation/DisplayedCityIdProvider"
 import { SectionDisplayedIdGetterContext } from "../../../contexts/section/SectionDisplayedProvider"
 import { SectionOffsetLeftSettersContext } from "../../../contexts/section/SectionOffsetLeftProvider"

@@ -7,16 +7,16 @@ import { RegisteredCityGetterContext } from "../contexts/geoLocation/RegisteredC
 import { useChangeInTime } from "./useChangeInTime"
 
 import { weatherService } from "../services/weatherService"
-import type { IWeatherInfoGroup } from "../contexts/weatherInfo/WeatherInfoProvider"
+import type { IWeatherInfoGroup } from "../contexts/weatherInfo/WeatherInfoGroupProvider"
 
-export function useWeatherInfo() {
+export function useWeatherInfoGroup() {
   const currentTime = useChangeInTime({
     timeResetDelay: 4 * timeConversion.MINUTE_IN_SECONDS,
     timeCheckInterval: 6 * timeConversion.MINUTE_IN_SECONDS
   })
   const registeredCities = useContext(RegisteredCityGetterContext)
 
-  const [weatherInfo, setWeatherInfo] = useState<IWeatherInfoGroup>({})
+  const [weatherInfoGroup, setWeatherInfoGroup] = useState<IWeatherInfoGroup>({})
   const [weatherInfoStorage, setWeatherInfoStorage] = useState<IWeatherInfoGroup>({})
 
   useEffect(() => {
@@ -24,26 +24,24 @@ export function useWeatherInfo() {
     registeredCities.forEach(async (registeredCity, index) => {
       const cityID = registeredCity.location
       const location = cityID.split(', ').map(coordinate => Number(coordinate)) as [number, number]
-
-      const currentInfo = (await weatherService.getCurrentWeatherInfo(location)).data
-      const forecastInfo = (await weatherService.getWeatherForecastInfo(location)).data
+      const weatherInfo = await weatherService.getWeatherInfo(location)
 
       setWeatherInfoStorage(previousStorage => ({
-        ...previousStorage, [cityID]: { current: currentInfo, forecast: forecastInfo }
+        ...previousStorage, [cityID]: weatherInfo
       }))
 
       if (index == 0 && sizeOf(weatherInfo) == 0)
-        setWeatherInfo(previousInfo => ({
-          ...previousInfo, [cityID]: { current: currentInfo, forecast: forecastInfo }
+        setWeatherInfoGroup(previousInfo => ({
+          ...previousInfo, [cityID]: weatherInfo
         }))
     })
   }, [currentTime])
 
   useEffect(() => {
     if (sizeOf(weatherInfoStorage) == registeredCities.length) {
-      setWeatherInfo(weatherInfoStorage)
+      setWeatherInfoGroup(weatherInfoStorage)
     }
   }, [sizeOf(weatherInfoStorage)])
 
-  return weatherInfo
+  return weatherInfoGroup
 }

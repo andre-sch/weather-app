@@ -1,6 +1,6 @@
 import { RegisteredCityProvider } from "../../contexts/geoLocation/RegisteredCityProvider"
 import { DisplayedCityIdProvider } from "../../contexts/geoLocation/DisplayedCityIdProvider"
-import { WeatherInfoProvider } from "../../contexts/weatherInfo/WeatherInfoProvider"
+import { WeatherInfoGroupProvider } from "../../contexts/weatherInfo/WeatherInfoGroupProvider"
 
 import { SideMenu } from "../../components/organisms/SideMenu"
 import { CitiesPagination } from "../../components/organisms/CitiesPagination"
@@ -13,14 +13,14 @@ export function WeatherCard() {
   return (
     <div className="weather-card">
       <RegisteredCityProvider>
-        <WeatherInfoProvider>
+        <WeatherInfoGroupProvider>
           <DisplayedCityIdProvider>
             <SideMenu />
             <CitiesPagination />
             <CurrentCityInfo />
             <Slider />
           </DisplayedCityIdProvider>
-        </WeatherInfoProvider>
+        </WeatherInfoGroupProvider>
       </RegisteredCityProvider>
     </div>
   )

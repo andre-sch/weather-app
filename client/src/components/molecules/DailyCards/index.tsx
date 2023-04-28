@@ -3,7 +3,7 @@ import { useContext, Fragment } from "react"
 import { timeConversion } from "../../../utils/timeConversion"
 
 import { DisplayedCityIdGetterContext } from "../../../contexts/geoLocation/DisplayedCityIdProvider"
-import { WeatherInfoGroupContext } from "../../../contexts/weatherInfo/WeatherInfoProvider"
+import { WeatherInfoGroupContext } from "../../../contexts/weatherInfo/WeatherInfoGroupProvider"
 
 import { DayCard } from "../../atoms/ForecastCard/DayCard"
 
