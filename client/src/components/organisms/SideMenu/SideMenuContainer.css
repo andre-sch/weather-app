@@ -7,7 +7,7 @@
   position: relative;
   width: 16.5rem; height: 100%;
   padding: 0.625rem 1rem 0.5rem 1.25rem;
-  background: #2D2E2A;
+  background: var(--side-menu);
   z-index: 2;
 }
 
