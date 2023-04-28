@@ -3,7 +3,7 @@ import { MenuDisplayProvider } from "../../contexts/menuDisplay/MenuDisplayProvi
 import { WeatherAppHeader } from "./WeatherAppHeader"
 import { WeatherCard } from "./WeatherCard"
 
-import './index.css'
+import "./index.css"
 
 export function WeatherApp() {
   return (

@@ -7,7 +7,7 @@ import { CitiesPagination } from "../../components/organisms/CitiesPagination"
 import { CurrentCityInfo } from "../../components/organisms/CurrentCityInfo"
 import { Slider } from "../../components/organisms/Slider"
 
-import './WeatherCard.css'
+import "./WeatherCard.css"
 
 export function WeatherCard() {
   return (

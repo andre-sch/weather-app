@@ -1,5 +1,5 @@
-import { timeConversion } from './timeConversion'
-import type { DailyInfo } from '../services/weatherService/data/IWeatherForecastInfo'
+import { timeConversion } from "./timeConversion"
+import type { DailyInfo } from "../services/weatherService/data/IWeatherForecastInfo"
 
 export interface TwilightInfo { type: 'sunrise' | 'sunset', timestamp: number }
 
