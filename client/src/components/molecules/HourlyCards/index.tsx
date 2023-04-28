@@ -1,7 +1,7 @@
 import { useContext, Fragment } from "react"
 
 import { DisplayedCityIdGetterContext } from "../../../contexts/geoLocation/DisplayedCityIdProvider"
-import { WeatherInfoGroupContext } from "../../../contexts/weatherInfo/WeatherInfoGroupProvider"
+import { WeatherInfoGroupGetterContext } from "../../../contexts/weatherInfo/WeatherInfoGroupProvider"
 
 import { timeConversion } from "../../../utils/timeConversion"
 import { twilightSearch } from "../../../utils/twilightSearch"
@@ -11,7 +11,7 @@ import { HourTwilight } from "../../atoms/ForecastCard/HourTwilight"
 
 export function HourlyCards() {
   const DisplayedCityID = useContext(DisplayedCityIdGetterContext)
-  const weatherInfo = useContext(WeatherInfoGroupContext)[DisplayedCityID]
+  const weatherInfo = useContext(WeatherInfoGroupGetterContext)[DisplayedCityID]
 
   var hourIndexes: number[] = []
   for (let index = 0; index < timeConversion.DAY_IN_HOURS; index++) hourIndexes.push(index)

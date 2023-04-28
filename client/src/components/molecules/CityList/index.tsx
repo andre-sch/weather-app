@@ -1,8 +1,8 @@
 import { useContext } from "react"
 
 import { RegisteredCityGetterContext } from "../../../contexts/geoLocation/RegisteredCityProvider"
+import { WeatherInfoGroupGetterContext } from "../../../contexts/weatherInfo/WeatherInfoGroupProvider"
 import { DisplayedCityIdSetterContext } from "../../../contexts/geoLocation/DisplayedCityIdProvider"
-import { WeatherInfoGroupContext } from "../../../contexts/weatherInfo/WeatherInfoGroupProvider"
 
 import { CityCard } from "../../atoms/CityCard"
 import { EmptyCityRegistry } from "../../atoms/EmptyCityRegistry"
@@ -13,7 +13,7 @@ import "./CityCard.css"
 
 export function CityList() {
   const registeredCities = useContext(RegisteredCityGetterContext)
-  const weatherInfoGroup = useContext(WeatherInfoGroupContext)
+  const weatherInfoGroup = useContext(WeatherInfoGroupGetterContext)
 
   const setDisplayedCityID = useContext(DisplayedCityIdSetterContext)
 

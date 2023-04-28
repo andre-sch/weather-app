@@ -1,13 +1,13 @@
 import { useContext, Fragment } from "react"
 
 import { DisplayedCityIdGetterContext } from "../../../contexts/geoLocation/DisplayedCityIdProvider"
-import { WeatherInfoGroupContext } from "../../../contexts/weatherInfo/WeatherInfoGroupProvider"
+import { WeatherInfoGroupGetterContext } from "../../../contexts/weatherInfo/WeatherInfoGroupProvider"
 
 import { DetailCardsGroup } from "./DetailCardsGroup"
 
 export function DetailCards() {
   const DisplayedCityID = useContext(DisplayedCityIdGetterContext)
-  const weatherInfo = useContext(WeatherInfoGroupContext)[DisplayedCityID]
+  const weatherInfo = useContext(WeatherInfoGroupGetterContext)[DisplayedCityID]
 
   const NUMBER_OF_DETAIL_CARDS = 6
   var detailIndexes: number[] = []

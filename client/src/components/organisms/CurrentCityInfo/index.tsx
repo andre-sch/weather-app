@@ -4,7 +4,7 @@ import { textFormat } from "../../../utils/textFormat"
 
 import { RegisteredCityGetterContext } from "../../../contexts/geoLocation/RegisteredCityProvider"
 import { DisplayedCityIdGetterContext } from "../../../contexts/geoLocation/DisplayedCityIdProvider"
-import { WeatherInfoGroupContext } from "../../../contexts/weatherInfo/WeatherInfoGroupProvider"
+import { WeatherInfoGroupGetterContext } from "../../../contexts/weatherInfo/WeatherInfoGroupProvider"
 
 import { CityCard } from "../../atoms/CityCard"
 
@@ -19,7 +19,7 @@ export function CurrentCityInfo() {
     return registeredCityID == displayedCityID
   })
 
-  const weatherInfo = useContext(WeatherInfoGroupContext)[displayedCityID]
+  const weatherInfo = useContext(WeatherInfoGroupGetterContext)[displayedCityID]
   if (!renderedCity || !weatherInfo) return <div className="current-city-info loading"></div>
 
   const [descriptionFirstLine, descriptionSecondLine] = textFormat.splitInMiddle(

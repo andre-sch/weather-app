@@ -40,5 +40,5 @@ export function useWeatherInfoGroup() {
     }
   }, [sizeOf(weatherInfoStorage)])
 
-  return weatherInfoGroup
+  return { weatherInfoGroup, setWeatherInfoGroup }
 }
