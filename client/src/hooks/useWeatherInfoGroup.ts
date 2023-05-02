@@ -8,6 +8,7 @@ import { useChangeInTime } from "./useChangeInTime"
 
 import { weatherService } from "../services/weatherService"
 import type { IWeatherInfoGroup } from "../contexts/weatherInfo/WeatherInfoGroupProvider"
+import type { ICityRegistry } from "../contexts/geoLocation/defaultCities"
 
 export function useWeatherInfoGroup() {
   const currentTime = useChangeInTime()
@@ -19,18 +20,11 @@ export function useWeatherInfoGroup() {
   useEffect(() => {
     setWeatherInfoStorage({})
     registeredCities.forEach(async (registeredCity, index) => {
-      const cityID = registeredCity.location
-      const location = cityIdConversor.fromIdToLocation(cityID)
-      const weatherInfo = await weatherService.getWeatherInfo(location)
-
-      setWeatherInfoStorage(previousStorage => ({
-        ...previousStorage, [cityID]: weatherInfo
-      }))
+      const weatherInfo = await getWeatherInfoFromCityRegistry(registeredCity)
+      setWeatherInfoStorage(previousStorage => ({ ...previousStorage, ...weatherInfo }))
 
       if (index == 0 && sizeOf(weatherInfo) == 0)
-        setWeatherInfoGroup(previousInfo => ({
-          ...previousInfo, [cityID]: weatherInfo
-        }))
+        setWeatherInfoGroup(previousInfo => ({ ...previousInfo, ...weatherInfo }))
     })
   }, [currentTime])
 
@@ -41,4 +35,14 @@ export function useWeatherInfoGroup() {
   }, [sizeOf(weatherInfoStorage)])
 
   return { weatherInfoGroup, setWeatherInfoGroup }
+}
+
+export async function getWeatherInfoFromCityRegistry(
+  cityRegistry: ICityRegistry
+): Promise<IWeatherInfoGroup> {
+  const cityID = cityRegistry.location
+  const location = cityIdConversor.fromIdToLocation(cityID)
+  const weatherInfo = await weatherService.getWeatherInfo(location)
+
+  return { [cityID]: weatherInfo }
 }

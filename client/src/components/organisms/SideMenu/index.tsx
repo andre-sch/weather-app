@@ -1,6 +1,6 @@
 import { SideMenuContainer } from "./SideMenuContainer"
 import { SideMenuHeader } from "./SideMenuHeader"
-import { CityInput } from "../../atoms/CityInput"
+import { SideMenuCityInput } from "./SideMenuCityInput"
 import { CityList } from "../../molecules/CityList"
 
 import "./SideMenuCityList.css"
@@ -9,7 +9,7 @@ export function SideMenu() {
   return (
     <SideMenuContainer>
       <SideMenuHeader />
-      <CityInput />
+      <SideMenuCityInput />
       <CityList />
     </SideMenuContainer>
   )
