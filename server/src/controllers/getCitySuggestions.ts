@@ -7,7 +7,7 @@ export async function getCitySuggestions(req: Request, res: Response) {
   const { cityInput } = req.query as { cityInput?: string }
   if (!cityInput) return res.sendStatus(400)
 
-  const APIResponse = await locationAPI.getRawCitySuggestions(cityInput)
+  const APIResponse = await locationAPI.getAutocomplete(cityInput)
 
   if (APIResponse.status == 200)
     return res.json(processCitySuggestions(APIResponse.data))

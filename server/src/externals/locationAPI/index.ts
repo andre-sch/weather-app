@@ -1,29 +1,18 @@
 import axios from "axios"
-import { baseConfig, type locationMergeConfig } from "./requestConfig"
+import { locationRequestConfig } from "../config/locationRequestConfig"
 
 import type { IRawCitySuggestions } from "./data/IRawCitySuggestions"
 
 /*   API docs: <https://www.geoapify.com/address-autocomplete>   */
 
-type response<Type> = { data: Type; status: number }
-
-interface locationRequest {
-  <Type>(mergeConfig: locationMergeConfig): Promise<response<Type>>
-}
+type response<T> = Promise<{ data: T, status: number}>
 
 class LocationAPI {
-  baseRequest: locationRequest = axios.create(baseConfig)
+  private baseRequest = axios.create(locationRequestConfig.baseConfig)
 
-  getRawCitySuggestions(cityInput: string) {
-    const mergeConfig = {
-      url: '/geocode/autocomplete',
-      params: {
-        type: 'city',
-        text: cityInput
-      }
-    }
-
-    return this.baseRequest<IRawCitySuggestions>(mergeConfig)
+  public getAutocomplete(cityInput: string): response<IRawCitySuggestions> {
+    const additionalConfig = locationRequestConfig.mergeConfig(cityInput)
+    return this.baseRequest(additionalConfig)
   }
 }
 

@@ -1,5 +1,8 @@
 import axios from "axios"
-import { baseConfig, type weatherMergeConfig } from "./requestConfig"
+
+import { weatherBaseConfig } from "../config/weatherBaseRequestConfig"
+import { currentWeatherRequestConfig } from "../config/weatherCurrentRequestConfig"
+import { weatherForecastRequestConfig } from "../config/weatherForecastRequestConfig"
 
 import type { ICurrentWeatherRawData } from "./data/ICurrentWeatherRawData"
 import type { IWeatherForecastRawData } from "./data/IWeatherForecastRawData"
@@ -7,38 +10,20 @@ import type { IWeatherForecastRawData } from "./data/IWeatherForecastRawData"
 /*   API docs:  <https://openweathermap.org/current>
                 <https://openweathermap.org/api/one-call-3>   */
 
-type response<Type> = { data: Type; status: number }
-
-interface weatherRequest {
-  <Type>(mergeConfig: weatherMergeConfig): Promise<response<Type>>
-}
+type response<T> = Promise<{ data: T, status: number }>
+type coordinates = [string, string]
 
 class WeatherAPI {
-  private baseRequest: weatherRequest = axios.create(baseConfig)
+  private baseRequest = axios.create(weatherBaseConfig)
 
-  public getCurrentWeather(fromLocation: [string, string]) {
-    const [latitude, longitude] = fromLocation
-    const mergeConfig = {
-      url: '/2.5/weather',
-      params: { lat: latitude, lon: longitude }
-    }
-
-    return this.baseRequest<ICurrentWeatherRawData>(mergeConfig)
+  public getCurrentWeather(fromLocation: coordinates): response<ICurrentWeatherRawData> {
+    const additionalConfig = currentWeatherRequestConfig.mergeConfig(fromLocation)
+    return this.baseRequest(additionalConfig)
   }
 
-  public getWeatherForecast(fromLocation: [string, string]) {
-    const [latitude, longitude] = fromLocation
-    const removedDataFromQuery = ['current', 'minutely', 'alerts']
-
-    const mergeConfig = {
-      url: '/3.0/onecall',
-      params: {
-        lat: latitude, lon: longitude,
-        exclude: removedDataFromQuery.join(',')
-      }
-    }
-
-    return this.baseRequest<IWeatherForecastRawData>(mergeConfig)
+  public getWeatherForecast(fromLocation: coordinates): response<IWeatherForecastRawData> {
+    const additionalConfig = weatherForecastRequestConfig.mergeConfig(fromLocation)
+    return this.baseRequest(additionalConfig)
   }
 }
 
