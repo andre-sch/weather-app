@@ -1,5 +1,8 @@
 import axios from "axios"
 
+import { responseErrorHandling } from "../responseErrorHandling"
+import { AxiosInterceptor } from "../AxiosInterceptor"
+
 import { weatherBaseConfig } from "../config/weatherBaseRequestConfig"
 import { currentWeatherRequestConfig } from "../config/weatherCurrentRequestConfig"
 import { weatherForecastRequestConfig } from "../config/weatherForecastRequestConfig"
@@ -15,6 +18,9 @@ type coordinates = [string, string]
 
 class WeatherAPI {
   private baseRequest = axios.create(weatherBaseConfig)
+  private interceptor = new AxiosInterceptor(this.baseRequest)
+
+  constructor() { responseErrorHandling.preset(this.interceptor) }
 
   public getCurrentWeather(fromLocation: coordinates): response<ICurrentWeatherRawData> {
     const additionalConfig = currentWeatherRequestConfig.mergeConfig(fromLocation)
