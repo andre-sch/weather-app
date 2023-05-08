@@ -14,7 +14,7 @@ export function useCityAutocomplete(cityInput: string) {
 
     if (isInputValid(cityInput))
       setTimeoutID(setTimeout(() => {
-        locationService.getCitySuggestions(cityInput, abortController.signal)
+        locationService.getAutocomplete(cityInput, abortController.signal)
           .then(response => setCitySuggestions(response.data))
           .catch(error => {
             if (abortController.signal.aborted) {}

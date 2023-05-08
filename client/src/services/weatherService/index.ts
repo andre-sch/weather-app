@@ -1,7 +1,7 @@
 import axios from "axios"
 
-import { baseConfig } from "../baseConfig"
-import type { availableRoutes, weatherMergeConfig } from "./requestConfig"
+import { baseConfig } from "../config/baseRequestConfig"
+import { currentWeatherRequestConfig, weatherForecastRequestConfig } from "../config/weatherRequestConfig"
 
 import type { ICurrentWeatherInfo } from "./data/ICurrentWeatherInfo"
 import type { IWeatherForecastInfo } from "./data/IWeatherForecastInfo"
@@ -25,20 +25,13 @@ class WeatherService {
   }
 
   private getCurrentWeatherInfo(fromLocation: coordinates): response<ICurrentWeatherInfo> {
-    return this.getWeather('/weather/current', fromLocation)
+    const additionalConfig = currentWeatherRequestConfig.mergeConfig(fromLocation)
+    return this.baseRequest(additionalConfig)
   }
 
   private getWeatherForecastInfo(fromLocation: coordinates): response<IWeatherForecastInfo> {
-    return this.getWeather('/weather/forecast', fromLocation)
-  }
-
-  private getWeather(url: availableRoutes, fromLocation: coordinates) {
-    const [latitude, longitude] = fromLocation
-    const mergeConfig: weatherMergeConfig = {
-      url, params: { latitude, longitude }
-    }
-
-    return this.baseRequest(mergeConfig)
+    const additionalConfig = weatherForecastRequestConfig.mergeConfig(fromLocation)
+    return this.baseRequest(additionalConfig)
   }
 }
 
