@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react"
 
 import { locationService } from "../services/locationService"
-import type { ICitySuggestions } from "../services/locationService/data/ICitySuggestions"
+import type { ICitySuggestion } from "../services/locationService/data/ICitySuggestion"
 
 export function useCityAutocomplete(cityInput: string) {
-  const [citySuggestions, setCitySuggestions] = useState<ICitySuggestions>([])
+  const [citySuggestions, setCitySuggestions] = useState<ICitySuggestion[]>([])
   const [timeoutID, setTimeoutID] = useState(0)
 
   const WAIT_NEW_USER_INPUTS = 500
