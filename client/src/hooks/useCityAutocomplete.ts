@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react"
+import { useState, useEffect, useContext } from "react"
+import { ServiceErrorSetterContext } from "../errors/serviceErrorBoundary"
 
 import { locationService } from "../services/locationService"
 import type { ICitySuggestion } from "../services/locationService/data/ICitySuggestion"
@@ -6,6 +7,8 @@ import type { ICitySuggestion } from "../services/locationService/data/ICitySugg
 export function useCityAutocomplete(cityInput: string) {
   const [citySuggestions, setCitySuggestions] = useState<ICitySuggestion[]>([])
   const [timeoutID, setTimeoutID] = useState(0)
+
+  const setServiceError = useContext(ServiceErrorSetterContext)
 
   const WAIT_NEW_USER_INPUTS = 500
 
@@ -18,7 +21,7 @@ export function useCityAutocomplete(cityInput: string) {
           .then(response => setCitySuggestions(response.data))
           .catch(error => {
             if (abortController.signal.aborted) {}
-            else throw error
+            else setServiceError(error)
           })
       }, WAIT_NEW_USER_INPUTS))
 

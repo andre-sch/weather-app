@@ -7,10 +7,18 @@
   border-radius: 0.125rem;
 }
 
-.city-input-container + .modal .no-suggestions {
+.city-input-container + .modal .no-suggestions,
+.city-input-container + .error-message {
   position: absolute;
   top: 100%; left: 50%;
   transform: translate(-50%, 0.3rem);
   padding: 0 0.4rem 0.1rem;
   border-radius: 0.4rem;
+}
+
+.city-input-container + .error-message {
+  color: var(--error);
+  font-size: 0.6rem;
+  font-weight: 600;
+  white-space: nowrap;
 }

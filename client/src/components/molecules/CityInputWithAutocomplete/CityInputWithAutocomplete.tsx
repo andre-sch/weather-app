@@ -1,4 +1,5 @@
 import { useRef, Fragment, type Dispatch } from "react"
+import { LocationServiceErrorBoundary } from "../../../errors/locationErrorBoundary"
 
 import { CityInput } from "./CityInput"
 import { CityAutocomplete } from "./CityAutocomplete"
@@ -18,9 +19,11 @@ export function CityInputWithAutocomplete(props: CityInputWithAutocompleteProps)
     <Fragment>
       <CityInput ref={inputRef} inputValueState={[inputValue, setInputValue]} />
 
-      <CityAutocomplete
-        autocompleteState={props.autocompleteState}
-        input={{ element: inputRef.current, text: inputValue }} />
+      <LocationServiceErrorBoundary>
+        <CityAutocomplete
+          autocompleteState={props.autocompleteState}
+          input={{ element: inputRef.current, text: inputValue }} />
+      </LocationServiceErrorBoundary>
     </Fragment>
   )
 }
