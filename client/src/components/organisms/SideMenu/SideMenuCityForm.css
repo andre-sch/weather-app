@@ -1,0 +1,19 @@
+.city-form, .city-form .city-input-container { position: relative; }
+.city-form :is(:not(.modal, .overlay)) {z-index: 5;}
+
+
+
+.city-form .modal.hide {display: none;}
+
+.city-form .modal .overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 4;
+}
+
+
+.city-form :is(.city-suggestions, .no-suggestions) {
+  background: var(--side-menu);
+}

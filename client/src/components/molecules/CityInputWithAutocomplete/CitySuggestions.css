@@ -1,0 +1,11 @@
+.no-suggestions {
+  font-size: 0.6rem;
+  color: rgb(var(--primary-rgb));
+}
+
+.city-suggestions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  width: 100%;
+}
