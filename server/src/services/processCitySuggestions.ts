@@ -16,8 +16,8 @@ export function processCitySuggestions(
 
     processedSuggestions.push({
       coordinates: {
-        latitude: rawSuggestion.lat,
-        longitude: rawSuggestion.lon
+        latitude: keepAccurateToThreeDecimalPlaces(rawSuggestion.lat),
+        longitude: keepAccurateToThreeDecimalPlaces(rawSuggestion.lon)
       },
       location: {
         city: rawSuggestion.city,
@@ -33,6 +33,10 @@ export function processCitySuggestions(
       if (suggestion.location.county == county)
         return true
     return false
+  }
+
+  function keepAccurateToThreeDecimalPlaces(value: number) {
+    return Number(value.toFixed(3))
   }
 
   return processedSuggestions

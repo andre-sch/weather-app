@@ -6,9 +6,9 @@ import type { ICityRegistry } from "../../../contexts/geoLocation/defaultCities"
 
 import "./CityOption.css"
 
-type Props = { option: ICitySuggestion }
+type Props = { option: ICitySuggestion, disabled: boolean }
 
-export function CityOption({ option }: Props) {
+export function CityOption({ option, disabled }: Props) {
   const { city, state, country } = option.location
   const { latitude, longitude } = option.coordinates
 
@@ -17,8 +17,8 @@ export function CityOption({ option }: Props) {
 
   return (
     <button
-      className="city-option"
-      type="submit" onClick={addCityRegistry}
+      className="city-option" type="submit"
+      onClick={addCityRegistry} disabled={disabled}
     >
       <p>
         <em>{city}, </em>
