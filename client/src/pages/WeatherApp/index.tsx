@@ -1,3 +1,4 @@
+import { WeatherServiceErrorBoundary } from "../../errors/weatherErrorBoundary"
 import { MenuDisplayProvider } from "../../contexts/menuDisplay/MenuDisplayProvider"
 
 import { WeatherAppHeader } from "./WeatherAppHeader"
@@ -8,10 +9,12 @@ import "./index.css"
 export function WeatherApp() {
   return (
     <div className="weather-app">
-      <MenuDisplayProvider>
-        <WeatherAppHeader />
-        <WeatherCard />
-      </MenuDisplayProvider>
+      <WeatherServiceErrorBoundary>
+        <MenuDisplayProvider>
+          <WeatherAppHeader />
+          <WeatherCard />
+        </MenuDisplayProvider>
+      </WeatherServiceErrorBoundary>
     </div>
   )
 }

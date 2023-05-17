@@ -26,13 +26,18 @@ export function SliderMainContainer({ children }: { children: ReactNode }) {
     }
   })
 
-  window.onresize = () => {
-    setSectionOffsetLeft(previousLeft => limitOffsetLeft(previousLeft))
-    executeOnSliderWidthChange()
-  }
+  useEffect(() => {
+    window.addEventListener('resize', handleWindowResize)
+    return () => window.removeEventListener('resize', handleWindowResize)
+  }, [])
 
   useEffect(() => setSectionOffsetLeft(0), [displayedCityID, sectionDisplayedID])
   useEffect(() => {setTimeout(executeOnSliderWidthChange, 350)}, [sectionDisplayedID]) // 50ms longer than css transition time
+
+  function handleWindowResize() {
+    setSectionOffsetLeft(previousLeft => limitOffsetLeft(previousLeft))
+    executeOnSliderWidthChange()
+  }
 
   function executeOnSliderWidthChange() {
     const newSectionLeftMax = calculateSectionLeftMax()

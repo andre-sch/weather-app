@@ -1,8 +1,14 @@
-.weather-app {
+.weather-app:has(.weather-card) {
   margin: max(calc((100vh - 30rem) / 2), 1rem) 0;
   width: min(50.5rem, 85vw);
 }
 
+.weather-app:has(.error-card) {margin: max(30vh, 1rem) 0 2rem}
+
+.weather-card, .error-card {
+  background: rgba(var(--white-rgb), 0.06);
+  border-radius: 0.75rem;
+}
 
 .loading {position: relative;}
 

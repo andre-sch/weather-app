@@ -1,6 +1,7 @@
 import axios from "axios"
 
 import { baseConfig } from "../config/baseRequestConfig"
+import { AxiosErrorHandling } from "../axiosErrorHandling"
 import { currentWeatherRequestConfig, weatherForecastRequestConfig } from "../config/weatherRequestConfig"
 
 import type { ICurrentWeatherInfo } from "./data/ICurrentWeatherInfo"
@@ -16,6 +17,9 @@ export interface IWeatherInfo {
 
 class WeatherService {
   private baseRequest = axios.create(baseConfig)
+  private errorHandling = new AxiosErrorHandling(this.baseRequest)
+
+  constructor() { this.errorHandling.preset() }
 
   public async getWeatherInfo(fromLocation: coordinates): Promise<IWeatherInfo> {
     const currentInfo = (await this.getCurrentWeatherInfo(fromLocation)).data

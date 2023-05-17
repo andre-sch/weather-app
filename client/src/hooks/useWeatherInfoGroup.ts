@@ -1,14 +1,11 @@
 import { useState, useEffect, useContext } from "react"
-
-import { cityIdConversor } from "../utils/cityIdConversor"
 import { sizeOf } from "../utils/sizeOfObject"
 
 import { RegisteredCityGetterContext } from "../contexts/geoLocation/RegisteredCityProvider"
-import { useChangeInTime } from "./useChangeInTime"
+import { useCityWeatherInfo } from "../hooks/useCityWeatherInfo"
+import { useChangeInTime } from "../hooks/useChangeInTime"
 
-import { weatherService } from "../services/weatherService"
 import type { IWeatherInfoGroup } from "../contexts/weatherInfo/WeatherInfoGroupProvider"
-import type { ICityRegistry } from "../contexts/geoLocation/defaultCities"
 
 export function useWeatherInfoGroup() {
   const currentTime = useChangeInTime()
@@ -17,14 +14,17 @@ export function useWeatherInfoGroup() {
   const [weatherInfoGroup, setWeatherInfoGroup] = useState<IWeatherInfoGroup>({})
   const [weatherInfoStorage, setWeatherInfoStorage] = useState<IWeatherInfoGroup>({})
 
+  const { getWeatherInfoFromCityRegistry } = useCityWeatherInfo()
+
   useEffect(() => {
     setWeatherInfoStorage({})
-    registeredCities.forEach(async (registeredCity, index) => {
-      const weatherInfo = await getWeatherInfoFromCityRegistry(registeredCity)
-      setWeatherInfoStorage(previousStorage => ({ ...previousStorage, ...weatherInfo }))
+    registeredCities.forEach((registeredCity, index) => {
+      getWeatherInfoFromCityRegistry(registeredCity).then(weatherInfo => {
+        setWeatherInfoStorage(previousStorage => ({ ...previousStorage, ...weatherInfo }))
 
-      if (index == 0 && sizeOf(weatherInfo) == 0)
-        setWeatherInfoGroup(previousInfo => ({ ...previousInfo, ...weatherInfo }))
+        if (index == 0 && sizeOf(weatherInfo) == 0)
+          setWeatherInfoGroup(previousInfo => ({ ...previousInfo, ...weatherInfo }))
+      }).catch(ignoreError)
     })
   }, [currentTime])
 
@@ -37,12 +37,4 @@ export function useWeatherInfoGroup() {
   return { weatherInfoGroup, setWeatherInfoGroup }
 }
 
-export async function getWeatherInfoFromCityRegistry(
-  cityRegistry: ICityRegistry
-): Promise<IWeatherInfoGroup> {
-  const cityID = cityRegistry.location
-  const location = cityIdConversor.fromIdToLocation(cityID)
-  const weatherInfo = await weatherService.getWeatherInfo(location)
-
-  return { [cityID]: weatherInfo }
-}
+function ignoreError(error: any) {}

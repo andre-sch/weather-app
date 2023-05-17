@@ -1,0 +1,36 @@
+.error-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  width: max-content;
+  padding: 2rem;
+}
+
+.error-card img {width: 5rem; height: 5rem;}
+
+.error-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.error-content p {
+  font-size: 0.8rem;
+  line-height: 130%;
+}
+
+.error-content em {
+  display: inline-block;
+  width: max-content;
+  padding: 0.3rem 1rem;
+
+  font-size: 1rem;
+  font-weight: 600;
+  font-style: normal;
+
+  background: var(--alert);
+  border-radius: 0.2rem;
+}
+
+.error-content em::selection {background-color: #6f2929;}
