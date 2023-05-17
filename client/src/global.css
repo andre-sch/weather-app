@@ -3,6 +3,7 @@
   padding: 0;
   border: 0;
   background: transparent;
+  color: rgb(var(--white-rgb));
   font-family: 'Poppins', sans-serif;
   box-sizing: border-box;
 }
@@ -29,7 +30,6 @@ body {
   flex-direction: column;
   align-items: center;
   background: var(--background);
-  color: rgb(var(--white-rgb));
 }
 
 button {cursor: pointer; border-radius: 0.25rem;}
