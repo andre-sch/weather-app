@@ -1,5 +1,6 @@
 import { useEffect, useContext, type ReactNode } from "react"
 import { MenuDisplayGetterContext, MenuDisplaySetterContext } from "../../../contexts/menuDisplay/MenuDisplayProvider"
+import { RegisteredCityGetterContext } from "../../../contexts/geoLocation/RegisteredCityProvider"
 
 import { Modal } from "../../atoms/Modal"
 
@@ -12,6 +13,9 @@ export function SideMenuContainer(props: SideMenuContainerProps) {
   const setIsMenuOpen = useContext(MenuDisplaySetterContext)
 
   useEffect(toggleSideMenuTabNavigation, [isMenuOpen])
+
+  const registeredCities = useContext(RegisteredCityGetterContext)
+  useEffect(openMenuIfCityRegistryIsEmpty, [])
 
   return (
     <div className="side-menu-container">
@@ -30,6 +34,10 @@ export function SideMenuContainer(props: SideMenuContainerProps) {
       if (isMenuOpen) element.setAttribute('tabindex', '0')
       else element.setAttribute('tabindex', '-1')
     }
+  }
+
+  function openMenuIfCityRegistryIsEmpty() {
+    setIsMenuOpen(registeredCities.length == 0)
   }
 
   function hideMenu() { setIsMenuOpen(false) }
